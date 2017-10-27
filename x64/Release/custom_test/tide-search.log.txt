@@ -1,0 +1,21 @@
+INFO: CPU: LCCCFJZJBM1
+INFO: Crux version: 3.1
+INFO: Wed 10/04/2017 
+COMMAND LINE: crux tide-search --output-dir .\custom_test --overwrite T --compute-sp T spec_0.ms2 C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\human-index
+INFO: Running tide-search...
+INFO: Number of Threads: 8
+INFO: Reading index C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\human-index
+WARNING: The file '.\custom_test/tide-search.target.txt' already exists and will be overwritten.
+WARNING: The file '.\custom_test/tide-search.decoy.txt' already exists and will be overwritten.
+INFO: Converting spec_0.ms2 to spectrumrecords format
+INFO: Elapsed time starting conversion: 0.56 s
+INFO: Reading spectra file .\custom_test/spec_0.ms2.spectrumrecords.tmp
+INFO: Sorting spectra
+INFO: Running search
+INFO: 1000 spectrum-charge combinations searched, 37% complete
+INFO: 2000 spectrum-charge combinations searched, 73% complete
+INFO: Time per spectrum-charge combination: 0.002531 s.
+INFO: Average number of candidates per spectrum-charge combination: 3474.328125 
+INFO: Elapsed time: 7.06 s
+INFO: Finished crux tide-search.
+INFO: Return Code:0

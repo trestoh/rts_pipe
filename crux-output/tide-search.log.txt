@@ -1,0 +1,16 @@
+INFO: CPU: LCCCFJZJBM1
+INFO: Crux version: 3.1
+INFO: Mon 10/16/2017 
+COMMAND LINE: crux tide-search --overwrite T --compute-sp T HELA_2017-04-27_294.mzML ./human-index
+INFO: Running tide-search...
+INFO: Number of Threads: 8
+INFO: Reading index ./human-index
+WARNING: The file 'crux-output/tide-search.target.txt' already exists and will be overwritten.
+WARNING: The file 'crux-output/tide-search.decoy.txt' already exists and will be overwritten.
+INFO: Converting HELA_2017-04-27_294.mzML to spectrumrecords format
+INFO: Elapsed time starting conversion: 7.99 s
+INFO: Reading spectra file crux-output/HELA_2017-04-27_294.mzML.spectrumrecords.tmp
+INFO: Sorting spectra
+INFO: Running search
+INFO: 1000 spectrum-charge combinations searched, 37% complete
+INFO: 2000 spectrum-charge combinations searched, 73% complete

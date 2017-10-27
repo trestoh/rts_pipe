@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerCommandArguments>--overwrite T --compute-sp T --oms-src C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\HELA_2017-04-27_294.mzML</LocalDebuggerCommandArguments>
+    <LocalDebuggerEnvironment>_NO_DEBUG_HEAP=1 </LocalDebuggerEnvironment>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LocalDebuggerCommandArguments>--oms-src C:\dev\notthere.txt --overwrite T</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+</Project>

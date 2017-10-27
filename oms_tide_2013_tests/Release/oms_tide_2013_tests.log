@@ -1,0 +1,68 @@
+﻿Build started 9/29/2017 12:25:44 PM.
+     1>Project "C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include" /IC:\dev\OpenMS_2013\src\openms\include /IC:\dev\contrib_build_2013\include /I"C:\dev\qt-src-2\include\QtCore" /I"C:\dev\qt-src-2\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Release\oms_tide_2013_tests.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include" /IC:\dev\OpenMS_2013\src\openms\include /IC:\dev\contrib_build_2013\include /I"C:\dev\qt-src-2\include\QtCore" /I"C:\dev\qt-src-2\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Release\oms_tide_2013_tests.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt oms_tide_2013_tests.cpp
+         oms_tide_2013_tests.cpp
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/FORMAT/XMLFile.h(94): warning C4251: 'OpenMS::Internal::XMLFile::schema_location_' : class 'OpenMS::String' needs to have dll-interface to be used by clients of class 'OpenMS::Internal::XMLFile'
+                 C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/String.h(57) : see declaration of 'OpenMS::String'
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/FORMAT/XMLFile.h(97): warning C4251: 'OpenMS::Internal::XMLFile::schema_version_' : class 'OpenMS::String' needs to have dll-interface to be used by clients of class 'OpenMS::Internal::XMLFile'
+                 C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/String.h(57) : see declaration of 'OpenMS::String'
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/FORMAT/XMLFile.h(100): warning C4251: 'OpenMS::Internal::XMLFile::enforced_encoding_' : class 'OpenMS::String' needs to have dll-interface to be used by clients of class 'OpenMS::Internal::XMLFile'
+                 C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/String.h(57) : see declaration of 'OpenMS::String'
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/CONCEPT/Exception.h(154): warning C4251: 'OpenMS::Exception::BaseException::name_' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'OpenMS::Exception::BaseException'
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/CONCEPT/Exception.h(157): warning C4251: 'OpenMS::Exception::BaseException::what_' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'OpenMS::Exception::BaseException'
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/CONCEPT/PrecisionWrapper.h(107): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/CONCEPT/PrecisionWrapper.h(108): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/CONCEPT/PrecisionWrapper.h(110): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/DPosition.h(183): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/DPosition.h(184): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/DPosition.h(187): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/Peak1D.h(171): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/Peak1D.h(172): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/Peak1D.h(174): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/ChromatogramPeak.h(180): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/ChromatogramPeak.h(181): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/ChromatogramPeak.h(183): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/METADATA/ProteinHit.h(69): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/METADATA/ProteinHit.h(70): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/METADATA/ProteinHit.h(72): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/METADATA/ProteinHit.h(88): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/METADATA/ProteinHit.h(89): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/METADATA/ProteinHit.h(91): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/MSSpectrum.h(210): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/MSSpectrum.h(211): warning C4068: unknown pragma
+     1>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/MSSpectrum.h(222): warning C4068: unknown pragma
+     1>oms_tide_2013_tests.cpp(40): warning C4018: '<' : signed/unsigned mismatch
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\Release\oms_tide_2013_tests.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\dev\OpenMS_2013\src\openms\Release kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib OpenMS.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\Release\oms_tide_2013_tests.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\Release\oms_tide_2013_tests.lib" /MACHINE:X86 /SAFESEH Release\oms_tide_2013_tests.obj
+         Release\stdafx.obj
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __thiscall OpenMS::String::String(char const *)" (__imp_??0String@OpenMS@@QAE@PBD@Z)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __thiscall OpenMS::ExperimentalSettings::ExperimentalSettings(void)" (__imp_??0ExperimentalSettings@OpenMS@@QAE@XZ)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __thiscall OpenMS::ExperimentalSettings::~ExperimentalSettings(void)" (__imp_??1ExperimentalSettings@OpenMS@@UAE@XZ)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: class std::vector<class OpenMS::Precursor,class std::allocator<class OpenMS::Precursor> > & __thiscall OpenMS::SpectrumSettings::getPrecursors(void)" (__imp_?getPrecursors@SpectrumSettings@OpenMS@@QAEAAV?$vector@VPrecursor@OpenMS@@V?$allocator@VPrecursor@OpenMS@@@std@@@std@@XZ)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: enum OpenMS::ChromatogramSettings::ChromatogramType __thiscall OpenMS::ChromatogramSettings::getChromatogramType(void)const " (__imp_?getChromatogramType@ChromatogramSettings@OpenMS@@QBE?AW4ChromatogramType@12@XZ)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __thiscall OpenMS::MetaInfoDescription::~MetaInfoDescription(void)" (__imp_??1MetaInfoDescription@OpenMS@@QAE@XZ)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __thiscall OpenMS::MzMLFile::MzMLFile(void)" (__imp_??0MzMLFile@OpenMS@@QAE@XZ)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __thiscall OpenMS::MzMLFile::~MzMLFile(void)" (__imp_??1MzMLFile@OpenMS@@UAE@XZ)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: void __thiscall OpenMS::MzMLFile::load(class OpenMS::String const &,class OpenMS::MSExperiment &)" (__imp_?load@MzMLFile@OpenMS@@QAEXABVString@2@AAVMSExperiment@2@@Z)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __thiscall OpenMS::SpectrumSettings::~SpectrumSettings(void)" (__imp_??1SpectrumSettings@OpenMS@@QAE@XZ)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __thiscall OpenMS::SpectrumSettings::SpectrumSettings(class OpenMS::SpectrumSettings const &)" (__imp_??0SpectrumSettings@OpenMS@@QAE@ABV01@@Z)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: class OpenMS::SpectrumSettings & __thiscall OpenMS::SpectrumSettings::operator=(class OpenMS::SpectrumSettings const &)" (__imp_??4SpectrumSettings@OpenMS@@QAEAAV01@ABV01@@Z)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: double __thiscall OpenMS::Product::getMZ(void)const " (__imp_?getMZ@Product@OpenMS@@QBENXZ)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: class OpenMS::Product const & __thiscall OpenMS::ChromatogramSettings::getProduct(void)const " (__imp_?getProduct@ChromatogramSettings@OpenMS@@QBEABVProduct@2@XZ)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: class OpenMS::MetaInfoDescription & __thiscall OpenMS::MetaInfoDescription::operator=(class OpenMS::MetaInfoDescription const &)" (__imp_??4MetaInfoDescription@OpenMS@@QAEAAV01@ABV01@@Z)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __thiscall OpenMS::MetaInfoDescription::MetaInfoDescription(class OpenMS::MetaInfoDescription const &)" (__imp_??0MetaInfoDescription@OpenMS@@QAE@ABV01@@Z)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: class OpenMS::Peak1D & __thiscall OpenMS::Peak1D::operator=(class OpenMS::Peak1D const &)" (__imp_??4Peak1D@OpenMS@@QAEAAV01@ABV01@@Z)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: class OpenMS::DPosition<1,double> & __thiscall OpenMS::Peak1D::getPosition(void)" (__imp_?getPosition@Peak1D@OpenMS@@QAEAAV?$DPosition@$00N@2@XZ)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: double __thiscall OpenMS::Peak1D::getMZ(void)const " (__imp_?getMZ@Peak1D@OpenMS@@QBENXZ)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: float __thiscall OpenMS::Peak1D::getIntensity(void)const " (__imp_?getIntensity@Peak1D@OpenMS@@QBEMXZ)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __thiscall OpenMS::Peak1D::~Peak1D(void)" (__imp_??1Peak1D@OpenMS@@QAE@XZ)
+     1>oms_tide_2013_tests.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __thiscall OpenMS::Peak1D::Peak1D(class OpenMS::Peak1D const &)" (__imp_??0Peak1D@OpenMS@@QAE@ABV01@@Z)
+     1>C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\Release\oms_tide_2013_tests.exe : fatal error LNK1120: 22 unresolved externals
+     1>Done Building Project "C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:03.24
