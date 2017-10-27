@@ -16367,4 +16367,4 @@ INFO: min range at 1252.583958
 INFO: max range at 1252.583958
 INFO: Searching spectrum 17135
 INFO: Tide MatchSet reporting top 5 of 4056 matches
-INFO: Elapsed time per spectrum conversion: 0.0113 s
+INFO: Elapsed time per spectrum conversion: 0.0105 s
