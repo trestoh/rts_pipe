@@ -33,7 +33,7 @@ public:
 		}
 	}
 
-	vector<pb::Peptide> pep_array;
+	vector<Peptide*> pep_array;
 
 	vector<pb::Peptide>::iterator lowerBound(const double& mass)
 	{
