@@ -78,8 +78,8 @@ struct InputFile {
 };
 
 void collectScoresCompiled(
-	ActivePeptideQueue* active_peptide_queue,
-	//ActivePeptideQueue2* active_peptide_queue,
+	//ActivePeptideQueue* active_peptide_queue,
+	ActivePeptideQueue2* active_peptide_queue,
 	const Spectrum* spectrum,
 	const ObservedPeakSet& observed,
 	TideMatchSet::Arr2* match_arr,
@@ -592,8 +592,8 @@ int main(int argc, char * argv[])
 			&aaf_peptides_header.peptides_header().nterm_mods(),
 			&aaf_peptides_header.peptides_header().cterm_mods(),
 			bin_width, bin_offset);
-		ActivePeptideQueue* active_peptide_queue = new ActivePeptideQueue(aaf_peptide_reader.Reader(), proteins);
-		//ActivePeptideQueue2* active_peptide_queue = new ActivePeptideQueue2(test_index, aaf_peptide_reader.Reader(), proteins);
+		//ActivePeptideQueue* active_peptide_queue = new ActivePeptideQueue(aaf_peptide_reader.Reader(), proteins);
+		ActivePeptideQueue2* active_peptide_queue = new ActivePeptideQueue2(test_index, aaf_peptide_reader.Reader(), proteins);
 		nAA = active_peptide_queue->CountAAFrequency(bin_width, bin_offset,
 			&aaFreqN, &aaFreqI, &aaFreqC, &aaMass);
 		delete active_peptide_queue;
@@ -775,11 +775,11 @@ int main(int argc, char * argv[])
 		}
 	}
 
-	//vector<ActivePeptideQueue2*> active_peptide_queue;
-	vector<ActivePeptideQueue*> active_peptide_queue;
+	vector<ActivePeptideQueue2*> active_peptide_queue;
+	//vector<ActivePeptideQueue*> active_peptide_queue;
 	for (int j = 0; j < NUM_THREADS; j++) {
-		active_peptide_queue.push_back(new ActivePeptideQueue(peptide_reader[j]->Reader(), proteins));
-		//active_peptide_queue.push_back(new ActivePeptideQueue2(test_index, peptide_reader[j]->Reader(), proteins));
+		//active_peptide_queue.push_back(new ActivePeptideQueue(peptide_reader[j]->Reader(), proteins));
+		active_peptide_queue.push_back(new ActivePeptideQueue2(test_index, peptide_reader[j]->Reader(), proteins));
 		active_peptide_queue[j]->SetBinSize(bin_width, bin_offset);
 	}
 
@@ -822,21 +822,20 @@ int main(int argc, char * argv[])
 		if (s.getMSLevel() == 2)
 		{
 
-			
+			/*
 			if (!peptide_reader[0]) {
 				for (int j = 0; j < NUM_THREADS; j++) {
 					peptide_reader[j] = new HeadedRecordReader(peptides_file, &peptides_header);
 				}
 			}
 
-			//vector<ActivePeptideQueue2*> active_peptide_queue;
 			vector<ActivePeptideQueue*> active_peptide_queue;
 			for (int j = 0; j < NUM_THREADS; j++) {
 				active_peptide_queue.push_back(new ActivePeptideQueue(peptide_reader[j]->Reader(), proteins));
 				//active_peptide_queue.push_back(new ActivePeptideQueue2(test_index, peptide_reader[j]->Reader(), proteins));
 				active_peptide_queue[j]->SetBinSize(bin_width, bin_offset);
 			}
-			
+			*/
 
 			natID = std::istringstream(s.getNativeID());
 			natID >> junk >> junk >> scan;
@@ -1069,6 +1068,7 @@ int main(int argc, char * argv[])
 						//*********************************************
 						//*********************************************
 						//*********************************************
+						/*
 						boost::mutex * rwlock = new boost::mutex();
 
 						const string spectrum_filename = "HELA_2017-04-27_294.mzML";
@@ -1078,7 +1078,7 @@ int main(int argc, char * argv[])
 							locations, compute_sp, true, rwlock);
 
 						delete rwlock;
-						
+						*/
 
 						if (matches_->size() == 0) {
 							carp(CARP_INFO, "Matches empty, moving to next spectra");
@@ -1088,7 +1088,7 @@ int main(int argc, char * argv[])
 							delete candidatePeptideStatus;
 							continue;
 						}
-
+						
 						//verbose reports per spectra
 
 						//carp(CARP_INFO, "Searching spectrum %d", spectrum->SpectrumNumber());
@@ -1183,25 +1183,24 @@ int main(int argc, char * argv[])
 
 			
 			//delete is here for APQ1
+			/*
 			for (int i = 0; i < NUM_THREADS; i++) {
 				delete active_peptide_queue[i];
 				delete peptide_reader[i];
 				peptide_reader[i] = NULL;
 			}
-			
+			*/
 
 		} //end search for spectra that are MS2
 
 	} //end individual spectra loop
 
 	//delete is here for APQ2
-	/*
 	for (int i = 0; i < NUM_THREADS; i++) {
 		delete active_peptide_queue[i];
 		delete peptide_reader[i];
 		peptide_reader[i] = NULL;
 	}
-	*/
 
 	carp(CARP_INFO, "Elapsed time per spectrum conversion: %.3g s", wall_clock() / (1e6*msExperimentProfile.getNrSpectra()));
 	std::cout << "There are " << msExperimentProfile.getNrSpectra() << " spectra in the input file." << std::endl;
@@ -1302,8 +1301,8 @@ int main(int argc, char * argv[])
 }
 
 void collectScoresCompiled(
-	ActivePeptideQueue* active_peptide_queue,
-	//ActivePeptideQueue2* active_peptide_queue,
+	//ActivePeptideQueue* active_peptide_queue,
+	ActivePeptideQueue2* active_peptide_queue,
 	const Spectrum* spectrum,
 	const ObservedPeakSet& observed,
 	TideMatchSet::Arr2* match_arr,
