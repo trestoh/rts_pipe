@@ -1,0 +1,71 @@
+INFO: CPU: LCCCFJZJBM1
+INFO: Crux version: 3.1
+INFO: Fri 11/03/2017 
+COMMAND LINE: crux percolator --overwrite T --test-fdr .05 tmt_test_MA1750/tide-search.target.txt
+INFO: Reading file tmt_test_MA1750/tide-search.target.txt
+INFO: Converting input to pin format.
+INFO: Parsing tmt_test_MA1750/tide-search.target.txt
+INFO: Assigning index 0 to HELA_2017-04-27_294.mzML.
+INFO: Parsing tmt_test_MA1750/tide-search.decoy.txt
+INFO: There are 342053 target matches and 321934 decoys
+INFO: Maximum observed charge is 5.
+WARNING: The file 'crux-output/make-pin.pin' already exists and will be overwritten.
+INFO: File conversion complete.
+INFO: Percolator version 3.01.nightly-21-d7994d2, Build Date Oct 30 2017 13:42:34
+INFO: Copyright (c) 2006-9 University of Washington. All rights reserved.
+INFO: Written by Lukas Käll (lukall@u.washington.edu) in the
+INFO: Department of Genome Sciences at the University of Washington.
+INFO: Issued command:
+INFO: percolator --results-peptides crux-output/percolator.target.peptides.txt --decoy-results-peptides crux-output/percolator.decoy.peptides.txt --results-psms crux-output/percolator.target.psms.txt --decoy-results-psms crux-output/percolator.decoy.psms.txt --verbose 2 --protein-decoy-pattern decoy_ --seed 1 --subset-max-train 0 --trainFDR 0.01 --testFDR 0.05 --maxiter 10 --search-input auto --no-schema-validation --protein-enzyme trypsin --post-processing-tdc crux-output/make-pin.pin
+INFO: Started Fri Nov 03 17:07:08 2017
+INFO: Hyperparameters: selectionFdr=0.01, Cpos=0, Cneg=0, maxNiter=10
+INFO: Reading tab-delimited input from datafile crux-output/make-pin.pin
+INFO: Features:
+INFO: XCorr PepLen Charge1 Charge2 Charge3 Charge4 Charge5 enzN enzC enzInt lnNumDSP dM absdM 
+INFO: Found 222662 PSMs
+INFO: Separate target and decoy search inputs detected, using target-decoy competition on Percolator scores.
+INFO: Train/test set contains 118046 positives and 104616 negatives, size ratio=1.12837 and pi0=1
+INFO: Selecting Cpos by cross-validation.
+INFO: Selecting Cneg by cross-validation.
+INFO: Split 1:	Selected feature 1 as initial search direction. Could separate 2949 training set positives in that direction.
+INFO: Split 2:	Selected feature 1 as initial search direction. Could separate 3036 training set positives in that direction.
+INFO: Split 3:	Selected feature 1 as initial search direction. Could separate 2966 training set positives in that direction.
+INFO: Found 4488 test set positives with q<0.05 in initial direction
+INFO: Reading in data and feature calculation took 4.436 cpu seconds or 5 seconds wall clock time.
+INFO: ---Training with Cpos selected by cross validation, Cneg selected by cross validation, fdr=0.01
+INFO: Iteration 1:	Estimated 5169 PSMs with q<0.05
+INFO: Iteration 2:	Estimated 5355 PSMs with q<0.05
+INFO: Iteration 3:	Estimated 5471 PSMs with q<0.05
+INFO: Iteration 4:	Estimated 5514 PSMs with q<0.05
+INFO: Iteration 5:	Estimated 5527 PSMs with q<0.05
+INFO: Iteration 6:	Estimated 5517 PSMs with q<0.05
+INFO: Iteration 7:	Estimated 5525 PSMs with q<0.05
+INFO: Iteration 8:	Estimated 5537 PSMs with q<0.05
+INFO: Iteration 9:	Estimated 5533 PSMs with q<0.05
+INFO: Iteration 10:	Estimated 5522 PSMs with q<0.05
+INFO: Learned normalized SVM weights for the 3 cross-validation splits:
+INFO:  Split1	 Split2	 Split3	FeatureName
+INFO:  1.4937	 2.5059	 2.3231	XCorr
+INFO: -0.2909	-0.2542	-0.5863	PepLen
+INFO:  0.0000	 0.0000	 0.0000	Charge1
+INFO:  0.1279	 0.2769	 0.1618	Charge2
+INFO: -0.2126	-0.4394	-0.3842	Charge3
+INFO:  0.1232	 0.1946	 0.3651	Charge4
+INFO:  0.0544	 0.1825	 0.0772	Charge5
+INFO:  0.0000	 0.0000	 0.0000	enzN
+INFO:  0.0000	 0.0000	 0.0000	enzC
+INFO: -0.0386	-0.2037	-0.2877	enzInt
+INFO: -0.3763	-0.2235	-0.4331	lnNumDSP
+INFO: -0.0890	-0.3090	-0.2324	dM
+INFO: -1.0669	-1.1169	-1.6159	absdM
+INFO: -4.2432	-6.8273	-6.3713	m0
+INFO: Found 5471 test set PSMs with q<0.05.
+INFO: Selected best-scoring PSM per scan+expMass (target-decoy competition): 26488 target PSMs and 18142 decoy PSMs.
+INFO: Tossing out "redundant" PSMs keeping only the best scoring PSM for each unique peptide.
+INFO: Calculating q values.
+INFO: Final list yields 3788 target peptides with q<0.05.
+INFO: Calculating posterior error probabilities (PEPs).
+INFO: Processing took 25.72 cpu seconds or 25 seconds wall clock time.
+INFO: Elapsed time: 101 s
+INFO: Finished crux percolator.
+INFO: Return Code:0

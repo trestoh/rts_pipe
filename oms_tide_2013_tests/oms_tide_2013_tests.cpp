@@ -10,6 +10,7 @@
 #include <chrono>
 #include <ctime>
 #include <map>
+#include <vector>
 #include <gflags/gflags.h>
 
 #include <OpenMS/FORMAT/MzMLFile.h>
@@ -41,6 +42,7 @@
 #include <app/PSMConvertApplication.h>
 #include <app/tide/mass_constants.h>
 #include <app/TideMatchSet.h>
+#include <app/TideSearchApplication.h>
 #include <util/Params.h>
 #include <util/FileUtils.h>
 #include <util/StringUtils.h>
@@ -54,6 +56,8 @@
 
 #include "inmemindex.h"
 #include "mem_peptide_queue.h"
+
+//TideSearchApplication::HAS_DECOYS = true;
 
 const double XCORR_SCALING = 100000000.0;
 
@@ -74,8 +78,8 @@ struct InputFile {
 };
 
 void collectScoresCompiled(
-	//ActivePeptideQueue* active_peptide_queue,
-	ActivePeptideQueue2* active_peptide_queue,
+	ActivePeptideQueue* active_peptide_queue,
+	//ActivePeptideQueue2* active_peptide_queue,
 	const Spectrum* spectrum,
 	const ObservedPeakSet& observed,
 	TideMatchSet::Arr2* match_arr,
@@ -93,6 +97,19 @@ void computeWindow(
 	double* min_range,
 	double* max_range
 	);
+
+struct specStruct
+{
+	double key;
+	int index;
+
+	specStruct(const double& mz, int ind): key(mz), index(ind) {}
+
+	bool operator < (const specStruct& str) const
+	{
+		return (key < str.key);
+	}
+};
 
 int main(int argc, char * argv[])
 {
@@ -159,7 +176,7 @@ int main(int argc, char * argv[])
 		// Process command line options
 		//options = argParser.GetOptions();
 		for (map<string, string>::const_iterator i = options.begin(); i != options.end(); i++) {
-			if (i->first != "oms-src")
+			if (i->first != "oms-src" && i->first != "oms-index")
 			{
 				try {
 					Params::Set(i->first, i->second);
@@ -218,7 +235,14 @@ int main(int argc, char * argv[])
 	//	EXTREMELY DUMB CODE: Index hard coded, needs to be changed
 	//
 
-	string index = "C:\\dev\\real_time_seq\\oms_tide_2013_tests\\oms_tide_2013_tests\\human-index";
+	argParser.Parse(argc, argv, appArgs);
+	const map<string, string> options = argParser.GetOptions();
+	map<string, string>::const_iterator oms_arg = options.find("oms-src");
+	map<string, string>::const_iterator oms_index = options.find("oms-index");
+	std::string oms = oms_arg->second;
+	std::string index = oms_index->second;
+
+	//string index = "C:\\dev\\real_time_seq\\oms_tide_2013_tests\\oms_tide_2013_tests\\human-index";
 	string peptides_file = FileUtils::Join(index, "pepix");
 	string proteins_file = FileUtils::Join(index, "protix");
 	string auxlocs_file = FileUtils::Join(index, "auxlocs");
@@ -568,8 +592,8 @@ int main(int argc, char * argv[])
 			&aaf_peptides_header.peptides_header().nterm_mods(),
 			&aaf_peptides_header.peptides_header().cterm_mods(),
 			bin_width, bin_offset);
-		//ActivePeptideQueue* active_peptide_queue = new ActivePeptideQueue(aaf_peptide_reader.Reader(), proteins);
-		ActivePeptideQueue2* active_peptide_queue = new ActivePeptideQueue2(test_index, aaf_peptide_reader.Reader(), proteins);
+		ActivePeptideQueue* active_peptide_queue = new ActivePeptideQueue(aaf_peptide_reader.Reader(), proteins);
+		//ActivePeptideQueue2* active_peptide_queue = new ActivePeptideQueue2(test_index, aaf_peptide_reader.Reader(), proteins);
 		nAA = active_peptide_queue->CountAAFrequency(bin_width, bin_offset,
 			&aaFreqN, &aaFreqI, &aaFreqC, &aaMass);
 		delete active_peptide_queue;
@@ -697,10 +721,7 @@ int main(int argc, char * argv[])
 	// spectra if need be (pulling that OUT of search function)
 
 	//build spectra and then do search
-	argParser.Parse(argc, argv, appArgs);
-	const map<string, string> options = argParser.GetOptions();
-	map<string, string>::const_iterator oms_arg = options.find("oms-src");
-	std::string oms = oms_arg->second;
+	
 
 	carp(CARP_INFO, "Re-parsed succefully");
 
@@ -747,31 +768,75 @@ int main(int argc, char * argv[])
 
 	//delete test_index;
 
+	
 	if (!peptide_reader[0]) {
 		for (int j = 0; j < NUM_THREADS; j++) {
 			peptide_reader[j] = new HeadedRecordReader(peptides_file, &peptides_header);
 		}
 	}
 
-	vector<ActivePeptideQueue2*> active_peptide_queue;
+	//vector<ActivePeptideQueue2*> active_peptide_queue;
+	vector<ActivePeptideQueue*> active_peptide_queue;
 	for (int j = 0; j < NUM_THREADS; j++) {
-		//active_peptide_queue.push_back(new ActivePeptideQueue(peptide_reader[j]->Reader(), proteins));
-		active_peptide_queue.push_back(new ActivePeptideQueue2(test_index, peptide_reader[j]->Reader(), proteins));
+		active_peptide_queue.push_back(new ActivePeptideQueue(peptide_reader[j]->Reader(), proteins));
+		//active_peptide_queue.push_back(new ActivePeptideQueue2(test_index, peptide_reader[j]->Reader(), proteins));
 		active_peptide_queue[j]->SetBinSize(bin_width, bin_offset);
 	}
 
 	// Start the timer.
 	wall_clock();
+	
 
+	//stuff for sorting the spectra
+	
+	//vector<OpenMS::MSSpectrum<>> testa;
+	/*
+	vector<specStruct> specs;
 
-
-	for (int i = spectrum_it; i < msExperimentProfile.getNrSpectra(); i++)
+	for (int i = 0; i < msExperimentProfile.getNrSpectra(); i++)
 	{
 		s = msExperimentProfile.getSpectrum(i);
 		if (s.getMSLevel() == 2)
 		{
+			specs.push_back(specStruct((double)s.getPrecursors()[0].getUnchargedMass(), i));
+		}
+		//testa.push_back(msExperimentProfile.getSpectrum(i));
+	}
 
-			//vector<ActivePeptideQueue*> active_peptide_queue;
+	//for (int i = 0; i < testa.size(); i++)
+	//	specs.push_back(&(testa[i]));
+
+	std::sort(specs.begin(), specs.end());
+	*/
+
+	//for (int i = 0; i < specs.size(); i++)
+	for (int i = spectrum_it; i < msExperimentProfile.getNrSpectra(); i++)
+	{
+
+		//non-sorted version
+		s = msExperimentProfile.getSpectrum(i);
+		
+		//sorted version
+		//s = msExperimentProfile.getSpectrum(specs[i].index);
+
+		if (s.getMSLevel() == 2)
+		{
+
+			
+			if (!peptide_reader[0]) {
+				for (int j = 0; j < NUM_THREADS; j++) {
+					peptide_reader[j] = new HeadedRecordReader(peptides_file, &peptides_header);
+				}
+			}
+
+			//vector<ActivePeptideQueue2*> active_peptide_queue;
+			vector<ActivePeptideQueue*> active_peptide_queue;
+			for (int j = 0; j < NUM_THREADS; j++) {
+				active_peptide_queue.push_back(new ActivePeptideQueue(peptide_reader[j]->Reader(), proteins));
+				//active_peptide_queue.push_back(new ActivePeptideQueue2(test_index, peptide_reader[j]->Reader(), proteins));
+				active_peptide_queue[j]->SetBinSize(bin_width, bin_offset);
+			}
+			
 
 			natID = std::istringstream(s.getNativeID());
 			natID >> junk >> junk >> scan;
@@ -870,7 +935,8 @@ int main(int argc, char * argv[])
 
 				if (!exact_pval_search) {  //execute original tide-search program
 
-					
+					//verbose output of search ranges
+					/*
 					for (vector<double>::const_iterator di = min_mass->begin(); di != min_mass->end(); di++)
 					{
 						carp(CARP_INFO, "min mass at %f", *di);
@@ -883,6 +949,7 @@ int main(int argc, char * argv[])
 
 					carp(CARP_INFO, "min range at %f", min_range);
 					carp(CARP_INFO, "max range at %f", min_range);
+					*/
 
 					// Normalize the observed spectrum and compute the cache of
 					// frequently-needed values for taking dot products with theoretical
@@ -937,6 +1004,8 @@ int main(int argc, char * argv[])
 								curScore.xcorr_score = (double)(it->first / XCORR_SCALING);
 								curScore.rank = it->second;
 								match_arr.push_back(curScore);
+								//if ((double)(it->first / XCORR_SCALING) > 1.9f )
+								//	carp(CARP_INFO, "Candidate with rank %d has XCORR %f", it->second, (double)(it->first / XCORR_SCALING));
 							}
 						}
 
@@ -966,15 +1035,40 @@ int main(int argc, char * argv[])
 						//set up App and do everything but the write to file
 
 						//fix this later, right now other stuff is broken
+						
+						double max_corr = 0.0;
+						int max_corr_rank = 0;
+						int precision = Params::GetInt("precision");
+
+						for (TideMatchSet::Arr::iterator it = match_arr.begin();
+							it != match_arr.end();
+							++it)
+						{
+							if (it->xcorr_score > max_corr)
+							{
+								max_corr = it->xcorr_score;
+								max_corr_rank = it->rank;
+							}
+
+						}
+						if (max_corr > 1.1f)
+							carp(CARP_INFO, "Candidate with rank %d has max XCORR with: %f", max_corr_rank, max_corr);
+						
 
 						TideMatchSet::Arr* matches_ = &match_arr;
+
+						
+
 						TideMatchSet matches(&match_arr, highest_mz);
 						matches.exact_pval_search_ = exact_pval_search;
 
+					
 
-						//report will not work with ActivePeptideQueue
-
-						/*
+						//report will not work with ActivePeptideQueue2
+						//*********************************************
+						//*********************************************
+						//*********************************************
+						//*********************************************
 						boost::mutex * rwlock = new boost::mutex();
 
 						const string spectrum_filename = "HELA_2017-04-27_294.mzML";
@@ -984,7 +1078,7 @@ int main(int argc, char * argv[])
 							locations, compute_sp, true, rwlock);
 
 						delete rwlock;
-						*/
+						
 
 						if (matches_->size() == 0) {
 							carp(CARP_INFO, "Matches empty, moving to next spectra");
@@ -995,10 +1089,12 @@ int main(int argc, char * argv[])
 							continue;
 						}
 
-						carp(CARP_INFO, "Searching spectrum %d", spectrum->SpectrumNumber());
+						//verbose reports per spectra
 
-						carp(CARP_INFO, "Tide MatchSet reporting top %d of %d matches",
-							top_matches, matches_->size());
+						//carp(CARP_INFO, "Searching spectrum %d", spectrum->SpectrumNumber());
+
+						//carp(CARP_INFO, "Tide MatchSet reporting top %d of %d matches",
+						//	top_matches, matches_->size());
 
 
 
@@ -1034,14 +1130,78 @@ int main(int argc, char * argv[])
 
 			} //end inner "search loop" over spec charge pairs
 
+			//more file non-sense
+			PSMConvertApplication converter;
+
+			// convert tab delimited to other file formats.
+			if (!concat) {
+				string target_file_name = make_file_path("tide-search.target.txt");
+				if (Params::GetBool("pin-output")) {
+					converter.convertFile("tsv", "pin", target_file_name, "tide-search.target.", Params::GetString("protein-database"), true);
+				}
+				if (Params::GetBool("pepxml-output")) {
+					converter.convertFile("tsv", "pepxml", target_file_name, "tide-search.target.", Params::GetString("protein-database"), true);
+				}
+				if (Params::GetBool("mzid-output")) {
+					converter.convertFile("tsv", "mzidentml", target_file_name, "tide-search.target.", Params::GetString("protein-database"), true);
+				}
+				if (Params::GetBool("sqt-output")) {
+					converter.convertFile("tsv", "sqt", target_file_name, "tide-search.target.", Params::GetString("protein-database"), true);
+				}
+
+				if (HAS_DECOYS) {
+					string decoy_file_name = make_file_path("tide-search.decoy.txt");
+					if (Params::GetBool("pin-output")) {
+						converter.convertFile("tsv", "pin", decoy_file_name, "tide-search.decoy.", Params::GetString("protein-database"), true);
+					}
+					if (Params::GetBool("pepxml-output")) {
+						converter.convertFile("tsv", "pepxml", decoy_file_name, "tide-search.decoy.", Params::GetString("protein-database"), true);
+					}
+					if (Params::GetBool("mzid-output")) {
+						converter.convertFile("tsv", "mzidentml", decoy_file_name, "tide-search.decoy.", Params::GetString("protein-database"), true);
+					}
+					if (Params::GetBool("sqt-output")) {
+						converter.convertFile("tsv", "sqt", decoy_file_name, "tide-search.decoy.", Params::GetString("protein-database"), true);
+					}
+				}
+			}
+			else {
+				string concat_file_name = make_file_path("tide-search.txt");
+				if (Params::GetBool("pin-output")) {
+					converter.convertFile("tsv", "pin", concat_file_name, "tide-search.", Params::GetString("protein-database"), true);
+				}
+				if (Params::GetBool("pepxml-output")) {
+					converter.convertFile("tsv", "pepxml", concat_file_name, "tide-search.", Params::GetString("protein-database"), true);
+				}
+				if (Params::GetBool("mzid-output")) {
+					converter.convertFile("tsv", "mzidentml", concat_file_name, "tide-search.", Params::GetString("protein-database"), true);
+				}
+				if (Params::GetBool("sqt-output")) {
+					converter.convertFile("tsv", "sqt", concat_file_name, "tide-search.", Params::GetString("protein-database"), true);
+				}
+			}
+
+			
+			//delete is here for APQ1
+			for (int i = 0; i < NUM_THREADS; i++) {
+				delete active_peptide_queue[i];
+				delete peptide_reader[i];
+				peptide_reader[i] = NULL;
+			}
 			
 
 		} //end search for spectra that are MS2
 
 	} //end individual spectra loop
 
-
-	
+	//delete is here for APQ2
+	/*
+	for (int i = 0; i < NUM_THREADS; i++) {
+		delete active_peptide_queue[i];
+		delete peptide_reader[i];
+		peptide_reader[i] = NULL;
+	}
+	*/
 
 	carp(CARP_INFO, "Elapsed time per spectrum conversion: %.3g s", wall_clock() / (1e6*msExperimentProfile.getNrSpectra()));
 	std::cout << "There are " << msExperimentProfile.getNrSpectra() << " spectra in the input file." << std::endl;
@@ -1113,11 +1273,13 @@ int main(int argc, char * argv[])
 	//
 	//
 
+	/*
 	for (int i = 0; i < NUM_THREADS; i++) {
 		delete active_peptide_queue[i];
 		delete peptide_reader[i];
 		peptide_reader[i] = NULL;
 	}
+	*/
 
 	delete test_index;
 	delete negative_isotope_errors;
@@ -1140,8 +1302,8 @@ int main(int argc, char * argv[])
 }
 
 void collectScoresCompiled(
-	//ActivePeptideQueue* active_peptide_queue,
-	ActivePeptideQueue2* active_peptide_queue,
+	ActivePeptideQueue* active_peptide_queue,
+	//ActivePeptideQueue2* active_peptide_queue,
 	const Spectrum* spectrum,
 	const ObservedPeakSet& observed,
 	TideMatchSet::Arr2* match_arr,
