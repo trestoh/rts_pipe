@@ -17,8 +17,6 @@
 #include "app/tide/active_peptide_queue.h"
 #define CHECK(x) GOOGLE_CHECK((x))
 
-const int32_t fifo_page_size = 1;
-
 
 ActivePeptideQueue2::ActivePeptideQueue2(InMemIndex* index, RecordReader* reader, const vector<const pb::Protein*>& proteins)
 	: reader_(reader),
@@ -83,10 +81,6 @@ int ActivePeptideQueue2::SetActiveRange(vector<double>* min_mass, vector<double>
 	//know how much that optimization would actually help
 	while (!queue_.empty()) 
 	{
-		Peptide* peptide = queue_.front();
-		//print hits in peptide-centric search
-		peptide->spectrum_matches_array.clear();
-		vector<Peptide::spectrum_matches>().swap(peptide->spectrum_matches_array);
 		// would delete peptide's underlying pb::Peptide;
 		queue_.pop_front();
 		//    delete peptide;
@@ -131,15 +125,12 @@ int ActivePeptideQueue2::SetActiveRange(vector<double>* min_mass, vector<double>
 
 	else
 	{
-		while (pep_it->mass() <= max_range)
+		while ((*pep_it)->Mass() <= max_range)
 		{
-			current_pb_peptide_ = *pep_it;
-			Peptide* peptide = new(&fifo_alloc_peptides_) Peptide(current_pb_peptide_, proteins_, &fifo_alloc_peptides_);
-			queue_.push_back(peptide);
-			if (peptide->Mass() > max_range) {
+			queue_.push_back(*pep_it);
+			if ((*pep_it)->Mass() > max_range) {
 				break;
 			}
-			ComputeTheoreticalPeaksBack();
 			pep_it++;
 		}
 	}
