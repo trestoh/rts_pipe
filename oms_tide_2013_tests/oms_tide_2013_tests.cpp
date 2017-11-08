@@ -1051,8 +1051,10 @@ int main(int argc, char * argv[])
 							}
 
 						}
-						if (max_corr > 1.1f)
-							carp(CARP_INFO, "Candidate with rank %d has max XCORR with: %f", max_corr_rank, max_corr);
+
+						carp(CARP_INFO, "XCORR Results for spectrum %d", spectrum->SpectrumNumber());
+						carp(CARP_INFO, "Tide MatchSet reporting top %d of %d matches", top_matches, match_arr.size());
+						carp(CARP_INFO, "Candidate with rank %d has max XCORR with: %f", max_corr_rank, max_corr);
 						
 
 						TideMatchSet::Arr* matches_ = &match_arr;
