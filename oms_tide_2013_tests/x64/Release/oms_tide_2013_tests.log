@@ -1,4 +1,4 @@
-﻿Build started 11/10/2017 3:33:28 PM.
+﻿Build started 11/10/2017 4:01:47 PM.
      1>Project "C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include" /IC:\dev\OpenMS_2013\src\openms\include /IC:\dev\contrib_build_2013\include /I"C:\dev\qt-src-2\include\QtCore" /I"C:\dev\qt-src-2\include" /I"C:\dev\crux-src-4\src" /I"C:\dev\crux-src-4\src\app\tide\protoobj" /I"C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src" /I"C:\dev\crux-src-4\ext\include" /I"C:\dev\crux-src-4\ext\build\src\comet\MSToolkit\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"x64\Release\oms_tide_2013_tests.pch" /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /wd4996 /errorReport:prompt oms_tide_2013_tests.cpp
@@ -52,7 +52,7 @@
      1>oms_tide_2013_tests.cpp(885): warning C4018: '<' : signed/unsigned mismatch
      1>oms_tide_2013_tests.cpp(891): warning C4018: '<' : signed/unsigned mismatch
      1>oms_tide_2013_tests.cpp(967): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-     1>oms_tide_2013_tests.cpp(1201): warning C4018: '<' : signed/unsigned mismatch
+     1>oms_tide_2013_tests.cpp(1207): warning C4018: '<' : signed/unsigned mismatch
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\x64\Release\oms_tide_2013_tests.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\dev\OpenMS_2013\src\openms\Release /LIBPATH:"C:\dev\crux-src-4\src\app\tide\Release" /LIBPATH:"C:\dev\crux-src-4\src\Release" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib OpenMS.lib "tide-support.lib" "crux-support.lib" ShLwApi.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\x64\Release\oms_tide_2013_tests.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\x64\Release\oms_tide_2013_tests.lib" /MACHINE:X64 "C:\dev\crux-src-4\ext\build\src\percolator-build\src\picked_protein\Release\*.lib" "C:\dev\crux-src-4\ext\build\src\percolator-build\src\Release\*.lib" "C:\dev\crux-src-4\ext\build\src\ProteoWizard\libraries\*.lib" "C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\vsprojects\x64\Release\*.lib" "C:\dev\crux-src-4\ext\build\src\ProteoWizard\pwiz_aux\msrc\utility\vendor_api\Bruker\x64\*.lib" "C:\dev\crux-src-4\ext\lib\*.lib" /NODEFAULTLIB:libboost_chrono-vc120-mt-1_56 /NODEFAULTLIB:libboost_date_time-vc120-mt-1_56 /NODEFAULTLIB:libboost_system-vc120-mt-1_56 /NODEFAULTLIB:libboost_thread-vc120-mt-1_56 x64\Release\mem_peptide_queue.obj
          x64\Release\oms_tide_2013_tests.obj
@@ -68,4 +68,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:27.65
+Time Elapsed 00:00:16.64
