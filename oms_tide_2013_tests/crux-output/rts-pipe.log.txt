@@ -1,6 +1,6 @@
 INFO: CPU: LCCCFJZJBM1
 INFO: Crux version: 3.1
-INFO: Mon 11/06/2017 
+INFO: Wed 11/08/2017 
 INFO: Running tide-search...
 INFO: Number of Threads: 1
 INFO: Reading index C:\dev\crux-from-4\doc\workspace\tmt10_index
@@ -13,29 +13,6 @@ INFO: Re-parsed succefully
 INFO: Open MS experiment loaded
 INFO: Exited search early on spectrum 8
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 199
-INFO: Exited search early on spectrum 364
-INFO: Exited search early on spectrum 381
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 391
-INFO: Exited search early on spectrum 406
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 441
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 472
-INFO: Exited search early on spectrum 576
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 603
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 627
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 632
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 635
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 694
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 695
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 700
-INFO: Not Enough Peaks
+INFO: XCORR Results for spectrum 23
+INFO: Tide MatchSet reporting top 5 of 5 matches
+INFO: Candidate with rank 0 has max XCORR with: 0.000000

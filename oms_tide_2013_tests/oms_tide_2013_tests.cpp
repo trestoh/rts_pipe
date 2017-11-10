@@ -1040,10 +1040,16 @@ int main(int argc, char * argv[])
 						int max_corr_rank = 0;
 						int precision = Params::GetInt("precision");
 
+						carp(CARP_INFO, "XCORR Results for spectrum %d", spectrum->SpectrumNumber());
+						carp(CARP_INFO, "Tide MatchSet reporting %d matches", match_arr.size());
+
 						for (TideMatchSet::Arr::iterator it = match_arr.begin();
 							it != match_arr.end();
 							++it)
 						{
+
+							carp(CARP_INFO, "Candidate with rank %d has XCORR: %f", it->rank, it->xcorr_score);
+
 							if (it->xcorr_score > max_corr)
 							{
 								max_corr = it->xcorr_score;
@@ -1052,8 +1058,8 @@ int main(int argc, char * argv[])
 
 						}
 
-						carp(CARP_INFO, "XCORR Results for spectrum %d", spectrum->SpectrumNumber());
-						carp(CARP_INFO, "Tide MatchSet reporting top %d of %d matches", top_matches, match_arr.size());
+						//carp(CARP_INFO, "XCORR Results for spectrum %d", spectrum->SpectrumNumber());
+						//carp(CARP_INFO, "Tide MatchSet reporting top %d of %d matches", top_matches, match_arr.size());
 						carp(CARP_INFO, "Candidate with rank %d has max XCORR with: %f", max_corr_rank, max_corr);
 						
 
