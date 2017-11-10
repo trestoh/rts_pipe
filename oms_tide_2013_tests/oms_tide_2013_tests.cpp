@@ -967,6 +967,13 @@ int main(int argc, char * argv[])
 					int candidatePeptideStatusSize = candidatePeptideStatus->size();
 					TideMatchSet::Arr2 match_arr2(candidatePeptideStatusSize); // Scored peptides will go here.
 
+					for (int j = 1; j <= candidatePeptideStatusSize; j++)
+					{
+						const Peptide* tempo = active_peptide_queue[0]->GetPeptide(j);
+						double cand_mass = tempo->Mass();
+						carp(CARP_INFO, "Candidate %d has Mass %f", j, cand_mass);
+					}
+
 					// Programs for taking the dot-product with the observed spectrum are laid
 					// out in memory managed by the active_peptide_queue, one program for each
 					// candidate peptide. The programs will store the results directly into
