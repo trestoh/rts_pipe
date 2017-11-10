@@ -966,6 +966,15 @@ int main(int argc, char * argv[])
 					int candidatePeptideStatusSize = candidatePeptideStatus->size();
 					TideMatchSet::Arr2 match_arr2(candidatePeptideStatusSize); // Scored peptides will go here.
 
+
+					for (int j = 1; j <= candidatePeptideStatusSize; j++)
+					{
+						const Peptide* tempo = active_peptide_queue[0]->GetPeptide(j);
+						double cand_mass = tempo->Mass();
+						carp(CARP_INFO, "Candidate %d has Mass %f" , j, cand_mass);
+					}
+
+
 					// Programs for taking the dot-product with the observed spectrum are laid
 					// out in memory managed by the active_peptide_queue, one program for each
 					// candidate peptide. The programs will store the results directly into
@@ -1039,10 +1048,16 @@ int main(int argc, char * argv[])
 						int max_corr_rank = 0;
 						int precision = Params::GetInt("precision");
 
+						carp(CARP_INFO, "XCORR Results for spectrum %d", spectrum->SpectrumNumber());
+						carp(CARP_INFO, "Tide MatchSet reporting %d matches", match_arr.size());
+
 						for (TideMatchSet::Arr::iterator it = match_arr.begin();
 							it != match_arr.end();
 							++it)
 						{
+
+							carp(CARP_INFO, "Candidate with rank %d has XCORR: %f", it->rank, it->xcorr_score);
+
 							if (it->xcorr_score > max_corr)
 							{
 								max_corr = it->xcorr_score;
@@ -1050,8 +1065,10 @@ int main(int argc, char * argv[])
 							}
 
 						}
-						if (max_corr > 1.1f)
-							carp(CARP_INFO, "Candidate with rank %d has max XCORR with: %f", max_corr_rank, max_corr);
+
+						//carp(CARP_INFO, "XCORR Results for spectrum %d", spectrum->SpectrumNumber());
+						//carp(CARP_INFO, "Tide MatchSet reporting top %d of %d matches", top_matches, match_arr.size());
+						carp(CARP_INFO, "Candidate with rank %d has max XCORR with: %f", max_corr_rank, max_corr);
 						
 
 						TideMatchSet::Arr* matches_ = &match_arr;

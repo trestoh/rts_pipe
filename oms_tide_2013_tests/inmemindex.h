@@ -15,13 +15,13 @@
 #ifndef IN_MEM_INDEX_H
 #define IN_MEM_INDEX_H
 
-const int32_t fifo_page_size = 1;
+DECLARE_int32(fifo_page_size);
 
 class InMemIndex {
 
 public:
-	InMemIndex(RecordReader* reader, const vector<const pb::Protein*>& proteins) : fifo_alloc_peptides(fifo_page_size << 20), fifo_alloc_prog1(fifo_page_size << 20),
-		fifo_alloc_prog2(fifo_page_size << 20), theoretical_peak_set(2000)
+	InMemIndex(RecordReader* reader, const vector<const pb::Protein*>& proteins) : fifo_alloc_peptides(FLAGS_fifo_page_size << 20), fifo_alloc_prog1(FLAGS_fifo_page_size << 20),
+		fifo_alloc_prog2(FLAGS_fifo_page_size << 20), theoretical_peak_set(2000)
 	{
 
 		compiler_prog1 = new TheoreticalPeakCompiler(&fifo_alloc_prog1);
