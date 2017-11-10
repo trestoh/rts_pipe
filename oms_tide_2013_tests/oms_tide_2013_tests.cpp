@@ -971,9 +971,14 @@ int main(int argc, char * argv[])
 					{
 						const Peptide* tempo = active_peptide_queue[0]->GetPeptide(j);
 						double cand_mass = tempo->Mass();
-						carp(CARP_INFO, "Candidate %d has Mass %f" , j, cand_mass);
+						std::string cand_name = tempo->Seq();
+
+						carp(CARP_INFO, "Candidate at %d, %s has Mass %f" , j, cand_name.c_str(), cand_mass);
 					}
 
+					carp(CARP_INFO, "Peaks for observed spectra:");
+					//observed.ShowPeaks();
+					observed.ShowCache();
 
 					// Programs for taking the dot-product with the observed spectrum are laid
 					// out in memory managed by the active_peptide_queue, one program for each
