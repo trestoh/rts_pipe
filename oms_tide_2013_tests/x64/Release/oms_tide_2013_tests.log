@@ -1,4 +1,4 @@
-﻿Build started 11/10/2017 4:01:47 PM.
+﻿Build started 11/13/2017 11:59:57 AM.
      1>Project "C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include" /IC:\dev\OpenMS_2013\src\openms\include /IC:\dev\contrib_build_2013\include /I"C:\dev\qt-src-2\include\QtCore" /I"C:\dev\qt-src-2\include" /I"C:\dev\crux-src-4\src" /I"C:\dev\crux-src-4\src\app\tide\protoobj" /I"C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src" /I"C:\dev\crux-src-4\ext\include" /I"C:\dev\crux-src-4\ext\build\src\comet\MSToolkit\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"x64\Release\oms_tide_2013_tests.pch" /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /wd4996 /errorReport:prompt oms_tide_2013_tests.cpp
@@ -68,4 +68,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:16.64
+Time Elapsed 00:00:17.25

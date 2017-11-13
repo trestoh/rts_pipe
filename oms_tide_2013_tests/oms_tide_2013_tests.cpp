@@ -973,12 +973,12 @@ int main(int argc, char * argv[])
 						double cand_mass = tempo->Mass();
 						std::string cand_name = tempo->Seq();
 
-						carp(CARP_INFO, "Candidate at %d, %s has Mass %f", j, cand_name.c_str(), cand_mass);
+						carp(CARP_INFO, "Candidate at %d, %s has Mass %f and program at %d", j, cand_name.c_str(), cand_mass, tempo->Prog(charge));
 					}
 
-					carp(CARP_INFO, "Peaks for observed spectra:");
+					//carp(CARP_INFO, "Peaks for observed spectra:");
 					//observed.ShowPeaks();
-					observed.ShowCache();
+					//observed.ShowCache();
 
 					// Programs for taking the dot-product with the observed spectrum are laid
 					// out in memory managed by the active_peptide_queue, one program for each
@@ -1073,7 +1073,7 @@ int main(int argc, char * argv[])
 
 						//carp(CARP_INFO, "XCORR Results for spectrum %d", spectrum->SpectrumNumber());
 						//carp(CARP_INFO, "Tide MatchSet reporting top %d of %d matches", top_matches, match_arr.size());
-						carp(CARP_INFO, "Candidate with rank %d has max XCORR with: %f", max_corr_rank, max_corr);
+						//carp(CARP_INFO, "Candidate with rank %d has max XCORR with: %f", max_corr_rank, max_corr);
 						
 
 						TideMatchSet::Arr* matches_ = &match_arr;
