@@ -102,15 +102,15 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include;C:\dev\OpenMS_2013\src\openms\include;C:\dev\contrib_build_2013\include;C:\dev\qt-src-2\include\QtCore;C:\dev\qt-src-2\include;C:\dev\crux-src-4\src;C:\dev\crux-src-4\src\app\tide\protoobj;C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src;C:\dev\crux-src-4\ext\include;C:\dev\crux-src-4\ext\build\src\comet\MSToolkit\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include;C:\dev\OpenMS_2013\src\openms\include;C:\dev\contrib_build_2013\include;C:\dev\qt-src-2\include\QtCore;C:\dev\qt-src-2\include;C:\dev\crux-src-5\src;C:\dev\crux-src-5\src\app\tide\protoobj;C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\src;C:\dev\crux-src-5\ext\include;C:\dev\crux-src-5\ext\build\src\comet\MSToolkit\include;C:\dev\crux-src-5\ext\build\src\percolator\src</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\dev\OpenMS_2013\src\openms\Debug;C:\dev\crux-src-4\src\app\tide\Debug;C:\dev\crux-src-4\src\Debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\dev\OpenMS_2013\src\openms\Debug;C:\dev\crux-src-5\src\app\tide\Debug;C:\dev\crux-src-5\src\Debug</AdditionalLibraryDirectories>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);OpenMSd.lib;tide-support.lib;crux-support.lib;ShLwApi.lib</AdditionalDependencies>
-      <AdditionalOptions>"C:\dev\crux-src-4\ext\build\src\percolator-build\src\picked_protein\Debug\*.lib" "C:\dev\crux-src-4\ext\build\src\percolator-build\src\Debug\*.lib" "C:\dev\crux-src-4\ext\build\src\ProteoWizard\libraries\*.lib" "C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\vsprojects\x64\Debug\*.lib" "C:\dev\crux-src-4\ext\lib\*.lib" %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>"C:\dev\crux-src-5\ext\build\src\percolator-build\src\fido\Debug\*.lib" "C:\dev\crux-src-5\ext\build\src\percolator-build\src\picked_protein\Debug\*.lib" "C:\dev\crux-src-5\ext\build\src\percolator-build\src\Debug\*.lib"  "C:\dev\crux-src-5\ext\build\src\ProteoWizard\libraries\*.lib" "C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\vsprojects\x64\Debug\*.lib" "C:\dev\crux-src-5\ext\build\src\ProteoWizard\pwiz_aux\msrc\utility\vendor_api\Bruker\x64\*.lib" "C:\dev\crux-src-5\ext\Lib\*.lib" "C:\dev\crux-src-5\ext\Lib\boost_debug\*.lib" /NODEFAULTLIB:libboost_chrono-vc120-mt-gd /NODEFAULTLIB:libboost_date_time-vc120-mt-gd-1_56 /NODEFAULTLIB:libboost_system-vc120-mt-gd-1_56 /NODEFAULTLIB:libboost_thread-vc120-mt-gd-1_56 %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -137,13 +137,15 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include;C:\dev\OpenMS_2013\src\openms\include;C:\dev\contrib_build_2013\include;C:\dev\qt-src-2\include\QtCore;C:\dev\qt-src-2\include;C:\dev\crux-src-4\src;C:\dev\crux-src-4\src\app\tide\protoobj;C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src;C:\dev\crux-src-4\ext\include;C:\dev\crux-src-4\ext\build\src\comet\MSToolkit\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include;C:\dev\OpenMS_2013\src\openms\include;C:\dev\contrib_build_2013\include;C:\dev\qt-src-2\include\QtCore;C:\dev\qt-src-2\include;C:\dev\crux-src-4\src;C:\dev\crux-src-4\src\app\tide\protoobj;C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src;C:\dev\crux-src-4\ext\include;C:\dev\crux-src-4\ext\build\src\comet\MSToolkit\include;C:\dev\crux-src-4\src\app\tide</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <ProgramDataBaseFileName>$(IntDir)project.pdb</ProgramDataBaseFileName>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,7 +154,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>C:\dev\OpenMS_2013\src\openms\Release;C:\dev\crux-src-4\src\app\tide\Release;C:\dev\crux-src-4\src\Release;</AdditionalLibraryDirectories>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);OpenMS.lib;tide-support.lib;crux-support.lib;ShLwApi.lib</AdditionalDependencies>
-      <AdditionalOptions>"C:\dev\crux-src-4\ext\build\src\percolator-build\src\picked_protein\Release\*.lib" "C:\dev\crux-src-4\ext\build\src\percolator-build\src\Release\*.lib" "C:\dev\crux-src-4\ext\build\src\ProteoWizard\libraries\*.lib" "C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\vsprojects\x64\Release\*.lib" "C:\dev\crux-src-4\ext\build\src\ProteoWizard\pwiz_aux\msrc\utility\vendor_api\Bruker\x64\*.lib" "C:\dev\crux-src-4\ext\lib\*.lib" /NODEFAULTLIB:libboost_chrono-vc120-mt-1_56 /NODEFAULTLIB:libboost_date_time-vc120-mt-1_56 /NODEFAULTLIB:libboost_system-vc120-mt-1_56 /NODEFAULTLIB:libboost_thread-vc120-mt-1_56 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>"C:\dev\crux-src-4\ext\build\src\percolator-build\src\picked_protein\Release\*.lib" "C:\dev\crux-src-4\ext\build\src\percolator-build\src\Release\*.lib" "C:\dev\crux-src-4\ext\build\src\ProteoWizard\libraries\*.lib" "C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\vsprojects\x64\Release\*.lib" "C:\dev\crux-src-4\ext\build\src\ProteoWizard\pwiz_aux\msrc\utility\vendor_api\Bruker\x64\*.lib" "C:\dev\crux-src-4\ext\lib\*.lib" "C:\dev\crux-src-4\ext\Lib\boost_release\*.lib" /NODEFAULTLIB:libboost_chrono-vc120-mt-1_56 /NODEFAULTLIB:libboost_date_time-vc120-mt-1_56 /NODEFAULTLIB:libboost_system-vc120-mt-1_56 /NODEFAULTLIB:libboost_thread-vc120-mt-1_56 %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

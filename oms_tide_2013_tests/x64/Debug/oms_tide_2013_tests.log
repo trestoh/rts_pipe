@@ -1,46 +1,88 @@
-﻿Build started 10/13/2017 3:10:51 PM.
-     1>Project "C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests.vcxproj" on node 2 (Build target(s)).
-     1>Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\x64\Debug\oms_tide_2013_tests.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\dev\OpenMS_2013\src\openms\Debug /LIBPATH:"C:\dev\crux-src-4\src\app\tide\Debug" /LIBPATH:"C:\dev\crux-src-4\src\Debug" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib OpenMSd.lib "tide-support.lib" "crux-support.lib" ShLwApi.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\x64\Debug\oms_tide_2013_tests.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\x64\Debug\oms_tide_2013_tests.lib" /MACHINE:X64 "C:\dev\crux-src-4\ext\build\src\percolator-build\src\picked_protein\Debug\*.lib" "C:\dev\crux-src-4\ext\build\src\percolator-build\src\Debug\*.lib" "C:\dev\crux-src-4\ext\build\src\ProteoWizard\libraries\*.lib" "C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\vsprojects\x64\Debug\*.lib" "C:\dev\crux-src-4\ext\lib\*.lib" x64\Debug\oms_tide_2013_tests.obj
-         x64\Debug\stdafx.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_path_traits-vc120-mt.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_path_traits-vc120-mt.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_path-vc120-mt.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_path-vc120-mt.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_operations-vc120-mt.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_operations-vc120-mt.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_codecvt_error_category-vc120-mt.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_codecvt_error_category-vc120-mt.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_windows_file_codecvt-vc120-mt.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_windows_file_codecvt-vc120-mt.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_path_traits-vc120-mt.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_path_traits-vc120-mt.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_path-vc120-mt.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_path-vc120-mt.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_operations-vc120-mt.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_operations-vc120-mt.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_codecvt_error_category-vc120-mt.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_codecvt_error_category-vc120-mt.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_windows_file_codecvt-vc120-mt.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_windows_file_codecvt-vc120-mt.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in oms_tide_2013_tests.obj
-         MSToolkitLite.lib(Spectrum.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_path_traits-vc120-mt.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_path_traits-vc120-mt.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_path-vc120-mt.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_path-vc120-mt.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_operations-vc120-mt.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_operations-vc120-mt.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_codecvt_error_category-vc120-mt.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_codecvt_error_category-vc120-mt.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_windows_file_codecvt-vc120-mt.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_windows_file_codecvt-vc120-mt.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_utf8_codecvt_facet-vc120-mt.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in oms_tide_2013_tests.obj
-     1>libboost_filesystem-vc120-mt-1_56.lib(boost_utf8_codecvt_facet-vc120-mt.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in oms_tide_2013_tests.obj
-     1>libboost_nowide-vc120-mt-1_56.lib(boost_iostream-vc120-mt.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in oms_tide_2013_tests.obj
-     1>libboost_nowide-vc120-mt-1_56.lib(boost_iostream-vc120-mt.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in oms_tide_2013_tests.obj
-     1>LINK : fatal error LNK1104: cannot open file 'libboost_thread-vc120-mt-gd-1_56.lib'
-     1>Done Building Project "C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests.vcxproj" (Build target(s)) -- FAILED.
-
-Build FAILED.
-
-Time Elapsed 00:00:27.41
+﻿  mem_peptide_queue.cpp
+C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1445): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1447): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1449): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1455): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1457): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1463): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1465): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1470): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1474): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1478): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\src\google/protobuf/io/coded_stream.h(902): warning C4244: '=' : conversion from '__int64' to 'int', possible loss of data
+C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\src\google/protobuf/io/coded_stream.h(1078): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(142): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(237): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(305): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+c:\dev\crux-src-5\src\app\tide\spectrum_collection.h(56): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+c:\dev\crux-src-5\src\app\tide\spectrum_collection.h(59): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+c:\dev\crux-src-5\src\app\tide\max_mz.h(58): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+C:\dev\crux-src-5\src\app/tide/peptide.h(79): warning C4244: 'initializing' : conversion from 'google::protobuf::int64' to 'int', possible loss of data
+C:\dev\crux-src-5\src\app/tide/peptide.h(110): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+c:\dev\crux-src-5\src\parameter.h(43): warning C4305: 'initializing' : truncation from 'double' to 'const FLOAT_T'
+c:\dev\crux-src-5\src\parameter.h(46): warning C4305: 'initializing' : truncation from 'double' to 'const FLOAT_T'
+C:\dev\crux-src-5\src\app/tide/compiler.h(197): warning C4244: 'initializing' : conversion from '__int64' to 'int', possible loss of data
+c:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests\inmemindex.h(38): warning C4291: 'void *Peptide::operator new(size_t,FifoAllocator *)' : no matching operator delete found; memory will not be freed if initialization throws an exception
+          C:\dev\crux-src-5\src\app/tide/peptide.h(154) : see declaration of 'Peptide::operator new'
+mem_peptide_queue.cpp(280): warning C4244: 'initializing' : conversion from 'double' to 'const unsigned int', possible loss of data
+  Generating Code...
+  Compiling...
+  oms_tide_2013_tests.cpp
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/FORMAT/XMLFile.h(94): warning C4251: 'OpenMS::Internal::XMLFile::schema_location_' : class 'OpenMS::String' needs to have dll-interface to be used by clients of class 'OpenMS::Internal::XMLFile'
+          C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/String.h(57) : see declaration of 'OpenMS::String'
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/FORMAT/XMLFile.h(97): warning C4251: 'OpenMS::Internal::XMLFile::schema_version_' : class 'OpenMS::String' needs to have dll-interface to be used by clients of class 'OpenMS::Internal::XMLFile'
+          C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/String.h(57) : see declaration of 'OpenMS::String'
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/FORMAT/XMLFile.h(100): warning C4251: 'OpenMS::Internal::XMLFile::enforced_encoding_' : class 'OpenMS::String' needs to have dll-interface to be used by clients of class 'OpenMS::Internal::XMLFile'
+          C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/String.h(57) : see declaration of 'OpenMS::String'
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/CONCEPT/Exception.h(154): warning C4251: 'OpenMS::Exception::BaseException::name_' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'OpenMS::Exception::BaseException'
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/CONCEPT/Exception.h(157): warning C4251: 'OpenMS::Exception::BaseException::what_' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'OpenMS::Exception::BaseException'
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/CONCEPT/PrecisionWrapper.h(107): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/CONCEPT/PrecisionWrapper.h(108): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/CONCEPT/PrecisionWrapper.h(110): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/DPosition.h(183): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/DPosition.h(184): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/DPosition.h(187): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/Peak1D.h(171): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/Peak1D.h(172): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/Peak1D.h(174): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/ChromatogramPeak.h(180): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/ChromatogramPeak.h(181): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/ChromatogramPeak.h(183): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/METADATA/ProteinHit.h(69): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/METADATA/ProteinHit.h(70): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/METADATA/ProteinHit.h(72): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/METADATA/ProteinHit.h(88): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/METADATA/ProteinHit.h(89): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/METADATA/ProteinHit.h(91): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/MSSpectrum.h(210): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/MSSpectrum.h(211): warning C4068: unknown pragma
+C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/MSSpectrum.h(222): warning C4068: unknown pragma
+C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(142): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(237): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+C:\dev\crux-src-5\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(305): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+c:\dev\crux-src-5\src\parameter.h(43): warning C4305: 'initializing' : truncation from 'double' to 'const FLOAT_T'
+c:\dev\crux-src-5\src\parameter.h(46): warning C4305: 'initializing' : truncation from 'double' to 'const FLOAT_T'
+c:\dev\crux-src-5\src\app\tide\spectrum_collection.h(56): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+c:\dev\crux-src-5\src\app\tide\spectrum_collection.h(59): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+c:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests\inmemindex.h(38): warning C4291: 'void *Peptide::operator new(size_t,FifoAllocator *)' : no matching operator delete found; memory will not be freed if initialization throws an exception
+          c:\dev\crux-src-5\src\app\tide/peptide.h(154) : see declaration of 'Peptide::operator new'
+oms_tide_2013_tests.cpp(562): warning C4018: '<' : signed/unsigned mismatch
+oms_tide_2013_tests.cpp(766): warning C4018: '<' : signed/unsigned mismatch
+oms_tide_2013_tests.cpp(781): warning C4018: '<' : signed/unsigned mismatch
+oms_tide_2013_tests.cpp(788): warning C4018: '<' : signed/unsigned mismatch
+oms_tide_2013_tests.cpp(880): warning C4018: '<' : signed/unsigned mismatch
+oms_tide_2013_tests.cpp(886): warning C4018: '<' : signed/unsigned mismatch
+oms_tide_2013_tests.cpp(892): warning C4018: '<' : signed/unsigned mismatch
+oms_tide_2013_tests.cpp(898): warning C4018: '<' : signed/unsigned mismatch
+oms_tide_2013_tests.cpp(974): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+oms_tide_2013_tests.cpp(1229): warning C4018: '<' : signed/unsigned mismatch
+  Generating Code...
+  MSToolkitLite.lib(xmlparse.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
+  Generating code
+  Finished generating code
+oms_tide_2013_tests.obj : warning LNK4049: locally defined symbol ?FLAGS_max_bin@fLD@@3NA (double fLD::FLAGS_max_bin) imported
+crux-support.lib(TideSearchApplication.obj) : warning LNK4049: locally defined symbol ?FLAGS_max_bin@fLD@@3NA (double fLD::FLAGS_max_bin) imported
+oms_tide_2013_tests.obj : warning LNK4049: locally defined symbol ?FLAGS_fifo_page_size@fLI@@3HA (int fLI::FLAGS_fifo_page_size) imported
+crux-support.lib(TideIndexApplication.obj) : warning LNK4049: locally defined symbol ?FLAGS_max_mods@fLI@@3HA (int fLI::FLAGS_max_mods) imported
+crux-support.lib(TideIndexApplication.obj) : warning LNK4049: locally defined symbol ?FLAGS_min_mods@fLI@@3HA (int fLI::FLAGS_min_mods) imported
+  oms_tide_2013_tests.vcxproj -> C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\x64\Debug\oms_tide_2013_tests.exe

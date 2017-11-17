@@ -1,44 +1,6 @@
 INFO: CPU: LCCCFJZJBM1
 INFO: Crux version: 3.1
-INFO: Mon 11/13/2017 
+INFO: Fri 11/17/2017 
 INFO: Running tide-search...
 INFO: Number of Threads: 1
-INFO: Reading index C:\dev\crux-from-4\doc\workspace\human-tiny-index
-INFO: Added to index peptide IGTGCSHTWDWR with mass 1703.804077 and programs at 58130432 and 59179008
-INFO: Added to index peptide ITDHGWCWGSTR with mass 1703.804077 and programs at 58130439 and 59179015
-INFO: Added to index peptide GQAPLYPIVHVTELK with mass 2122.255615 and programs at 58130446 and 59179022
-INFO: Added to index peptide GVPPVQTEHLIYLAK with mass 2122.255615 and programs at 58130453 and 59179029
-INFO: Added to index peptide Ѝ with mass 2358.175293 and programs at 58130460 and 59179036
-INFO: Added to index peptide Ѝ with mass 2358.175293 and programs at 58130467 and 59179043
-INFO: Added to index peptide Ѝ with mass 2440.403076 and programs at 58130474 and 59179050
-INFO: Added to index peptide Ѝ with mass 2440.403076 and programs at 58130481 and 59179057
-INFO: Added to index peptide Ѝ with mass 2473.157227 and programs at 58130488 and 59179064
-INFO: Added to index peptide Ѝ with mass 2473.157227 and programs at 58130495 and 59179071
-INFO: Added to index peptide Ѝ with mass 2556.338623 and programs at 58130502 and 59179078
-INFO: Added to index peptide Ѝ with mass 2556.338623 and programs at 58130509 and 59179085
-INFO: Added to index peptide Ѝ with mass 2758.298340 and programs at 58130516 and 59179092
-INFO: Added to index peptide Ѝ with mass 2758.298340 and programs at 58130523 and 59179099
-INFO: Added to index peptide Ѝ with mass 3191.591309 and programs at 58130530 and 59179106
-INFO: Added to index peptide Ѝ with mass 3191.591309 and programs at 58130537 and 59179113
-INFO: Index has peptide IGTGCSHTWDWR with mass 1703.804077 and programs at 58130432 and 59179008
-INFO: Index has peptide ITDHGWCWGSTR with mass 1703.804077 and programs at 58130439 and 59179015
-INFO: Index has peptide GQAPLYPIVHVTELK with mass 2122.255615 and programs at 58130446 and 59179022
-INFO: Index has peptide GVPPVQTEHLIYLAK with mass 2122.255615 and programs at 58130453 and 59179029
-INFO: Index has peptide Ѝ with mass 2358.175293 and programs at 58130460 and 59179036
-INFO: Index has peptide Ѝ with mass 2358.175293 and programs at 58130467 and 59179043
-INFO: Index has peptide Ѝ with mass 2440.403076 and programs at 58130474 and 59179050
-INFO: Index has peptide Ѝ with mass 2440.403076 and programs at 58130481 and 59179057
-INFO: Index has peptide Ѝ with mass 2473.157227 and programs at 58130488 and 59179064
-INFO: Index has peptide Ѝ with mass 2473.157227 and programs at 58130495 and 59179071
-INFO: Index has peptide Ѝ with mass 2556.338623 and programs at 58130502 and 59179078
-INFO: Index has peptide Ѝ with mass 2556.338623 and programs at 58130509 and 59179085
-INFO: Index has peptide Ѝ with mass 2758.298340 and programs at 58130516 and 59179092
-INFO: Index has peptide Ѝ with mass 2758.298340 and programs at 58130523 and 59179099
-INFO: Index has peptide Ѝ with mass 3191.591309 and programs at 58130530 and 59179106
-INFO: Index has peptide Ѝ with mass 3191.591309 and programs at 58130537 and 59179113
-INFO: Read 0 auxlocs
-WARNING: The file 'crux-output/tide-search.target.txt' already exists and will be overwritten.
-WARNING: The file 'crux-output/tide-search.decoy.txt' already exists and will be overwritten.
-INFO: Target file successfully created
-INFO: Set up peptide queue
-INFO: Re-parsed succefully
+INFO: Reading index C:\dev\workspace\human-tiny-index
