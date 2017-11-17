@@ -577,15 +577,10 @@ int main(int argc, char * argv[])
 		}
 	}
 
-	//reading "test_index"
-	InMemIndex* test_index = new InMemIndex(peptide_reader[0]->Reader(), proteins);
+
 
 	
-	for (int i = 0; i < test_index->pep_array.size(); i++)
-	{
-		Peptide* temp_temp = (test_index->pep_array)[i];
-		carp(CARP_INFO, "Index has peptide %s with mass %f and programs at %d and %d", temp_temp->Seq(), temp_temp->Mass(), temp_temp->Prog(1), temp_temp->Prog(3));
-	}
+	
 	
 
 	if (exact_pval_search) {
@@ -600,8 +595,8 @@ int main(int argc, char * argv[])
 			&aaf_peptides_header.peptides_header().nterm_mods(),
 			&aaf_peptides_header.peptides_header().cterm_mods(),
 			bin_width, bin_offset);
-		//ActivePeptideQueue* active_peptide_queue = new ActivePeptideQueue(aaf_peptide_reader.Reader(), proteins);
-		ActivePeptideQueue2* active_peptide_queue = new ActivePeptideQueue2(test_index, aaf_peptide_reader.Reader(), proteins);
+		ActivePeptideQueue* active_peptide_queue = new ActivePeptideQueue(aaf_peptide_reader.Reader(), proteins);
+		//ActivePeptideQueue2* active_peptide_queue = new ActivePeptideQueue2(test_index, aaf_peptide_reader.Reader(), proteins);
 		nAA = active_peptide_queue->CountAAFrequency(bin_width, bin_offset,
 			&aaFreqN, &aaFreqI, &aaFreqC, &aaMass);
 		delete active_peptide_queue;
@@ -620,6 +615,15 @@ int main(int argc, char * argv[])
 	TideMatchSet::initModMap(pepHeader.mods(), ANY);
 	TideMatchSet::initModMap(pepHeader.nterm_mods(), PEPTIDE_N);
 	TideMatchSet::initModMap(pepHeader.cterm_mods(), PEPTIDE_C);
+
+	//reading "test_index"
+	InMemIndex* test_index = new InMemIndex(peptide_reader[0]->Reader(), proteins);
+
+	for (int i = 0; i < test_index->pep_array.size(); i++)
+	{
+		Peptide* temp_temp = (test_index->pep_array)[i];
+		carp(CARP_INFO, "Index has peptide %s with mass %f and programs at %d and %d", temp_temp->Seq(), temp_temp->Mass(), temp_temp->Prog(1), temp_temp->Prog(3));
+	}
 
 	//
 	//	All below here I believe is involved with writing stuff to disk, meaning we will not want to use it and
@@ -957,6 +961,9 @@ int main(int argc, char * argv[])
 					carp(CARP_INFO, "min range at %f", min_range);
 					carp(CARP_INFO, "max range at %f", min_range);
 					*/
+
+
+
 
 					// Normalize the observed spectrum and compute the cache of
 					// frequently-needed values for taking dot products with theoretical

@@ -123,7 +123,7 @@ int ActivePeptideQueue2::SetActiveRange(vector<double>* min_mass, vector<double>
 
 	// by now, if not EOF, then the last (and only the last) enqueued
 	// peptide is too heavy
-	assert(!queue_.empty() || done);
+	//assert(!queue_.empty() || done);
 
 	// Set up iterator for use with HasNext(),
 	// GetPeptide(), and NextPeptide(). Return the number of enqueued peptides.
