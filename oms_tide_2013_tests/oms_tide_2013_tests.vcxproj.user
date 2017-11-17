@@ -2,11 +2,11 @@
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>--overwrite T --compute-sp T --oms-src C:\Users\tstohrer\Documents\test_data\MA1750_TMT.mzML --oms-index C:\dev\crux-from-4\doc\workspace\human-tiny-index &gt; outlog.txt</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>--overwrite T --compute-sp T --oms-src C:\Users\tstohrer\Documents\test_data\MA1750_TMT.mzML --oms-index C:\dev\workspace\human-tiny-index &gt; outlog.txt</LocalDebuggerCommandArguments>
     <LocalDebuggerEnvironment>_NO_DEBUG_HEAP=1 </LocalDebuggerEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>--oms-src C:\dev\notthere.txt --overwrite T</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>--overwrite T --compute-sp T --oms-src C:\Users\tstohrer\Documents\test_data\MA1750_TMT.mzML --oms-index C:\dev\workspace\human-tiny-index &gt; outlog.txt</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>
