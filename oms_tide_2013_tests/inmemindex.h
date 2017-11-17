@@ -18,6 +18,8 @@
 
 DECLARE_int32(fifo_page_size);
 
+class TheoreticalPeakCompiler;
+
 class InMemIndex {
 
 public:

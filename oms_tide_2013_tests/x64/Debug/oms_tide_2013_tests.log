@@ -1,5 +1,4 @@
-﻿  stdafx.cpp
-  oms_tide_2013_tests.cpp
+﻿  oms_tide_2013_tests.cpp
 C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/FORMAT/XMLFile.h(94): warning C4251: 'OpenMS::Internal::XMLFile::schema_location_' : class 'OpenMS::String' needs to have dll-interface to be used by clients of class 'OpenMS::Internal::XMLFile'
           C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/String.h(57) : see declaration of 'OpenMS::String'
 C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/FORMAT/XMLFile.h(97): warning C4251: 'OpenMS::Internal::XMLFile::schema_version_' : class 'OpenMS::String' needs to have dll-interface to be used by clients of class 'OpenMS::Internal::XMLFile'
@@ -36,7 +35,7 @@ c:\dev\crux-src-5\src\parameter.h(43): warning C4305: 'initializing' : truncatio
 c:\dev\crux-src-5\src\parameter.h(46): warning C4305: 'initializing' : truncation from 'double' to 'const FLOAT_T'
 c:\dev\crux-src-5\src\app\tide\spectrum_collection.h(56): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
 c:\dev\crux-src-5\src\app\tide\spectrum_collection.h(59): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
-c:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests\inmemindex.h(38): warning C4291: 'void *Peptide::operator new(size_t,FifoAllocator *)' : no matching operator delete found; memory will not be freed if initialization throws an exception
+c:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests\inmemindex.h(40): warning C4291: 'void *Peptide::operator new(size_t,FifoAllocator *)' : no matching operator delete found; memory will not be freed if initialization throws an exception
           c:\dev\crux-src-5\src\app\tide/peptide.h(154) : see declaration of 'Peptide::operator new'
 oms_tide_2013_tests.cpp(562): warning C4018: '<' : signed/unsigned mismatch
 oms_tide_2013_tests.cpp(766): warning C4018: '<' : signed/unsigned mismatch
@@ -72,7 +71,7 @@ C:\dev\crux-src-5\src\app/tide/peptide.h(110): warning C4244: '=' : conversion f
 c:\dev\crux-src-5\src\parameter.h(43): warning C4305: 'initializing' : truncation from 'double' to 'const FLOAT_T'
 c:\dev\crux-src-5\src\parameter.h(46): warning C4305: 'initializing' : truncation from 'double' to 'const FLOAT_T'
 C:\dev\crux-src-5\src\app/tide/compiler.h(197): warning C4244: 'initializing' : conversion from '__int64' to 'int', possible loss of data
-c:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests\inmemindex.h(38): warning C4291: 'void *Peptide::operator new(size_t,FifoAllocator *)' : no matching operator delete found; memory will not be freed if initialization throws an exception
+c:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests\inmemindex.h(40): warning C4291: 'void *Peptide::operator new(size_t,FifoAllocator *)' : no matching operator delete found; memory will not be freed if initialization throws an exception
           C:\dev\crux-src-5\src\app/tide/peptide.h(154) : see declaration of 'Peptide::operator new'
 mem_peptide_queue.cpp(280): warning C4244: 'initializing' : conversion from 'double' to 'const unsigned int', possible loss of data
   Generating Code...

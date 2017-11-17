@@ -4,13 +4,13 @@ INFO: Fri 11/17/2017
 INFO: Running tide-search...
 INFO: Number of Threads: 1
 INFO: Reading index C:\dev\workspace\human-tiny-index
-INFO: Added to index peptide IGTGCSHTWDWR with mass 1474.641113 and programs at 54788096 and 57278464
-INFO: Added to index peptide ITDHGWCWGSTR with mass 1474.641113 and programs at 54788103 and 57278471
-INFO: Added to index peptide GQAPLYPIVHVTELK with mass 1663.929688 and programs at 54788110 and 57278478
-INFO: Added to index peptide GVPPVQTEHLIYLAK with mass 1663.929688 and programs at 54788117 and 57278485
-INFO: Added to index peptide EQSQKPCSNGGPAAAGEGR with mass 1899.849243 and programs at 54788124 and 57278492
-INFO: Added to index peptide EPQGCANEGKGSGSAPAQR with mass 1899.849243 and programs at 54788131 and 57278499
-INFO: Added to index peptide WLGCSARLPLQLTAATPK with mass 1982.077148 and programs at 54788138 and 57278506
-INFO: Added to index peptide WQGCTRPALLAPSLATLK with mass 1982.077148 and programs at 54788145 and 57278513
-INFO: Added to index peptide VPWFCSALHCSTAIQPPK with mass 2098.012695 and programs at 54788152 and 57278520
-INFO: Added to index peptide VLPSPCFPWSTCQAAIHK with mass 2098.012695 and programs at 54788159 and 57278527
+INFO: Added to index peptide IGTGCSHTWDWR with mass 1474.641113 and programs at 48627712 and 54853632
+INFO: Added to index peptide ITDHGWCWGSTR with mass 1474.641113 and programs at 48627719 and 54853639
+INFO: Added to index peptide GQAPLYPIVHVTELK with mass 1663.929688 and programs at 48627726 and 54853646
+INFO: Added to index peptide GVPPVQTEHLIYLAK with mass 1663.929688 and programs at 48627733 and 54853653
+INFO: Added to index peptide EQSQKPCSNGGPAAAGEGR with mass 1899.849243 and programs at 48627740 and 54853660
+INFO: Added to index peptide EPQGCANEGKGSGSAPAQR with mass 1899.849243 and programs at 48627747 and 54853667
+INFO: Added to index peptide WLGCSARLPLQLTAATPK with mass 1982.077148 and programs at 48627754 and 54853674
+INFO: Added to index peptide WQGCTRPALLAPSLATLK with mass 1982.077148 and programs at 48627761 and 54853681
+INFO: Added to index peptide VPWFCSALHCSTAIQPPK with mass 2098.012695 and programs at 48627768 and 54853688
+INFO: Added to index peptide VLPSPCFPWSTCQAAIHK with mass 2098.012695 and programs at 48627775 and 54853695
