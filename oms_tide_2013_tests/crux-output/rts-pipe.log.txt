@@ -4,3 +4,1021 @@ INFO: Fri 11/17/2017
 INFO: Running tide-search...
 INFO: Number of Threads: 1
 INFO: Reading index C:\dev\workspace\human-tiny-index
+INFO: Added to index peptide IGTGCSHTWDWR with mass 1474.641113 and programs at 57802752 and 58851328
+INFO: Added to index peptide ITDHGWCWGSTR with mass 1474.641113 and programs at 57802759 and 58851335
+INFO: Added to index peptide GQAPLYPIVHVTELK with mass 1663.929688 and programs at 57802766 and 58851342
+INFO: Added to index peptide GVPPVQTEHLIYLAK with mass 1663.929688 and programs at 57802773 and 58851349
+INFO: Added to index peptide EQSQKPCSNGGPAAAGEGR with mass 1899.849243 and programs at 57802780 and 58851356
+INFO: Added to index peptide EPQGCANEGKGSGSAPAQR with mass 1899.849243 and programs at 57802787 and 58851363
+INFO: Added to index peptide WLGCSARLPLQLTAATPK with mass 1982.077148 and programs at 57802794 and 58851370
+INFO: Added to index peptide WQGCTRPALLAPSLATLK with mass 1982.077148 and programs at 57802801 and 58851377
+INFO: Added to index peptide VPWFCSALHCSTAIQPPK with mass 2098.012695 and programs at 57802808 and 58851384
+INFO: Added to index peptide VLPSPCFPWSTCQAAIHK with mass 2098.012695 and programs at 57802815 and 58851391
+INFO: Added to index peptide HTDPNFPSNSNAVGTSSGWNR with mass 2243.994385 and programs at 57802822 and 58851398
+INFO: Added to index peptide HPGNNTPNGADFSSNWTSVSR with mass 2243.994385 and programs at 57802829 and 58851405
+INFO: Added to index peptide MEQDWQPGEEVTPGPEPCSK with mass 2299.972412 and programs at 57802836 and 58851412
+INFO: Added to index peptide MWPGEPVQCESPTQPEEGDK with mass 2299.972412 and programs at 57802843 and 58851419
+INFO: Added to index peptide FAAEALGTITWLQDPCLGQSWGLSEGR with mass 2962.428223 and programs at 57802850 and 58851426
+INFO: Added to index peptide FSCTQQALLPLLGAWEWSIDTEAGGGR with mass 2962.428223 and programs at 57802857 and 58851433
+INFO: Index has peptide IGTGCSHTWDWR with mass 1474.641113 and programs at 57802752 and 58851328
+INFO: Index has peptide ITDHGWCWGSTR with mass 1474.641113 and programs at 57802759 and 58851335
+INFO: Index has peptide GQAPLYPIVHVTELK with mass 1663.929688 and programs at 57802766 and 58851342
+INFO: Index has peptide GVPPVQTEHLIYLAK with mass 1663.929688 and programs at 57802773 and 58851349
+INFO: Index has peptide P  with mass 1899.849243 and programs at 57802780 and 58851356
+INFO: Index has peptide P  with mass 1899.849243 and programs at 57802787 and 58851363
+INFO: Index has peptide P  with mass 1982.077148 and programs at 57802794 and 58851370
+INFO: Index has peptide P  with mass 1982.077148 and programs at 57802801 and 58851377
+INFO: Index has peptide P  with mass 2098.012695 and programs at 57802808 and 58851384
+INFO: Index has peptide P  with mass 2098.012695 and programs at 57802815 and 58851391
+INFO: Index has peptide P  with mass 2243.994385 and programs at 57802822 and 58851398
+INFO: Index has peptide P  with mass 2243.994385 and programs at 57802829 and 58851405
+INFO: Index has peptide P  with mass 2299.972412 and programs at 57802836 and 58851412
+INFO: Index has peptide P  with mass 2299.972412 and programs at 57802843 and 58851419
+INFO: Index has peptide P  with mass 2962.428223 and programs at 57802850 and 58851426
+INFO: Index has peptide P  with mass 2962.428223 and programs at 57802857 and 58851433
+INFO: Read 0 auxlocs
+WARNING: The file 'crux-output/tide-search.target.txt' already exists and will be overwritten.
+WARNING: The file 'crux-output/tide-search.decoy.txt' already exists and will be overwritten.
+INFO: Target file successfully created
+INFO: Set up peptide queue
+INFO: Re-parsed succefully
+INFO: Open MS experiment loaded
+INFO: Exited search early on spectrum 8
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 199
+INFO: Exited search early on spectrum 364
+INFO: Exited search early on spectrum 381
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 391
+INFO: Exited search early on spectrum 406
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 441
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 472
+INFO: Exited search early on spectrum 576
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 603
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 627
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 632
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 635
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 694
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 695
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 700
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 758
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 766
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 840
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 849
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 908
+INFO: Not Enough Peaks
+INFO: Candidate at 1, EPQGCANEGKGSGSAPAQR has Mass 1899.849243 and program at 58851363
+INFO: Candidate at 2, EQSQKPCSNGGPAAAGEGR has Mass 1899.849243 and program at 58851356
+INFO: XCORR Results for spectrum 948
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 1042
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1051
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1055
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1059
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1139
+INFO: Not Enough Peaks
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 1141
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 1151
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1166
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1167
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1172
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1179
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1180
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1187
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1228
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1238
+INFO: Not Enough Peaks
+INFO: Candidate at 1, EPQGCANEGKGSGSAPAQR has Mass 1899.849243 and program at 57802787
+INFO: Candidate at 2, EQSQKPCSNGGPAAAGEGR has Mass 1899.849243 and program at 57802780
+INFO: XCORR Results for spectrum 1289
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 1300
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1305
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1309
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1314
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1318
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1321
+INFO: Not Enough Peaks
+INFO: Candidate at 1, VLPSPCFPWSTCQAAIHK has Mass 2098.012695 and program at 57802815
+INFO: Candidate at 2, VPWFCSALHCSTAIQPPK has Mass 2098.012695 and program at 57802808
+INFO: XCORR Results for spectrum 1429
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 1429
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1434
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1435
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1438
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1442
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1446
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1447
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1450
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 1882
+INFO: Exited search early on spectrum 2044
+INFO: Exited search early on spectrum 2046
+INFO: Exited search early on spectrum 2115
+INFO: Exited search early on spectrum 2771
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 2852
+INFO: Exited search early on spectrum 3613
+INFO: Exited search early on spectrum 3773
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 3908
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 3948
+INFO: Exited search early on spectrum 4072
+INFO: Exited search early on spectrum 4303
+INFO: Exited search early on spectrum 4329
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 4415
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 4475
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 4562
+INFO: Exited search early on spectrum 4738
+INFO: Exited search early on spectrum 4779
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 4818
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 4849
+INFO: Exited search early on spectrum 4863
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 4929
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 4937
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 4951
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 4956
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 4963
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5012
+INFO: Exited search early on spectrum 5018
+INFO: Not Enough Peaks
+INFO: Candidate at 1, VLPSPCFPWSTCQAAIHK has Mass 2098.012695 and program at 58851391
+INFO: Candidate at 2, VPWFCSALHCSTAIQPPK has Mass 2098.012695 and program at 58851384
+INFO: XCORR Results for spectrum 5049
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 5073
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5132
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5133
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5164
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5167
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5176
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5210
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5214
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5223
+INFO: Not Enough Peaks
+INFO: Candidate at 1, VLPSPCFPWSTCQAAIHK has Mass 2098.012695 and program at 58851391
+INFO: Candidate at 2, VPWFCSALHCSTAIQPPK has Mass 2098.012695 and program at 58851384
+INFO: XCORR Results for spectrum 5228
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 5293
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 5395
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5411
+INFO: Exited search early on spectrum 5418
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5467
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5475
+INFO: Not Enough Peaks
+INFO: Candidate at 1, HPGNNTPNGADFSSNWTSVSR has Mass 2243.994385 and program at 58851405
+INFO: Candidate at 2, HTDPNFPSNSNAVGTSSGWNR has Mass 2243.994385 and program at 58851398
+INFO: XCORR Results for spectrum 5486
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, HPGNNTPNGADFSSNWTSVSR has Mass 2243.994385 and program at 58851405
+INFO: Candidate at 2, HTDPNFPSNSNAVGTSSGWNR has Mass 2243.994385 and program at 58851398
+INFO: XCORR Results for spectrum 5519
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 5544
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5589
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5614
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5663
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5703
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5748
+INFO: Not Enough Peaks
+INFO: Candidate at 1, HPGNNTPNGADFSSNWTSVSR has Mass 2243.994385 and program at 58851405
+INFO: Candidate at 2, HTDPNFPSNSNAVGTSSGWNR has Mass 2243.994385 and program at 58851398
+INFO: XCORR Results for spectrum 5812
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 5830
+INFO: Exited search early on spectrum 5835
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5838
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5858
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 5902
+INFO: Exited search early on spectrum 5938
+INFO: Not Enough Peaks
+INFO: Candidate at 1, HPGNNTPNGADFSSNWTSVSR has Mass 2243.994385 and program at 58851405
+INFO: Candidate at 2, HTDPNFPSNSNAVGTSSGWNR has Mass 2243.994385 and program at 58851398
+INFO: XCORR Results for spectrum 5966
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, HPGNNTPNGADFSSNWTSVSR has Mass 2243.994385 and program at 58851405
+INFO: Candidate at 2, HTDPNFPSNSNAVGTSSGWNR has Mass 2243.994385 and program at 58851398
+INFO: XCORR Results for spectrum 6048
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, MWPGEPVQCESPTQPEEGDK has Mass 2299.972412 and program at 58851419
+INFO: Candidate at 2, MEQDWQPGEEVTPGPEPCSK has Mass 2299.972412 and program at 58851412
+INFO: XCORR Results for spectrum 6091
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 6114
+INFO: Not Enough Peaks
+INFO: Candidate at 1, MWPGEPVQCESPTQPEEGDK has Mass 2299.972412 and program at 58851419
+INFO: Candidate at 2, MEQDWQPGEEVTPGPEPCSK has Mass 2299.972412 and program at 58851412
+INFO: XCORR Results for spectrum 6149
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 6201
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 6258
+INFO: Candidate at 1, WQGCTRPALLAPSLATLK has Mass 1982.077148 and program at 57802801
+INFO: Candidate at 2, WLGCSARLPLQLTAATPK has Mass 1982.077148 and program at 57802794
+INFO: XCORR Results for spectrum 6272
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 6295
+INFO: Not Enough Peaks
+INFO: Candidate at 1, WQGCTRPALLAPSLATLK has Mass 1982.077148 and program at 58851377
+INFO: Candidate at 2, WLGCSARLPLQLTAATPK has Mass 1982.077148 and program at 58851370
+INFO: XCORR Results for spectrum 6303
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 6315
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6319
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6324
+INFO: Not Enough Peaks
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 6364
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 6401
+INFO: Exited search early on spectrum 6433
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6522
+INFO: Not Enough Peaks
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 6674
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 6717
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 6735
+INFO: Not Enough Peaks
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 6745
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 6809
+INFO: Candidate at 1, WQGCTRPALLAPSLATLK has Mass 1982.077148 and program at 57802801
+INFO: Candidate at 2, WLGCSARLPLQLTAATPK has Mass 1982.077148 and program at 57802794
+INFO: XCORR Results for spectrum 6988
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, WQGCTRPALLAPSLATLK has Mass 1982.077148 and program at 57802801
+INFO: Candidate at 2, WLGCSARLPLQLTAATPK has Mass 1982.077148 and program at 57802794
+INFO: XCORR Results for spectrum 7021
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 7081
+INFO: Not Enough Peaks
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 7094
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, WQGCTRPALLAPSLATLK has Mass 1982.077148 and program at 57802801
+INFO: Candidate at 2, WLGCSARLPLQLTAATPK has Mass 1982.077148 and program at 57802794
+INFO: XCORR Results for spectrum 7269
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, WQGCTRPALLAPSLATLK has Mass 1982.077148 and program at 57802801
+INFO: Candidate at 2, WLGCSARLPLQLTAATPK has Mass 1982.077148 and program at 57802794
+INFO: XCORR Results for spectrum 7329
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 7347
+INFO: Candidate at 1, WQGCTRPALLAPSLATLK has Mass 1982.077148 and program at 58851377
+INFO: Candidate at 2, WLGCSARLPLQLTAATPK has Mass 1982.077148 and program at 58851370
+INFO: XCORR Results for spectrum 7676
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 7875
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 7962
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 8097
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 8134
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 8145
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 8145
+INFO: Candidate at 1, WQGCTRPALLAPSLATLK has Mass 1982.077148 and program at 57802801
+INFO: Candidate at 2, WLGCSARLPLQLTAATPK has Mass 1982.077148 and program at 57802794
+INFO: XCORR Results for spectrum 8455
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 8787
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 8936
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 9108
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 9165
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 9354
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 9637
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, EPQGCANEGKGSGSAPAQR has Mass 1899.849243 and program at 58851363
+INFO: Candidate at 2, EQSQKPCSNGGPAAAGEGR has Mass 1899.849243 and program at 58851356
+INFO: XCORR Results for spectrum 10742
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 11000
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 11160
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 13589
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 13623
+INFO: Exited search early on spectrum 13945
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 14207
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 14321
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 14820
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 15036
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 15436
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 15849
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 16219
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 16500
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 16674
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 16696
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 16932
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 16944
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 16982
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 17193
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 18049
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 18399
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 18406
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 18595
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 18689
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 18736
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 19707
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 19984
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Exited search early on spectrum 20009
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 21201
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, VLPSPCFPWSTCQAAIHK has Mass 2098.012695 and program at 58851391
+INFO: Candidate at 2, VPWFCSALHCSTAIQPPK has Mass 2098.012695 and program at 58851384
+INFO: XCORR Results for spectrum 21238
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 21443
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, VLPSPCFPWSTCQAAIHK has Mass 2098.012695 and program at 57802815
+INFO: Candidate at 2, VPWFCSALHCSTAIQPPK has Mass 2098.012695 and program at 57802808
+INFO: XCORR Results for spectrum 21602
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 21728
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 21968
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 22052
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 22175
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 22255
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 23205
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, EPQGCANEGKGSGSAPAQR has Mass 1899.849243 and program at 58851363
+INFO: Candidate at 2, EQSQKPCSNGGPAAAGEGR has Mass 1899.849243 and program at 58851356
+INFO: XCORR Results for spectrum 23524
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 23712
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, EPQGCANEGKGSGSAPAQR has Mass 1899.849243 and program at 58851363
+INFO: Candidate at 2, EQSQKPCSNGGPAAAGEGR has Mass 1899.849243 and program at 58851356
+INFO: XCORR Results for spectrum 24038
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 57802773
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 57802766
+INFO: XCORR Results for spectrum 24046
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 24349
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 24630
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 25138
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 25671
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, EPQGCANEGKGSGSAPAQR has Mass 1899.849243 and program at 58851363
+INFO: Candidate at 2, EQSQKPCSNGGPAAAGEGR has Mass 1899.849243 and program at 58851356
+INFO: XCORR Results for spectrum 25759
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 26083
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 26087
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 26300
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 26379
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 26705
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 26837
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, VLPSPCFPWSTCQAAIHK has Mass 2098.012695 and program at 58851391
+INFO: Candidate at 2, VPWFCSALHCSTAIQPPK has Mass 2098.012695 and program at 58851384
+INFO: XCORR Results for spectrum 26891
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 27094
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, VLPSPCFPWSTCQAAIHK has Mass 2098.012695 and program at 58851391
+INFO: Candidate at 2, VPWFCSALHCSTAIQPPK has Mass 2098.012695 and program at 58851384
+INFO: XCORR Results for spectrum 27160
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 27226
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 27354
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 57802773
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 57802766
+INFO: XCORR Results for spectrum 27574
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 27787
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, WQGCTRPALLAPSLATLK has Mass 1982.077148 and program at 58851377
+INFO: Candidate at 2, WLGCSARLPLQLTAATPK has Mass 1982.077148 and program at 58851370
+INFO: XCORR Results for spectrum 28020
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, WQGCTRPALLAPSLATLK has Mass 1982.077148 and program at 58851377
+INFO: Candidate at 2, WLGCSARLPLQLTAATPK has Mass 1982.077148 and program at 58851370
+INFO: XCORR Results for spectrum 28130
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 28261
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 28435
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 28817
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 28861
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, MWPGEPVQCESPTQPEEGDK has Mass 2299.972412 and program at 58851419
+INFO: Candidate at 2, MEQDWQPGEEVTPGPEPCSK has Mass 2299.972412 and program at 58851412
+INFO: XCORR Results for spectrum 29174
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, MWPGEPVQCESPTQPEEGDK has Mass 2299.972412 and program at 58851419
+INFO: Candidate at 2, MEQDWQPGEEVTPGPEPCSK has Mass 2299.972412 and program at 58851412
+INFO: XCORR Results for spectrum 29193
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 29322
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 29406
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 29654
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 29710
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, HPGNNTPNGADFSSNWTSVSR has Mass 2243.994385 and program at 58851405
+INFO: Candidate at 2, HTDPNFPSNSNAVGTSSGWNR has Mass 2243.994385 and program at 58851398
+INFO: XCORR Results for spectrum 30205
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, HPGNNTPNGADFSSNWTSVSR has Mass 2243.994385 and program at 58851405
+INFO: Candidate at 2, HTDPNFPSNSNAVGTSSGWNR has Mass 2243.994385 and program at 58851398
+INFO: XCORR Results for spectrum 30498
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 30585
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, WQGCTRPALLAPSLATLK has Mass 1982.077148 and program at 58851377
+INFO: Candidate at 2, WLGCSARLPLQLTAATPK has Mass 1982.077148 and program at 58851370
+INFO: XCORR Results for spectrum 30636
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, WQGCTRPALLAPSLATLK has Mass 1982.077148 and program at 58851377
+INFO: Candidate at 2, WLGCSARLPLQLTAATPK has Mass 1982.077148 and program at 58851370
+INFO: XCORR Results for spectrum 30826
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, EPQGCANEGKGSGSAPAQR has Mass 1899.849243 and program at 58851363
+INFO: Candidate at 2, EQSQKPCSNGGPAAAGEGR has Mass 1899.849243 and program at 58851356
+INFO: XCORR Results for spectrum 30921
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, EPQGCANEGKGSGSAPAQR has Mass 1899.849243 and program at 58851363
+INFO: Candidate at 2, EQSQKPCSNGGPAAAGEGR has Mass 1899.849243 and program at 58851356
+INFO: XCORR Results for spectrum 30937
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, EPQGCANEGKGSGSAPAQR has Mass 1899.849243 and program at 58851363
+INFO: Candidate at 2, EQSQKPCSNGGPAAAGEGR has Mass 1899.849243 and program at 58851356
+INFO: XCORR Results for spectrum 30942
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 31035
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 31895
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, WQGCTRPALLAPSLATLK has Mass 1982.077148 and program at 58851377
+INFO: Candidate at 2, WLGCSARLPLQLTAATPK has Mass 1982.077148 and program at 58851370
+INFO: XCORR Results for spectrum 32054
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, HPGNNTPNGADFSSNWTSVSR has Mass 2243.994385 and program at 58851405
+INFO: Candidate at 2, HTDPNFPSNSNAVGTSSGWNR has Mass 2243.994385 and program at 58851398
+INFO: XCORR Results for spectrum 32546
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, MWPGEPVQCESPTQPEEGDK has Mass 2299.972412 and program at 58851419
+INFO: Candidate at 2, MEQDWQPGEEVTPGPEPCSK has Mass 2299.972412 and program at 58851412
+INFO: XCORR Results for spectrum 32732
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, EPQGCANEGKGSGSAPAQR has Mass 1899.849243 and program at 58851363
+INFO: Candidate at 2, EQSQKPCSNGGPAAAGEGR has Mass 1899.849243 and program at 58851356
+INFO: XCORR Results for spectrum 32870
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 33457
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 33776
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 34733
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 35116
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 35557
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 57802773
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 57802766
+INFO: XCORR Results for spectrum 35855
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 36285
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 36402
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 36471
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 36547
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 36696
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 36841
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, MWPGEPVQCESPTQPEEGDK has Mass 2299.972412 and program at 58851419
+INFO: Candidate at 2, MEQDWQPGEEVTPGPEPCSK has Mass 2299.972412 and program at 58851412
+INFO: XCORR Results for spectrum 36854
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 37173
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 37298
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 37430
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, WQGCTRPALLAPSLATLK has Mass 1982.077148 and program at 58851377
+INFO: Candidate at 2, WLGCSARLPLQLTAATPK has Mass 1982.077148 and program at 58851370
+INFO: XCORR Results for spectrum 37474
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 57802773
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 57802766
+INFO: XCORR Results for spectrum 37498
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 37727
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 57802773
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 57802766
+INFO: XCORR Results for spectrum 37784
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, MWPGEPVQCESPTQPEEGDK has Mass 2299.972412 and program at 58851419
+INFO: Candidate at 2, MEQDWQPGEEVTPGPEPCSK has Mass 2299.972412 and program at 58851412
+INFO: XCORR Results for spectrum 37894
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 38013
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 38030
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, MWPGEPVQCESPTQPEEGDK has Mass 2299.972412 and program at 58851419
+INFO: Candidate at 2, MEQDWQPGEEVTPGPEPCSK has Mass 2299.972412 and program at 58851412
+INFO: XCORR Results for spectrum 38198
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 38288
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, GVPPVQTEHLIYLAK has Mass 1663.929688 and program at 58851349
+INFO: Candidate at 2, GQAPLYPIVHVTELK has Mass 1663.929688 and program at 58851342
+INFO: XCORR Results for spectrum 38320
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 38498
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 38562
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, MWPGEPVQCESPTQPEEGDK has Mass 2299.972412 and program at 58851419
+INFO: Candidate at 2, MEQDWQPGEEVTPGPEPCSK has Mass 2299.972412 and program at 58851412
+INFO: XCORR Results for spectrum 38747
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 38808
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, EPQGCANEGKGSGSAPAQR has Mass 1899.849243 and program at 58851363
+INFO: Candidate at 2, EQSQKPCSNGGPAAAGEGR has Mass 1899.849243 and program at 58851356
+INFO: XCORR Results for spectrum 38873
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 39111
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 39252
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 57802759
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 57802752
+INFO: XCORR Results for spectrum 39425
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, EPQGCANEGKGSGSAPAQR has Mass 1899.849243 and program at 58851363
+INFO: Candidate at 2, EQSQKPCSNGGPAAAGEGR has Mass 1899.849243 and program at 58851356
+INFO: XCORR Results for spectrum 39529
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 58851335
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 58851328
+INFO: XCORR Results for spectrum 39734
+INFO: Candidate with rank 2 has XCORR: 0.000000
+INFO: Candidate with rank 1 has XCORR: 0.000000
