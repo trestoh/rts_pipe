@@ -3,13 +3,3 @@ INFO: Crux version: 3.1
 INFO: Fri 11/17/2017 
 INFO: Running tide-search...
 INFO: Number of Threads: 1
-INFO: Reading index C:\dev\workspace\human-tiny-index
-INFO: Read 0 auxlocs
-WARNING: The file 'crux-output/tide-search.target.txt' already exists and will be overwritten.
-WARNING: The file 'crux-output/tide-search.decoy.txt' already exists and will be overwritten.
-INFO: Target file successfully created
-INFO: Set up peptide queue
-INFO: Re-parsed succefully
-INFO: Open MS experiment loaded
-INFO: Exited search early on spectrum 1
-INFO: Not Enough Peaks
