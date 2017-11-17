@@ -10,3 +10,82 @@ WARNING: The file 'crux-output/tide-search.decoy.txt' already exists and will be
 INFO: Target file successfully created
 INFO: Set up peptide queue
 INFO: Re-parsed succefully
+INFO: Open MS experiment loaded
+INFO: Exited search early on spectrum 1
+INFO: Not Enough Peaks
+INFO: Candidate at 1, HPGNNTPNGADFSSNWTSVSR has Mass 2243.994385 and program at 153682377
+INFO: Candidate at 2, HTDPNFPSNSNAVGTSSGWNR has Mass 2243.994385 and program at 153681920
+INFO: XCORR Results for spectrum 5812
+INFO: Tide MatchSet reporting 2 matches
+INFO: Candidate with rank 2 has XCORR: 0.020634
+INFO: Candidate with rank 1 has XCORR: 0.212394
+INFO: Exited search early on spectrum 83
+INFO: Exited search early on spectrum 88
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 111
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 155
+INFO: Exited search early on spectrum 191
+INFO: Not Enough Peaks
+INFO: Candidate at 1, HPGNNTPNGADFSSNWTSVSR has Mass 2243.994385 and program at 153682329
+INFO: Candidate at 2, HTDPNFPSNSNAVGTSSGWNR has Mass 2243.994385 and program at 153681920
+INFO: XCORR Results for spectrum 5966
+INFO: Tide MatchSet reporting 2 matches
+INFO: Candidate with rank 2 has XCORR: -0.052748
+INFO: Candidate with rank 1 has XCORR: 0.269461
+INFO: Candidate at 1, HPGNNTPNGADFSSNWTSVSR has Mass 2243.994385 and program at 153682275
+INFO: Candidate at 2, HTDPNFPSNSNAVGTSSGWNR has Mass 2243.994385 and program at 153681920
+INFO: XCORR Results for spectrum 6048
+INFO: Tide MatchSet reporting 2 matches
+INFO: Candidate with rank 2 has XCORR: 0.065897
+INFO: Candidate with rank 1 has XCORR: -0.292279
+INFO: Candidate at 1, MWPGEPVQCESPTQPEEGDK has Mass 2299.972412 and program at 153682281
+INFO: Candidate at 2, MEQDWQPGEEVTPGPEPCSK has Mass 2299.972412 and program at 153681920
+INFO: XCORR Results for spectrum 6091
+INFO: Tide MatchSet reporting 2 matches
+INFO: Candidate with rank 2 has XCORR: 0.244458
+INFO: Candidate with rank 1 has XCORR: -0.077317
+INFO: Exited search early on spectrum 367
+INFO: Not Enough Peaks
+INFO: Candidate at 1, MWPGEPVQCESPTQPEEGDK has Mass 2299.972412 and program at 153682263
+INFO: Candidate at 2, MEQDWQPGEEVTPGPEPCSK has Mass 2299.972412 and program at 153681920
+INFO: XCORR Results for spectrum 6149
+INFO: Tide MatchSet reporting 2 matches
+INFO: Candidate with rank 2 has XCORR: -0.148715
+INFO: Candidate with rank 1 has XCORR: 0.074840
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 153682149
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 153681920
+INFO: XCORR Results for spectrum 6201
+INFO: Tide MatchSet reporting 2 matches
+INFO: Candidate with rank 2 has XCORR: -0.079871
+INFO: Candidate with rank 1 has XCORR: 0.021369
+INFO: Exited search early on spectrum 511
+INFO: Candidate at 1, WQGCTRPALLAPSLATLK has Mass 1982.077148 and program at 152633543
+INFO: Candidate at 2, WLGCSARLPLQLTAATPK has Mass 1982.077148 and program at 152633344
+INFO: XCORR Results for spectrum 6272
+INFO: Tide MatchSet reporting 2 matches
+INFO: Candidate with rank 2 has XCORR: -0.111347
+INFO: Candidate with rank 1 has XCORR: 0.206401
+INFO: Exited search early on spectrum 548
+INFO: Not Enough Peaks
+INFO: Candidate at 1, WQGCTRPALLAPSLATLK has Mass 1982.077148 and program at 153682323
+INFO: Candidate at 2, WLGCSARLPLQLTAATPK has Mass 1982.077148 and program at 153681920
+INFO: XCORR Results for spectrum 6303
+INFO: Tide MatchSet reporting 2 matches
+INFO: Candidate with rank 2 has XCORR: 0.031252
+INFO: Candidate with rank 1 has XCORR: 0.108103
+INFO: Exited search early on spectrum 568
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 572
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 577
+INFO: Not Enough Peaks
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 153682125
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 153681920
+INFO: XCORR Results for spectrum 6364
+INFO: Tide MatchSet reporting 2 matches
+INFO: Candidate with rank 2 has XCORR: 0.174163
+INFO: Candidate with rank 1 has XCORR: 0.169498
+INFO: Elapsed time per spectrum conversion: 1.29 s

@@ -951,6 +951,13 @@ int main(int argc, char * argv[])
 					carp(CARP_INFO, "max range at %f", min_range);
 					*/
 
+					if (spectrum->SpectrumNumber() == 5812)
+					{
+						int nonesuch = 0;
+					}
+
+
+
 					// Normalize the observed spectrum and compute the cache of
 					// frequently-needed values for taking dot products with theoretical
 					// spectra.
