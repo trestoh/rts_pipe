@@ -60,6 +60,10 @@ public:
 		fifo_alloc_peptides.ReleaseAll();
 		fifo_alloc_prog1.ReleaseAll();
 		fifo_alloc_prog2.ReleaseAll();
+
+		delete compiler_prog1;
+		delete compiler_prog2;
+
 	}
 
 	deque<Peptide*> pep_array;

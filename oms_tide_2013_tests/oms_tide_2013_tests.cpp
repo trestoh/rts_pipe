@@ -616,6 +616,8 @@ int main(int argc, char * argv[])
 	TideMatchSet::initModMap(pepHeader.nterm_mods(), PEPTIDE_N);
 	TideMatchSet::initModMap(pepHeader.cterm_mods(), PEPTIDE_C);
 
+	MaxBin::SetGlobalMax(2000.0);
+
 	//reading "test_index"
 	InMemIndex* test_index = new InMemIndex(peptide_reader[0]->Reader(), proteins);
 

@@ -5,3 +5,45 @@ INFO: Running tide-search...
 INFO: Number of Threads: 1
 INFO: Reading index C:\dev\workspace\human-tiny-index
 INFO: Read 0 auxlocs
+INFO: Added to index peptide IGTGCSHTWDWR with mass 1474.641113 and programs at 54853632 and 55902208
+INFO: Added to index peptide ITDHGWCWGSTR with mass 1474.641113 and programs at 54853771 and 55902479
+INFO: Added to index peptide GQAPLYPIVHVTELK with mass 1663.929688 and programs at 54853910 and 55902750
+INFO: Added to index peptide GVPPVQTEHLIYLAK with mass 1663.929688 and programs at 54854085 and 55903081
+INFO: Added to index peptide EQSQKPCSNGGPAAAGEGR with mass 1899.849243 and programs at 54854260 and 55903418
+INFO: Added to index peptide EPQGCANEGKGSGSAPAQR with mass 1899.849243 and programs at 54854483 and 55903845
+INFO: Added to index peptide WLGCSARLPLQLTAATPK with mass 1982.077148 and programs at 54854706 and 55904278
+INFO: Added to index peptide WQGCTRPALLAPSLATLK with mass 1982.077148 and programs at 54854917 and 55904681
+INFO: Added to index peptide VPWFCSALHCSTAIQPPK with mass 2098.012695 and programs at 54855128 and 55905078
+INFO: Added to index peptide VLPSPCFPWSTCQAAIHK with mass 2098.012695 and programs at 54855339 and 55905493
+INFO: Added to index peptide HTDPNFPSNSNAVGTSSGWNR with mass 2243.994385 and programs at 54855538 and 55905884
+INFO: Added to index peptide HPGNNTPNGADFSSNWTSVSR with mass 2243.994385 and programs at 54855779 and 55906359
+INFO: Added to index peptide MEQDWQPGEEVTPGPEPCSK with mass 2299.972412 and programs at 54856020 and 55906834
+INFO: Added to index peptide MWPGEPVQCESPTQPEEGDK with mass 2299.972412 and programs at 54856231 and 55907261
+INFO: Added to index peptide FAAEALGTITWLQDPCLGQSWGLSEGR with mass 2962.428223 and programs at 54856454 and 55907682
+INFO: Added to index peptide FSCTQQALLPLLGAWEWSIDTEAGGGR with mass 2962.428223 and programs at 54856683 and 55908223
+INFO: Index has peptide êß	 with mass 1474.641113 and programs at 54853632 and 55902208
+INFO: Index has peptide êß	 with mass 1474.641113 and programs at 54853771 and 55902479
+INFO: Index has peptide êß	 with mass 1663.929688 and programs at 54853910 and 55902750
+INFO: Index has peptide êß	 with mass 1663.929688 and programs at 54854085 and 55903081
+INFO: Index has peptide êß	 with mass 1899.849243 and programs at 54854260 and 55903418
+INFO: Index has peptide êß	 with mass 1899.849243 and programs at 54854483 and 55903845
+INFO: Index has peptide êß	 with mass 1982.077148 and programs at 54854706 and 55904278
+INFO: Index has peptide êß	 with mass 1982.077148 and programs at 54854917 and 55904681
+INFO: Index has peptide êß	 with mass 2098.012695 and programs at 54855128 and 55905078
+INFO: Index has peptide êß	 with mass 2098.012695 and programs at 54855339 and 55905493
+INFO: Index has peptide êß	 with mass 2243.994385 and programs at 54855538 and 55905884
+INFO: Index has peptide êß	 with mass 2243.994385 and programs at 54855779 and 55906359
+INFO: Index has peptide êß	 with mass 2299.972412 and programs at 54856020 and 55906834
+INFO: Index has peptide êß	 with mass 2299.972412 and programs at 54856231 and 55907261
+INFO: Index has peptide êß	 with mass 2962.428223 and programs at 54856454 and 55907682
+INFO: Index has peptide êß	 with mass 2962.428223 and programs at 54856683 and 55908223
+WARNING: The file 'crux-output/tide-search.target.txt' already exists and will be overwritten.
+WARNING: The file 'crux-output/tide-search.decoy.txt' already exists and will be overwritten.
+INFO: Target file successfully created
+INFO: Set up peptide queue
+INFO: Re-parsed succefully
+INFO: Open MS experiment loaded
+INFO: Exited search early on spectrum 1
+INFO: Not Enough Peaks
+INFO: Candidate at 1, HPGNNTPNGADFSSNWTSVSR has Mass 2243.994385 and program at 55906359
+INFO: Candidate at 2, HTDPNFPSNSNAVGTSSGWNR has Mass 2243.994385 and program at 55905884
