@@ -1,6 +1,6 @@
 INFO: CPU: LCCCFJZJBM1
 INFO: Crux version: 3.1
-INFO: Fri 11/17/2017 
+INFO: Mon 11/20/2017 
 INFO: Running tide-search...
 INFO: Number of Threads: 1
 INFO: Reading index C:\dev\workspace\human-tiny-index
@@ -13,3 +13,21 @@ INFO: Re-parsed succefully
 INFO: Open MS experiment loaded
 INFO: Exited search early on spectrum 1
 INFO: Not Enough Peaks
+INFO: Candidate at 1, HPGNNTPNGADFSSNWTSVSR has Mass 2243.994385 and program at 154141129
+INFO: Candidate at 2, HTDPNFPSNSNAVGTSSGWNR has Mass 2243.994385 and program at 154140672
+INFO: XCORR Results for spectrum 5812
+INFO: Tide MatchSet reporting 2 matches
+INFO: Candidate with rank 2 has XCORR: 0.020634
+INFO: Candidate with rank 1 has XCORR: 0.212394
+INFO: Exited search early on spectrum 83
+INFO: Exited search early on spectrum 88
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 111
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 155
+INFO: Exited search early on spectrum 191
+INFO: Not Enough Peaks
+INFO: Candidate at 1, HPGNNTPNGADFSSNWTSVSR has Mass 2243.994385 and program at 154141081
+INFO: Candidate at 2, HTDPNFPSNSNAVGTSSGWNR has Mass 2243.994385 and program at 154140672
