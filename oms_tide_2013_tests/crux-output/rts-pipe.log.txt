@@ -1,18 +1,7 @@
 INFO: CPU: LCCCFJZJBM1
 INFO: Crux version: 3.1
-INFO: Fri 11/17/2017 
+INFO: Mon 11/20/2017 
 INFO: Running tide-search...
 INFO: Number of Threads: 1
 INFO: Reading index C:\dev\workspace\human-tiny-index
 INFO: Read 0 auxlocs
-INFO: Added to index peptide IGTGCSHTWDWR with mass 1474.641113 and programs at 55115776 and 56164352
-INFO: Added to index peptide ITDHGWCWGSTR with mass 1474.641113 and programs at 55115783 and 56164359
-INFO: Added to index peptide GQAPLYPIVHVTELK with mass 1663.929688 and programs at 55115790 and 56164366
-INFO: Added to index peptide GVPPVQTEHLIYLAK with mass 1663.929688 and programs at 55115797 and 56164373
-INFO: Added to index peptide EQSQKPCSNGGPAAAGEGR with mass 1899.849243 and programs at 55115804 and 56164380
-INFO: Added to index peptide EPQGCANEGKGSGSAPAQR with mass 1899.849243 and programs at 55115811 and 56164387
-INFO: Added to index peptide WLGCSARLPLQLTAATPK with mass 1982.077148 and programs at 55115818 and 56164394
-INFO: Added to index peptide WQGCTRPALLAPSLATLK with mass 1982.077148 and programs at 55115825 and 56164401
-INFO: Added to index peptide VPWFCSALHCSTAIQPPK with mass 2098.012695 and programs at 55115832 and 56164408
-INFO: Added to index peptide VLPSPCFPWSTCQAAIHK with mass 2098.012695 and programs at 55115839 and 56164415
-INFO: Added to index peptide HTDPNFPSNSNAVGTSSGWNR with mass 2243.994385 and programs at 55115846 and 56164422
