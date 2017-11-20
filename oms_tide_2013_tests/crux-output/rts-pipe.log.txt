@@ -5,38 +5,38 @@ INFO: Running tide-search...
 INFO: Number of Threads: 1
 INFO: Reading index C:\dev\workspace\human-tiny-index
 INFO: Read 0 auxlocs
-INFO: Added to index peptide IGTGCSHTWDWR with mass 1474.641113 and programs at 54853632 and 55902208
-INFO: Added to index peptide ITDHGWCWGSTR with mass 1474.641113 and programs at 54853771 and 55902479
-INFO: Added to index peptide GQAPLYPIVHVTELK with mass 1663.929688 and programs at 54853910 and 55902750
-INFO: Added to index peptide GVPPVQTEHLIYLAK with mass 1663.929688 and programs at 54854085 and 55903081
-INFO: Added to index peptide EQSQKPCSNGGPAAAGEGR with mass 1899.849243 and programs at 54854260 and 55903418
-INFO: Added to index peptide EPQGCANEGKGSGSAPAQR with mass 1899.849243 and programs at 54854483 and 55903845
-INFO: Added to index peptide WLGCSARLPLQLTAATPK with mass 1982.077148 and programs at 54854706 and 55904278
-INFO: Added to index peptide WQGCTRPALLAPSLATLK with mass 1982.077148 and programs at 54854917 and 55904681
-INFO: Added to index peptide VPWFCSALHCSTAIQPPK with mass 2098.012695 and programs at 54855128 and 55905078
-INFO: Added to index peptide VLPSPCFPWSTCQAAIHK with mass 2098.012695 and programs at 54855339 and 55905493
-INFO: Added to index peptide HTDPNFPSNSNAVGTSSGWNR with mass 2243.994385 and programs at 54855538 and 55905884
-INFO: Added to index peptide HPGNNTPNGADFSSNWTSVSR with mass 2243.994385 and programs at 54855779 and 55906359
-INFO: Added to index peptide MEQDWQPGEEVTPGPEPCSK with mass 2299.972412 and programs at 54856020 and 55906834
-INFO: Added to index peptide MWPGEPVQCESPTQPEEGDK with mass 2299.972412 and programs at 54856231 and 55907261
-INFO: Added to index peptide FAAEALGTITWLQDPCLGQSWGLSEGR with mass 2962.428223 and programs at 54856454 and 55907682
-INFO: Added to index peptide FSCTQQALLPLLGAWEWSIDTEAGGGR with mass 2962.428223 and programs at 54856683 and 55908223
-INFO: Index has peptide êß	 with mass 1474.641113 and programs at 54853632 and 55902208
-INFO: Index has peptide êß	 with mass 1474.641113 and programs at 54853771 and 55902479
-INFO: Index has peptide êß	 with mass 1663.929688 and programs at 54853910 and 55902750
-INFO: Index has peptide êß	 with mass 1663.929688 and programs at 54854085 and 55903081
-INFO: Index has peptide êß	 with mass 1899.849243 and programs at 54854260 and 55903418
-INFO: Index has peptide êß	 with mass 1899.849243 and programs at 54854483 and 55903845
-INFO: Index has peptide êß	 with mass 1982.077148 and programs at 54854706 and 55904278
-INFO: Index has peptide êß	 with mass 1982.077148 and programs at 54854917 and 55904681
-INFO: Index has peptide êß	 with mass 2098.012695 and programs at 54855128 and 55905078
-INFO: Index has peptide êß	 with mass 2098.012695 and programs at 54855339 and 55905493
-INFO: Index has peptide êß	 with mass 2243.994385 and programs at 54855538 and 55905884
-INFO: Index has peptide êß	 with mass 2243.994385 and programs at 54855779 and 55906359
-INFO: Index has peptide êß	 with mass 2299.972412 and programs at 54856020 and 55906834
-INFO: Index has peptide êß	 with mass 2299.972412 and programs at 54856231 and 55907261
-INFO: Index has peptide êß	 with mass 2962.428223 and programs at 54856454 and 55907682
-INFO: Index has peptide êß	 with mass 2962.428223 and programs at 54856683 and 55908223
+INFO: Added to index peptide IGTGCSHTWDWR with mass 1474.641113 and programs at 54788096 and 55836672
+INFO: Added to index peptide ITDHGWCWGSTR with mass 1474.641113 and programs at 54788235 and 55836943
+INFO: Added to index peptide GQAPLYPIVHVTELK with mass 1663.929688 and programs at 54788374 and 55837214
+INFO: Added to index peptide GVPPVQTEHLIYLAK with mass 1663.929688 and programs at 54788549 and 55837545
+INFO: Added to index peptide EQSQKPCSNGGPAAAGEGR with mass 1899.849243 and programs at 54788724 and 55837882
+INFO: Added to index peptide EPQGCANEGKGSGSAPAQR with mass 1899.849243 and programs at 54788947 and 55838309
+INFO: Added to index peptide WLGCSARLPLQLTAATPK with mass 1982.077148 and programs at 54789170 and 55838742
+INFO: Added to index peptide WQGCTRPALLAPSLATLK with mass 1982.077148 and programs at 54789381 and 55839145
+INFO: Added to index peptide VPWFCSALHCSTAIQPPK with mass 2098.012695 and programs at 54789592 and 55839542
+INFO: Added to index peptide VLPSPCFPWSTCQAAIHK with mass 2098.012695 and programs at 54789803 and 55839957
+INFO: Added to index peptide HTDPNFPSNSNAVGTSSGWNR with mass 2243.994385 and programs at 54790002 and 55840348
+INFO: Added to index peptide HPGNNTPNGADFSSNWTSVSR with mass 2243.994385 and programs at 54790243 and 55840823
+INFO: Added to index peptide MEQDWQPGEEVTPGPEPCSK with mass 2299.972412 and programs at 54790484 and 55841298
+INFO: Added to index peptide MWPGEPVQCESPTQPEEGDK with mass 2299.972412 and programs at 54790695 and 55841725
+INFO: Added to index peptide FAAEALGTITWLQDPCLGQSWGLSEGR with mass 2962.428223 and programs at 54790918 and 55842146
+INFO: Added to index peptide FSCTQQALLPLLGAWEWSIDTEAGGGR with mass 2962.428223 and programs at 54791147 and 55842687
+INFO: Index has peptide –ßÛ with mass 1474.641113 and programs at 54788096 and 55836672
+INFO: Index has peptide –ßÛ with mass 1474.641113 and programs at 54788235 and 55836943
+INFO: Index has peptide –ßÛ with mass 1663.929688 and programs at 54788374 and 55837214
+INFO: Index has peptide –ßÛ with mass 1663.929688 and programs at 54788549 and 55837545
+INFO: Index has peptide –ßÛ with mass 1899.849243 and programs at 54788724 and 55837882
+INFO: Index has peptide –ßÛ with mass 1899.849243 and programs at 54788947 and 55838309
+INFO: Index has peptide –ßÛ with mass 1982.077148 and programs at 54789170 and 55838742
+INFO: Index has peptide –ßÛ with mass 1982.077148 and programs at 54789381 and 55839145
+INFO: Index has peptide –ßÛ with mass 2098.012695 and programs at 54789592 and 55839542
+INFO: Index has peptide –ßÛ with mass 2098.012695 and programs at 54789803 and 55839957
+INFO: Index has peptide –ßÛ with mass 2243.994385 and programs at 54790002 and 55840348
+INFO: Index has peptide –ßÛ with mass 2243.994385 and programs at 54790243 and 55840823
+INFO: Index has peptide –ßÛ with mass 2299.972412 and programs at 54790484 and 55841298
+INFO: Index has peptide –ßÛ with mass 2299.972412 and programs at 54790695 and 55841725
+INFO: Index has peptide –ßÛ with mass 2962.428223 and programs at 54790918 and 55842146
+INFO: Index has peptide –ßÛ with mass 2962.428223 and programs at 54791147 and 55842687
 WARNING: The file 'crux-output/tide-search.target.txt' already exists and will be overwritten.
 WARNING: The file 'crux-output/tide-search.decoy.txt' already exists and will be overwritten.
 INFO: Target file successfully created
@@ -45,5 +45,70 @@ INFO: Re-parsed succefully
 INFO: Open MS experiment loaded
 INFO: Exited search early on spectrum 1
 INFO: Not Enough Peaks
-INFO: Candidate at 1, HPGNNTPNGADFSSNWTSVSR has Mass 2243.994385 and program at 55906359
-INFO: Candidate at 2, HTDPNFPSNSNAVGTSSGWNR has Mass 2243.994385 and program at 55905884
+INFO: Candidate at 1, HPGNNTPNGADFSSNWTSVSR has Mass 2243.994385 and program at 55840823
+INFO: Candidate at 2, HTDPNFPSNSNAVGTSSGWNR has Mass 2243.994385 and program at 55840348
+INFO: XCORR Results for spectrum 5812
+INFO: Candidate with rank 2 has XCORR: 0.020634
+INFO: Candidate with rank 1 has XCORR: 0.212394
+INFO: Exited search early on spectrum 83
+INFO: Exited search early on spectrum 88
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 111
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 155
+INFO: Exited search early on spectrum 191
+INFO: Not Enough Peaks
+INFO: Candidate at 1, HPGNNTPNGADFSSNWTSVSR has Mass 2243.994385 and program at 55840823
+INFO: Candidate at 2, HTDPNFPSNSNAVGTSSGWNR has Mass 2243.994385 and program at 55840348
+INFO: XCORR Results for spectrum 5966
+INFO: Candidate with rank 2 has XCORR: -0.052748
+INFO: Candidate with rank 1 has XCORR: 0.269461
+INFO: Candidate at 1, HPGNNTPNGADFSSNWTSVSR has Mass 2243.994385 and program at 55840823
+INFO: Candidate at 2, HTDPNFPSNSNAVGTSSGWNR has Mass 2243.994385 and program at 55840348
+INFO: XCORR Results for spectrum 6048
+INFO: Candidate with rank 2 has XCORR: 0.065897
+INFO: Candidate with rank 1 has XCORR: -0.292279
+INFO: Candidate at 1, MWPGEPVQCESPTQPEEGDK has Mass 2299.972412 and program at 55841725
+INFO: Candidate at 2, MEQDWQPGEEVTPGPEPCSK has Mass 2299.972412 and program at 55841298
+INFO: XCORR Results for spectrum 6091
+INFO: Candidate with rank 2 has XCORR: 0.244458
+INFO: Candidate with rank 1 has XCORR: -0.077317
+INFO: Exited search early on spectrum 367
+INFO: Not Enough Peaks
+INFO: Candidate at 1, MWPGEPVQCESPTQPEEGDK has Mass 2299.972412 and program at 55841725
+INFO: Candidate at 2, MEQDWQPGEEVTPGPEPCSK has Mass 2299.972412 and program at 55841298
+INFO: XCORR Results for spectrum 6149
+INFO: Candidate with rank 2 has XCORR: -0.148715
+INFO: Candidate with rank 1 has XCORR: 0.074840
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 55836943
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 55836672
+INFO: XCORR Results for spectrum 6201
+INFO: Candidate with rank 2 has XCORR: -0.079871
+INFO: Candidate with rank 1 has XCORR: 0.021369
+INFO: Exited search early on spectrum 511
+INFO: Candidate at 1, WQGCTRPALLAPSLATLK has Mass 1982.077148 and program at 54789381
+INFO: Candidate at 2, WLGCSARLPLQLTAATPK has Mass 1982.077148 and program at 54789170
+INFO: XCORR Results for spectrum 6272
+INFO: Candidate with rank 2 has XCORR: -0.111347
+INFO: Candidate with rank 1 has XCORR: 0.206401
+INFO: Exited search early on spectrum 548
+INFO: Not Enough Peaks
+INFO: Candidate at 1, WQGCTRPALLAPSLATLK has Mass 1982.077148 and program at 55839145
+INFO: Candidate at 2, WLGCSARLPLQLTAATPK has Mass 1982.077148 and program at 55838742
+INFO: XCORR Results for spectrum 6303
+INFO: Candidate with rank 2 has XCORR: 0.031252
+INFO: Candidate with rank 1 has XCORR: 0.108103
+INFO: Exited search early on spectrum 568
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 572
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 577
+INFO: Not Enough Peaks
+INFO: Candidate at 1, ITDHGWCWGSTR has Mass 1474.641113 and program at 55836943
+INFO: Candidate at 2, IGTGCSHTWDWR has Mass 1474.641113 and program at 55836672
+INFO: XCORR Results for spectrum 6364
+INFO: Candidate with rank 2 has XCORR: 0.174163
+INFO: Candidate with rank 1 has XCORR: 0.169498
+INFO: Elapsed time per spectrum conversion: 0.0465 s

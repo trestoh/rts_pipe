@@ -862,7 +862,7 @@ int main(int argc, char * argv[])
 			}
 
 			highest_mz = (s.end() - 1)->getPos();
-			MaxBin::SetGlobalMax(highest_mz);
+			//MaxBin::SetGlobalMax(highest_mz);
 			vector<SpectrumCollection::SpecCharge> spec;
 			vector<SpectrumCollection::SpecCharge>* spec_charges = &spec;
 
