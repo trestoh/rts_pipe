@@ -47,7 +47,7 @@ oms_tide_2013_tests.cpp(900): warning C4018: '<' : signed/unsigned mismatch
 oms_tide_2013_tests.cpp(906): warning C4018: '<' : signed/unsigned mismatch
 oms_tide_2013_tests.cpp(912): warning C4018: '<' : signed/unsigned mismatch
 oms_tide_2013_tests.cpp(991): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-oms_tide_2013_tests.cpp(1275): warning C4018: '<' : signed/unsigned mismatch
+oms_tide_2013_tests.cpp(1279): warning C4018: '<' : signed/unsigned mismatch
   Generating code
   Finished generating code
 crux-support.lib(TideSearchApplication.obj) : warning LNK4049: locally defined symbol ?FLAGS_max_bin@fLD@@3NA (double fLD::FLAGS_max_bin) imported

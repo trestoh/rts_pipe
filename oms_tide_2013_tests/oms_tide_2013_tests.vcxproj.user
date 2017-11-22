@@ -6,7 +6,7 @@
     <LocalDebuggerEnvironment>_NO_DEBUG_HEAP=1 </LocalDebuggerEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>--overwrite T --compute-sp T --oms-src C:\Users\tstohrer\Documents\test_data\MA1750_TMT.mzML --oms-index C:\dev\workspace\human-tiny-index &gt; cachelog.txt</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>--overwrite T --compute-sp T --oms-src C:\Users\tstohrer\Documents\test_data\MA1750_mid.mzML --oms-index C:\dev\workspace\human-tiny-index &gt; cachelog.txt</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

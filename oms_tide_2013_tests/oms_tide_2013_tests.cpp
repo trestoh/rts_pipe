@@ -1096,6 +1096,10 @@ int main(int argc, char * argv[])
 								
 							}
 
+							//const Peptide& peptid = *(active_peptide_queue[0]->GetPeptide(max_corr_rank ));
+							//if (peptid.IsDecoy())
+								decoy = true;
+
 						}
 
 						//const Peptide* temp_pep = active_peptide_queue[0]->GetPeptide(max_corr_rank);
