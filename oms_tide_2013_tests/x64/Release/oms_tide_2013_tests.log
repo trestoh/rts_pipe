@@ -1,33 +1,4 @@
 ﻿cl : Command line warning D9038: /ZI is not supported on this platform; enabling /Zi instead
-  stdafx.cpp
-cl : Command line warning D9038: /ZI is not supported on this platform; enabling /Zi instead
-  mem_peptide_queue.cpp
-C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1445): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1447): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1449): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1455): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1457): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1463): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1465): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1470): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1474): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1478): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src\google/protobuf/io/coded_stream.h(902): warning C4244: '=' : conversion from '__int64' to 'int', possible loss of data
-C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src\google/protobuf/io/coded_stream.h(1078): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(142): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(237): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
-C:\dev\crux-src-4\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(305): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
-c:\dev\crux-src-4\src\app\tide\spectrum_collection.h(56): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
-c:\dev\crux-src-4\src\app\tide\spectrum_collection.h(59): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
-c:\dev\crux-src-4\src\app\tide\max_mz.h(58): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
-C:\dev\crux-src-4\src\app/tide/peptide.h(79): warning C4244: 'initializing' : conversion from 'google::protobuf::int64' to 'int', possible loss of data
-C:\dev\crux-src-4\src\app/tide/peptide.h(110): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-c:\dev\crux-src-4\src\parameter.h(43): warning C4305: 'initializing' : truncation from 'double' to 'const FLOAT_T'
-c:\dev\crux-src-4\src\parameter.h(46): warning C4305: 'initializing' : truncation from 'double' to 'const FLOAT_T'
-C:\dev\crux-src-4\src\app/tide/compiler.h(197): warning C4244: 'initializing' : conversion from '__int64' to 'int', possible loss of data
-c:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests\inmemindex.h(38): warning C4291: 'void *Peptide::operator new(size_t,FifoAllocator *)' : no matching operator delete found; memory will not be freed if initialization throws an exception
-          C:\dev\crux-src-4\src\app/tide/peptide.h(154) : see declaration of 'Peptide::operator new'
-mem_peptide_queue.cpp(280): warning C4244: 'initializing' : conversion from 'double' to 'const unsigned int', possible loss of data
   oms_tide_2013_tests.cpp
 C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/FORMAT/XMLFile.h(94): warning C4251: 'OpenMS::Internal::XMLFile::schema_location_' : class 'OpenMS::String' needs to have dll-interface to be used by clients of class 'OpenMS::Internal::XMLFile'
           C:\dev\OpenMS_src\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/String.h(57) : see declaration of 'OpenMS::String'
@@ -65,18 +36,18 @@ c:\dev\crux-src-4\src\parameter.h(43): warning C4305: 'initializing' : truncatio
 c:\dev\crux-src-4\src\parameter.h(46): warning C4305: 'initializing' : truncation from 'double' to 'const FLOAT_T'
 c:\dev\crux-src-4\src\app\tide\spectrum_collection.h(56): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
 c:\dev\crux-src-4\src\app\tide\spectrum_collection.h(59): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
-c:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests\inmemindex.h(38): warning C4291: 'void *Peptide::operator new(size_t,FifoAllocator *)' : no matching operator delete found; memory will not be freed if initialization throws an exception
+c:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests\inmemindex.h(40): warning C4291: 'void *Peptide::operator new(size_t,FifoAllocator *)' : no matching operator delete found; memory will not be freed if initialization throws an exception
           c:\dev\crux-src-4\src\app\tide/peptide.h(154) : see declaration of 'Peptide::operator new'
 oms_tide_2013_tests.cpp(562): warning C4018: '<' : signed/unsigned mismatch
-oms_tide_2013_tests.cpp(766): warning C4018: '<' : signed/unsigned mismatch
-oms_tide_2013_tests.cpp(781): warning C4018: '<' : signed/unsigned mismatch
+oms_tide_2013_tests.cpp(773): warning C4018: '<' : signed/unsigned mismatch
 oms_tide_2013_tests.cpp(788): warning C4018: '<' : signed/unsigned mismatch
-oms_tide_2013_tests.cpp(880): warning C4018: '<' : signed/unsigned mismatch
-oms_tide_2013_tests.cpp(886): warning C4018: '<' : signed/unsigned mismatch
-oms_tide_2013_tests.cpp(892): warning C4018: '<' : signed/unsigned mismatch
-oms_tide_2013_tests.cpp(898): warning C4018: '<' : signed/unsigned mismatch
-oms_tide_2013_tests.cpp(974): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-oms_tide_2013_tests.cpp(1229): warning C4018: '<' : signed/unsigned mismatch
+oms_tide_2013_tests.cpp(795): warning C4018: '<' : signed/unsigned mismatch
+oms_tide_2013_tests.cpp(894): warning C4018: '<' : signed/unsigned mismatch
+oms_tide_2013_tests.cpp(900): warning C4018: '<' : signed/unsigned mismatch
+oms_tide_2013_tests.cpp(906): warning C4018: '<' : signed/unsigned mismatch
+oms_tide_2013_tests.cpp(912): warning C4018: '<' : signed/unsigned mismatch
+oms_tide_2013_tests.cpp(991): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+oms_tide_2013_tests.cpp(1275): warning C4018: '<' : signed/unsigned mismatch
   Generating code
   Finished generating code
 crux-support.lib(TideSearchApplication.obj) : warning LNK4049: locally defined symbol ?FLAGS_max_bin@fLD@@3NA (double fLD::FLAGS_max_bin) imported

@@ -47,7 +47,7 @@ public:
 				compiler_prog1, compiler_prog2);
 
 
-			carp(CARP_INFO, "Added to index peptide %s with mass %f and programs at %d and %d", (peptide->Seq()).c_str(), peptide->Mass(), peptide->Prog(1), peptide->Prog(3) );
+			//carp(CARP_INFO, "Added to index peptide %s with mass %f and programs at %d and %d", (peptide->Seq()).c_str(), peptide->Mass(), peptide->Prog(1), peptide->Prog(3) );
 
 		}
 	}

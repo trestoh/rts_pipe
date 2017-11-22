@@ -621,12 +621,13 @@ int main(int argc, char * argv[])
 	//reading "test_index"
 	InMemIndex* test_index = new InMemIndex(peptide_reader[0]->Reader(), proteins);
 
+	/*
 	for (int i = 0; i < test_index->pep_array.size(); i++)
 	{
 		Peptide* temp_temp = (test_index->pep_array)[i];
 		carp(CARP_INFO, "Index has peptide %s with mass %f and programs at %d and %d", temp_temp->Seq(), temp_temp->Mass(), temp_temp->Prog(1), temp_temp->Prog(3));
 	}
-
+	*/
 	//
 	//	All below here I believe is involved with writing stuff to disk, meaning we will not want to use it and
 	//	will instead want to reimplement with everything kept in memory
@@ -824,6 +825,12 @@ int main(int argc, char * argv[])
 	*/
 
 	//for (int i = 0; i < specs.size(); i++)
+
+	int db_hits = 0;
+	int ms2_count = 0;
+	int decoy_count = 0;
+	int target_count = 0;
+
 	for (int i = spectrum_it; i < msExperimentProfile.getNrSpectra(); i++)
 	{
 
@@ -835,6 +842,7 @@ int main(int argc, char * argv[])
 
 		if (s.getMSLevel() == 2)
 		{
+			++ms2_count;
 
 			/*
 			if (!peptide_reader[0]) {
@@ -990,7 +998,7 @@ int main(int argc, char * argv[])
 						double cand_mass = tempo->Mass();
 						std::string cand_name = tempo->Seq();
 
-						carp(CARP_INFO, "Candidate at %d, %s has Mass %f and program at %d" , j, cand_name.c_str(), cand_mass, tempo->Prog(charge) );
+						//carp(CARP_INFO, "Candidate at %d, %s has Mass %f and program at %d" , j, cand_name.c_str(), cand_mass, tempo->Prog(charge) );
 					}
 
 					//carp(CARP_INFO, "Peaks for observed spectra:");
@@ -1069,6 +1077,7 @@ int main(int argc, char * argv[])
 						double max_corr = 0.0;
 						int max_corr_rank = 0;
 						int precision = Params::GetInt("precision");
+						bool decoy = false;
 
 						carp(CARP_INFO, "XCORR Results for spectrum %d", spectrum->SpectrumNumber());
 						//carp(CARP_INFO, "Tide MatchSet reporting %d matches", match_arr.size());
@@ -1078,20 +1087,48 @@ int main(int argc, char * argv[])
 							++it)
 						{
 
-							carp(CARP_INFO, "Candidate with rank %d has XCORR: %f", it->rank, it->xcorr_score);
+							//carp(CARP_INFO, "Candidate with rank %d has XCORR: %f", it->rank, it->xcorr_score);
 
 							if (it->xcorr_score > max_corr)
 							{
 								max_corr = it->xcorr_score;
 								max_corr_rank = it->rank;
+								
 							}
 
 						}
 
+						//const Peptide* temp_pep = active_peptide_queue[0]->GetPeptide(max_corr_rank);
+						//carp(CARP_INFO, "Top candidate peptide has sequence: %s", temp_pep->Seq() );
+						//if (temp_pep->IsDecoy())
+						//	decoy = true;
+
 						//carp(CARP_INFO, "XCORR Results for spectrum %d", spectrum->SpectrumNumber());
 						//carp(CARP_INFO, "Tide MatchSet reporting top %d of %d matches", top_matches, match_arr.size());
-						//carp(CARP_INFO, "Candidate with rank %d has max XCORR with: %f", max_corr_rank, max_corr);
-						
+						double threshold;
+						switch (charge)
+						{
+						case 1:
+							threshold = 1.9;
+							break;
+						case 2:
+							threshold = 2.2;
+							break;
+						default:
+							threshold = 3.75;
+							break;
+
+						}
+
+						if (max_corr >= threshold)
+						{
+							carp(CARP_INFO, "Candidate with rank %d has max XCORR, and a hit, with: %f", max_corr_rank, max_corr);
+							db_hits++;
+							if (decoy)
+								++decoy_count;
+							else
+								++target_count;
+						}
 
 						TideMatchSet::Arr* matches_ = &match_arr;
 
@@ -1242,7 +1279,9 @@ int main(int argc, char * argv[])
 	}
 
 	carp(CARP_INFO, "Elapsed time per spectrum conversion: %.3g s", wall_clock() / (1e6*msExperimentProfile.getNrSpectra()));
-	std::cout << "There are " << msExperimentProfile.getNrSpectra() << " spectra in the input file." << std::endl;
+	carp(CARP_INFO, "There are %d MS2 spectra in the input file.", ms2_count);
+	carp(CARP_INFO, "Of those spectra, %d were hits in the search for the current criteria", db_hits);
+	carp(CARP_INFO, "Of the hits %d were decoys and %d were targets", decoy_count, target_count);
 
 	//this is the multifile system, we will be modifying to work on either single file or single spectra
 	/*
