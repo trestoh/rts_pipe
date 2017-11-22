@@ -1,3 +1,1 @@
 file	scan	charge	spectrum precursor m/z	spectrum neutral mass	peptide mass	delta_cn	delta_lcn	sp score	sp rank	xcorr score	xcorr rank	b/y ions matched	b/y ions total	distinct matches/spectrum	sequence	modifications	cleavage type	protein id	flanking aa	target/decoy
-HELA_2017-04-27_294.mzML	5812	4	562.0482	2244.1638	2243.9941	0.191759	0.191759	27.05973158	2	0.21239388	1	11	120	1	HPGNNTPNGADFSSNWTSVSR		trypsin-full-digest	decoy_sp|P86434|AAS1_HUMAN(36)	KI	decoy	HTDPNFPSNSNAVGTSSGWNR
-HELA_2017-04-27_294.mzML	5812	4	562.0482	2244.1638	2243.9944	0	0	34.57573288	1	0.02063444	2	10	120	1	HTDPNFPSNSNAVGTSSGWNR		trypsin-full-digest	sp|P86434|AAS1_HUMAN(36)	KI	target
