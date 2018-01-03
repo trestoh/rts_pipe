@@ -2,7 +2,7 @@
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>--overwrite T --compute-sp T --oms-src C:\Users\tstohrer\Documents\test_data\MA1750_TMT.mzML --oms-index C:\dev\workspace\human-tmt-index &gt; cachelog.txt</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>--xc1 1.3 --xc2 1.5 --xc3 2.75 --precursor-window-type ppm --precursor-window 20 --overwrite T --compute-sp T --oms-src C:\Users\tstohrer\Documents\test_data\MA1751_H2228_TMT.mzML --oms-index C:\dev\workspace\human-tmt-improved-index &gt; cachelog.txt</LocalDebuggerCommandArguments>
     <LocalDebuggerEnvironment>_NO_DEBUG_HEAP=1 </LocalDebuggerEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

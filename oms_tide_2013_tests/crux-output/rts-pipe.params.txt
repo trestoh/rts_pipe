@@ -98,7 +98,7 @@ missed-cleavages=0
 # 'precursor-window' of the spectrum value. The precursor window units depend
 # upon precursor-window-type.
 # Available for tide-search and crux-generate-peptides.
-precursor-window=3
+precursor-window=20
 
 # Specify the units for the window that is used to select peptides around the
 # precursor mass location (mass, mz, ppm). The magnitude of the window is
@@ -116,7 +116,7 @@ precursor-window=3
 # mass / (1.0 + (precursor-window / 1000000)) and the upper bound is defined as
 # spectrum mass / (1.0 - (precursor-window / 1000000)).
 # Available for search-for-xlinks and tide-search.
-precursor-window-type=mass
+precursor-window-type=ppm
 
 # Automatically estimate optimal value for the precursor-window parameter from
 # the spectra themselves. false=no estimation, warn=try to estimate but use the

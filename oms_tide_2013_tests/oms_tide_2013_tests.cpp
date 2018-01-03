@@ -176,7 +176,7 @@ int main(int argc, char * argv[])
 		// Process command line options
 		//options = argParser.GetOptions();
 		for (map<string, string>::const_iterator i = options.begin(); i != options.end(); i++) {
-			if (i->first != "oms-src" && i->first != "oms-index")
+			if (i->first != "oms-src" && i->first != "oms-index" && i->first != "xc1" && i->first != "xc2" && i->first != "xc3" && i->first != "deltacn" )
 			{
 				try {
 					Params::Set(i->first, i->second);
@@ -241,6 +241,33 @@ int main(int argc, char * argv[])
 	map<string, string>::const_iterator oms_index = options.find("oms-index");
 	std::string oms = oms_arg->second;
 	std::string index = oms_index->second;
+
+	double xcorr1, xcorr2, xcorr3, deltacn;
+
+	map<string, string>::const_iterator oms_xc1 = options.find("xc1");
+	map<string, string>::const_iterator oms_xc2 = options.find("xc2");
+	map<string, string>::const_iterator oms_xc3 = options.find("xc3");
+	map<string, string>::const_iterator oms_deltacn = options.find("deltacn");
+
+	if (oms_xc1 != options.end())
+		xcorr1 = atof(oms_xc1->second.c_str());
+	else
+		xcorr1 = 1.8;
+
+	if (oms_xc2 != options.end())
+		xcorr2 = atof(oms_xc2->second.c_str());
+	else
+		xcorr2 = 2.2;
+
+	if (oms_xc3 != options.end())
+		xcorr3 = atof(oms_xc3->second.c_str());
+	else
+		xcorr3 = 3.5;
+
+	if (oms_deltacn != options.end())
+		deltacn = atof(oms_deltacn->second.c_str());
+	else
+		deltacn = 0.08;
 
 	//string index = "C:\\dev\\real_time_seq\\oms_tide_2013_tests\\oms_tide_2013_tests\\human-index";
 	string peptides_file = FileUtils::Join(index, "pepix");
@@ -625,9 +652,10 @@ int main(int argc, char * argv[])
 	for (int i = 0; i < test_index->pep_array.size(); i++)
 	{
 		Peptide* temp_temp = (test_index->pep_array)[i];
-		carp(CARP_INFO, "Index has peptide %s with mass %f and programs at %d and %d", temp_temp->Seq(), temp_temp->Mass(), temp_temp->Prog(1), temp_temp->Prog(3));
+		carp(CARP_INFO, "Peptide %s with mass %f", temp_temp->Seq().c_str(), temp_temp->Mass());
 	}
 	*/
+	
 	//
 	//	All below here I believe is involved with writing stuff to disk, meaning we will not want to use it and
 	//	will instead want to reimplement with everything kept in memory
@@ -828,8 +856,18 @@ int main(int argc, char * argv[])
 
 	int db_hits = 0;
 	int ms2_count = 0;
+	int ms1_count = 0;
+	int ms3_count = 0;
 	int decoy_count = 0;
 	int target_count = 0;
+
+
+	ofstream* target_hits = NULL;
+	string target_hit_file_name = make_file_path("target_hit_seq.txt");
+	target_hits = create_stream_in_path(target_hit_file_name.c_str(), NULL, overwrite);
+
+	//making sure no git shenanigans have occurred
+	(*target_hits) << xcorr1 << " " << xcorr2 << " " << xcorr3 << " " << deltacn << std::endl;
 
 	for (int i = spectrum_it; i < msExperimentProfile.getNrSpectra(); i++)
 	{
@@ -839,6 +877,11 @@ int main(int argc, char * argv[])
 		
 		//sorted version
 		//s = msExperimentProfile.getSpectrum(specs[i].index);
+		if (s.getMSLevel() == 1)
+			ms1_count++;
+
+		if (s.getMSLevel() == 3)
+			ms3_count++;
 
 		if (s.getMSLevel() == 2)
 		{
@@ -1074,12 +1117,13 @@ int main(int argc, char * argv[])
 
 						//fix this later, right now other stuff is broken
 						
-						double max_corr = 0.0;
+						double max_corr = match_arr.begin()->xcorr_score;
+						double second_corr = match_arr.begin()->xcorr_score;
 						int max_corr_rank = 0;
 						int precision = Params::GetInt("precision");
 						bool decoy = false;
 
-						carp(CARP_INFO, "XCORR Results for spectrum %d", spectrum->SpectrumNumber());
+						//carp(CARP_INFO, "XCORR Results for spectrum %d", spectrum->SpectrumNumber());
 						//carp(CARP_INFO, "Tide MatchSet reporting %d matches", match_arr.size());
 
 						for (TideMatchSet::Arr::iterator it = match_arr.begin();
@@ -1091,16 +1135,19 @@ int main(int argc, char * argv[])
 
 							if (it->xcorr_score > max_corr)
 							{
+								second_corr = max_corr;
 								max_corr = it->xcorr_score;
 								max_corr_rank = it->rank;
 								
 							}
 
-							//const Peptide& peptid = *(active_peptide_queue[0]->GetPeptide(max_corr_rank ));
-							//if (peptid.IsDecoy())
-								decoy = true;
+							
 
 						}
+
+						double delta_corr = (max_corr - second_corr) / second_corr;
+
+						//carp(CARP_INFO, "Top candidate peptide has %f percent delta with second ranked peptide", delta_corr);
 
 						//const Peptide* temp_pep = active_peptide_queue[0]->GetPeptide(max_corr_rank);
 						//carp(CARP_INFO, "Top candidate peptide has sequence: %s", temp_pep->Seq() );
@@ -1113,25 +1160,50 @@ int main(int argc, char * argv[])
 						switch (charge)
 						{
 						case 1:
-							threshold = 1.9;
+							threshold = xcorr1;
 							break;
 						case 2:
-							threshold = 2.2;
+							threshold = xcorr2;
 							break;
 						default:
-							threshold = 3.75;
+							threshold = xcorr3;
 							break;
 
 						}
 
-						if (max_corr >= threshold)
+						double delta_threshold = deltacn;
+
+						if (max_corr >= threshold && delta_corr >= delta_threshold)
 						{
-							carp(CARP_INFO, "Candidate with rank %d has max XCORR, and a hit, with: %f", max_corr_rank, max_corr);
+							//carp(CARP_INFO, "Candidate with rank %d has max XCORR, and a hit, with: %f", max_corr_rank, max_corr);
 							db_hits++;
+							const Peptide& peptid = *(active_peptide_queue[0]->GetPeptide(max_corr_rank ));
+							if (peptid.IsDecoy())
+								decoy = true;
+							
 							if (decoy)
 								++decoy_count;
 							else
+							{
 								++target_count;
+								vector<Crux::Modification> modVector;
+								string seq(peptid.Seq());
+								const ModCoder::Mod* mods;
+								int pep_mods = peptid.Mods(&mods);
+								for (int i = 0; i < pep_mods; i++) {
+									int mod_index;
+									double mod_delta;
+									MassConstants::DecodeMod(mods[i], &mod_index, &mod_delta);
+									const ModificationDefinition* modDef = ModificationDefinition::Find(mod_delta, false);
+									if (modDef == NULL) {
+										carp(CARP_ERROR, "Could not find modification with delta %f", mod_delta);
+										continue;
+									}
+									modVector.push_back(Crux::Modification(modDef, mod_index));
+								}
+								Crux::Peptide cruxPep = Crux::Peptide(peptid.Seq(), modVector);
+								(*target_hits) << cruxPep.getModifiedSequenceWithMasses() << std::endl;
+							}
 						}
 
 						TideMatchSet::Arr* matches_ = &match_arr;
@@ -1161,7 +1233,7 @@ int main(int argc, char * argv[])
 						*/
 
 						if (matches_->size() == 0) {
-							carp(CARP_INFO, "Matches empty, moving to next spectra");
+							//carp(CARP_INFO, "Matches empty, moving to next spectra");
 
 							delete min_mass;
 							delete max_mass;
@@ -1282,10 +1354,15 @@ int main(int argc, char * argv[])
 		peptide_reader[i] = NULL;
 	}
 
-	carp(CARP_INFO, "Elapsed time per spectrum conversion: %.3g s", wall_clock() / (1e6*msExperimentProfile.getNrSpectra()));
+	double false_discovery = ((double)decoy_count) / db_hits;
+
+	carp(CARP_INFO, "Elapsed time per spectrum conversion: %.3g s", wall_clock() / (1e6*ms2_count) );
+	carp(CARP_INFO, "There are %d MS1 spectra in the input file.", ms1_count);
 	carp(CARP_INFO, "There are %d MS2 spectra in the input file.", ms2_count);
+	carp(CARP_INFO, "There are %d MS3 spectra in the input file.", ms3_count);
 	carp(CARP_INFO, "Of those spectra, %d were hits in the search for the current criteria", db_hits);
 	carp(CARP_INFO, "Of the hits %d were decoys and %d were targets", decoy_count, target_count);
+	carp(CARP_INFO, "False Discovery rate: %f", false_discovery);
 
 	//this is the multifile system, we will be modifying to work on either single file or single spectra
 	/*

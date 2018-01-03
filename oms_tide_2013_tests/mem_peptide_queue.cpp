@@ -107,7 +107,7 @@ int ActivePeptideQueue2::SetActiveRange(vector<double>* min_mass, vector<double>
 
 	else
 	{
-		while ((*pep_it)->Mass() <= max_range)
+		while ( pep_it != all_peptides->pep_array.cend() && (*pep_it)->Mass() <= max_range)
 		{
 			queue_.push_back(*pep_it);
 			if ((*pep_it)->Mass() > max_range) {
