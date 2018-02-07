@@ -12,6 +12,8 @@
 #include <map>
 #include <vector>
 #include <gflags/gflags.h>
+#include <ratio>
+#include <windows.h>
 
 #include <OpenMS/FORMAT/MzMLFile.h>
 #include <OpenMS/MATH/MISC/MathFunctions.h>
@@ -60,6 +62,29 @@
 //TideSearchApplication::HAS_DECOYS = true;
 
 const double XCORR_SCALING = 100000000.0;
+
+//global vars for timing
+double PCFreq = 0.0;
+__int64 CounterStart = 0;
+
+void StartCounter()
+{
+	LARGE_INTEGER li;
+	if (!QueryPerformanceFrequency(&li))
+		std::cout << "QueryPerformanceFrequency failed!\n";
+
+	PCFreq = double(li.QuadPart) / 1000.0;
+
+	QueryPerformanceCounter(&li);
+	CounterStart = li.QuadPart;
+}
+double GetCounter()
+{
+	LARGE_INTEGER li;
+	QueryPerformanceCounter(&li);
+	return double(li.QuadPart - CounterStart) / PCFreq;
+}
+
 
 /* This constant is used to put the refactored XCorr back into the
 * same range as the original XCorr score.  It is the XCorr "magic
@@ -131,6 +156,7 @@ int main(int argc, char * argv[])
 	return 1;
 	}
 	*/
+
 
 	set_verbosity_level(CARP_DEBUG);
 
@@ -670,16 +696,16 @@ int main(int argc, char * argv[])
 	ss << Params::GetString("enzyme") << '-' << Params::GetString("digestion");
 	TideMatchSet::CleavageType = ss.str();
 	if (!concat) {
-		string target_file_name = make_file_path("tide-search.target.txt");
+		string target_file_name = make_file_path("tide-search-junk.target.txt");
 		target_file = create_stream_in_path(target_file_name.c_str(), NULL, overwrite);
 		output_file_name_ = target_file_name;
 		if (HAS_DECOYS) {
-			string decoy_file_name = make_file_path("tide-search.decoy.txt");
+			string decoy_file_name = make_file_path("tide-search-junk.decoy.txt");
 			decoy_file = create_stream_in_path(decoy_file_name.c_str(), NULL, overwrite);
 		}
 	}
 	else {
-		string concat_file_name = make_file_path("tide-search.txt");
+		string concat_file_name = make_file_path("tide-search-junk.txt");
 		target_file = create_stream_in_path(concat_file_name.c_str(), NULL, overwrite);
 		output_file_name_ = concat_file_name;
 	}
@@ -866,14 +892,26 @@ int main(int argc, char * argv[])
 	string target_hit_file_name = make_file_path("target_hit_seq.txt");
 	target_hits = create_stream_in_path(target_hit_file_name.c_str(), NULL, overwrite);
 
+	string fd_summary_file_name = make_file_path("fd_rates.txt");
+	ofstream fd_rates(fd_summary_file_name, std::ios_base::app);
+
+	string times_out_name = make_file_path("search_times.txt");
+	ofstream times_out(times_out_name, std::ios_base::app);
+
 	//making sure no git shenanigans have occurred
 	(*target_hits) << xcorr1 << " " << xcorr2 << " " << xcorr3 << " " << deltacn << std::endl;
 
+	double max_time = 0.0;
+	std::vector<double> times;
+	std::vector<std::string> pep_hits;
+
 	for (int i = spectrum_it; i < msExperimentProfile.getNrSpectra(); i++)
 	{
+		
 
 		//non-sorted version
 		s = msExperimentProfile.getSpectrum(i);
+
 		
 		//sorted version
 		//s = msExperimentProfile.getSpectrum(specs[i].index);
@@ -885,6 +923,11 @@ int main(int argc, char * argv[])
 
 		if (s.getMSLevel() == 2)
 		{
+			//double start_time = wall_clock();
+			//std::chrono::high_resolution_clock::time_point start_time = std::chrono::high_resolution_clock::now();
+			//StartCounter();
+			StartCounter();
+
 			++ms2_count;
 
 			/*
@@ -1125,14 +1168,43 @@ int main(int argc, char * argv[])
 
 						//carp(CARP_INFO, "XCORR Results for spectrum %d", spectrum->SpectrumNumber());
 						//carp(CARP_INFO, "Tide MatchSet reporting %d matches", match_arr.size());
-
+						/*
+						if (scan_num == 8650)
+							carp(CARP_INFO, "Stopping for scan 8650");
+							*/
 						for (TideMatchSet::Arr::iterator it = match_arr.begin();
 							it != match_arr.end();
 							++it)
 						{
 
-							//carp(CARP_INFO, "Candidate with rank %d has XCORR: %f", it->rank, it->xcorr_score);
-
+							/*
+							if (scan_num == 8650)
+							{
+								char junk;
+								carp(CARP_INFO, "Candidate with rank %d has XCORR: %f", it->rank, it->xcorr_score);
+								const Peptide* temp_pep = active_peptide_queue[0]->GetPeptide(it->rank);
+								const Peptide& peptid = *(active_peptide_queue[0]->GetPeptide(it->rank));
+								vector<Crux::Modification> modVector;
+								string seq(peptid.Seq());
+								const ModCoder::Mod* mods;
+								int pep_mods = peptid.Mods(&mods);
+								for (int i = 0; i < pep_mods; i++) {
+									int mod_index;
+									double mod_delta;
+									MassConstants::DecodeMod(mods[i], &mod_index, &mod_delta);
+									const ModificationDefinition* modDef = ModificationDefinition::Find(mod_delta, false);
+									if (modDef == NULL) {
+										carp(CARP_ERROR, "Could not find modification with delta %f", mod_delta);
+										continue;
+									}
+									modVector.push_back(Crux::Modification(modDef, mod_index));
+								}
+								Crux::Peptide cruxPep = Crux::Peptide(peptid.Seq(), modVector);
+								std::string crux_pep_hit = std::to_string(scan_num) + '\t' + cruxPep.getModifiedSequenceWithMasses();
+								carp(CARP_INFO, "Candidate peptide has sequence: %s and mass %f", cruxPep.getModifiedSequenceWithMasses().c_str(), temp_pep->Mass());
+								cin >> junk;
+							}
+							*/
 							if (it->xcorr_score > max_corr)
 							{
 								second_corr = max_corr;
@@ -1146,11 +1218,17 @@ int main(int argc, char * argv[])
 						}
 
 						double delta_corr = (max_corr - second_corr) / second_corr;
-
-						//carp(CARP_INFO, "Top candidate peptide has %f percent delta with second ranked peptide", delta_corr);
-
-						//const Peptide* temp_pep = active_peptide_queue[0]->GetPeptide(max_corr_rank);
-						//carp(CARP_INFO, "Top candidate peptide has sequence: %s", temp_pep->Seq() );
+						/*
+						if (scan_num == 8650)
+						{
+							char junk;
+							carp(CARP_INFO, "Top candidate peptide has %f percent delta and %f XCorr", delta_corr, max_corr);
+							const Peptide* temp_pep = active_peptide_queue[0]->GetPeptide(max_corr_rank);
+							carp(CARP_INFO, "Top candidate peptide has sequence: %s", temp_pep->Seq());
+							cin >> junk;
+						}
+						*/
+						//
 						//if (temp_pep->IsDecoy())
 						//	decoy = true;
 
@@ -1175,7 +1253,14 @@ int main(int argc, char * argv[])
 
 						if (max_corr >= threshold && delta_corr >= delta_threshold)
 						{
-							//carp(CARP_INFO, "Candidate with rank %d has max XCORR, and a hit, with: %f", max_corr_rank, max_corr);
+							/*
+							if (scan_num == 8650)
+							{	
+								char junk;
+								carp(CARP_INFO, "Candidate with rank %d has max XCORR, and a hit, with: %f", max_corr_rank, max_corr);
+								cin >> junk;
+							}
+							*/
 							db_hits++;
 							const Peptide& peptid = *(active_peptide_queue[0]->GetPeptide(max_corr_rank ));
 							if (peptid.IsDecoy())
@@ -1202,7 +1287,9 @@ int main(int argc, char * argv[])
 									modVector.push_back(Crux::Modification(modDef, mod_index));
 								}
 								Crux::Peptide cruxPep = Crux::Peptide(peptid.Seq(), modVector);
-								(*target_hits) << cruxPep.getModifiedSequenceWithMasses() << std::endl;
+								std::string crux_pep_hit = std::to_string(scan_num) + '\t' + cruxPep.getModifiedSequenceWithMasses();
+								pep_hits.push_back(crux_pep_hit);
+								//(*target_hits)  << scan_num << '\t' << cruxPep.getModifiedSequenceWithMasses() << std::endl;
 							}
 						}
 
@@ -1343,7 +1430,17 @@ int main(int argc, char * argv[])
 			}
 			*/
 
+			//double end_time = wall_clock();
+			//std::chrono::high_resolution_clock::time_point end_time = std::chrono::high_resolution_clock::now();
+			//std::chrono::duration<double> elapsed = std::chrono::duration_cast<std::chrono::duration<double>>(end_time - start_time);
+			
+			//GetCounter()
+			double elapsed = GetCounter();
+			times.push_back(elapsed);
+
 		} //end search for spectra that are MS2
+
+		
 
 	} //end individual spectra loop
 
@@ -1356,13 +1453,26 @@ int main(int argc, char * argv[])
 
 	double false_discovery = ((double)decoy_count) / db_hits;
 
-	carp(CARP_INFO, "Elapsed time per spectrum conversion: %.3g s", wall_clock() / (1e6*ms2_count) );
+	carp(CARP_INFO, "Elapsed total time: %.3g s", wall_clock() / 1e6);
+	carp(CARP_INFO, "Elapsed time per MS2 spectrum conversion: %.3g s", wall_clock() / (1e6*ms2_count) );
 	carp(CARP_INFO, "There are %d MS1 spectra in the input file.", ms1_count);
 	carp(CARP_INFO, "There are %d MS2 spectra in the input file.", ms2_count);
 	carp(CARP_INFO, "There are %d MS3 spectra in the input file.", ms3_count);
 	carp(CARP_INFO, "Of those spectra, %d were hits in the search for the current criteria", db_hits);
 	carp(CARP_INFO, "Of the hits %d were decoys and %d were targets", decoy_count, target_count);
 	carp(CARP_INFO, "False Discovery rate: %f", false_discovery);
+
+	fd_rates << "For Parameters: (" << xcorr1 << ", " << xcorr2 << ", " << xcorr3 << ", " << deltacn << ") FD rate is " << false_discovery << std::endl;
+
+	for (int i = 0; i < pep_hits.size(); i++)
+	{
+		(*target_hits) << pep_hits[i] << std::endl;
+	}
+
+	for (int i = 0; i < times.size(); i++)
+	{
+		times_out << times[i] << std::endl;
+	}
 
 	//this is the multifile system, we will be modifying to work on either single file or single spectra
 	/*

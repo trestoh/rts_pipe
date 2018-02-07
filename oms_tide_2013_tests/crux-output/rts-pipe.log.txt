@@ -1,12 +1,10 @@
 INFO: CPU: LCCCFJZJBM1
 INFO: Crux version: 3.1
-INFO: Fri 12/15/2017 
+INFO: Wed 01/31/2018 
 INFO: Running tide-search...
 INFO: Number of Threads: 1
 INFO: Reading index C:\dev\workspace\human-tmt-improved-index
 INFO: Read 335367 auxlocs
-WARNING: The file 'crux-output/tide-search.target.txt' already exists and will be overwritten.
-WARNING: The file 'crux-output/tide-search.decoy.txt' already exists and will be overwritten.
 INFO: Target file successfully created
 INFO: Set up peptide queue
 INFO: Re-parsed succefully
@@ -1020,10 +1018,11 @@ INFO: Not Enough Peaks
 INFO: Exited search early on spectrum 96704
 INFO: Exited search early on spectrum 96726
 INFO: Not Enough Peaks
-INFO: Elapsed time per spectrum conversion: 0.000973 s
+INFO: Elapsed total time: 44.5 s
+INFO: Elapsed time per MS2 spectrum conversion: 0.000982 s
 INFO: There are 6321 MS1 spectra in the input file.
 INFO: There are 45288 MS2 spectra in the input file.
 INFO: There are 45257 MS3 spectra in the input file.
-INFO: Of those spectra, 6694 were hits in the search for the current criteria
-INFO: Of the hits 581 were decoys and 6113 were targets
-INFO: False Discovery rate: 0.086794
+INFO: Of those spectra, 5809 were hits in the search for the current criteria
+INFO: Of the hits 193 were decoys and 5616 were targets
+INFO: False Discovery rate: 0.033224
