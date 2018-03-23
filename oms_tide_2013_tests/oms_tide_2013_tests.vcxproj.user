@@ -2,11 +2,11 @@
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>--xc1 1.3 --xc2 1.8 --xc3 2.0 --precursor-window-type ppm --precursor-window 20 --overwrite T --compute-sp T --oms-src C:\Users\tstohrer\Documents\test_data\MA1751_TMT.mzML --oms-index C:\dev\workspace\human-tmt-improved-index &gt; cachelog.txt</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>--overwrite T --compute-sp T --precursor-window-type ppm --precursor-window 20 --oms-src C:\Users\tstohrer.AD\Documents\test_data\PC362_TMT_Phospho2B.mzML --oms-index C:\dev\workspace\human-phospho-1-index --output-dir PC362_1Phos_1B_data --xc1 1.8 --xc2 2.0 --xc3 3.5 --deltacn 0.08</LocalDebuggerCommandArguments>
     <LocalDebuggerEnvironment>_NO_DEBUG_HEAP=1 </LocalDebuggerEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>--overwrite T --compute-sp T --oms-src C:\Users\tstohrer\Documents\test_data\MA1750_mid.mzML --oms-index C:\dev\workspace\human-tiny-index &gt; cachelog.txt</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>--overwrite T --compute-sp T --precursor-window-type ppm --precursor-window 20 --oms-src C:\Users\tstohrer.AD\Documents\test_data\PC362_TMT_Phospho1B.mzML --oms-index C:\dev\workspace\human-phospho-1-index --output-dir PC362_1Phos_1B_data --xc1 1.8 --xc2 2.0 --xc3 3.5 --deltacn 0.08</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

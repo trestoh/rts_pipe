@@ -9,7 +9,7 @@
 #include <app/TideMatchSet.h>
 #include <vector>
 #include <algorithm>
-#include <app/tide/active_peptide_queue.h>
+//#include <app/tide/active_peptide_queue.h>
 #include <io/carp.h>
 #include <app/tide/theoretical_peak_pair.h>
 
@@ -47,7 +47,7 @@ public:
 				compiler_prog1, compiler_prog2);
 
 
-			//carp(CARP_INFO, "Added to index peptide %s with mass %f and programs at %d and %d", (peptide->Seq()).c_str(), peptide->Mass(), peptide->Prog(1), peptide->Prog(3) );
+			//carp(CARP_INFO, "Added to index peptide %s with mass %f and programs at %p and %p", (peptide->SeqWithMods()).c_str(), peptide->Mass(), peptide->Prog(1), peptide->Prog(3) );
 
 		}
 	}

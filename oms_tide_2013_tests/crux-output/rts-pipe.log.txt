@@ -1,1028 +1,1096 @@
 INFO: CPU: LCCCFJZJBM1
 INFO: Crux version: 3.1
-INFO: Wed 01/31/2018 
+INFO: Thu 02/15/2018 
 INFO: Running tide-search...
 INFO: Number of Threads: 1
 INFO: Reading index C:\dev\workspace\human-tmt-improved-index
 INFO: Read 335367 auxlocs
+WARNING: The file 'crux-output/tide-search-junk.target.txt' already exists and will be overwritten.
+WARNING: The file 'crux-output/tide-search-junk.decoy.txt' already exists and will be overwritten.
 INFO: Target file successfully created
 INFO: Set up peptide queue
 INFO: Re-parsed succefully
 INFO: Open MS experiment loaded
 WARNING: The file 'crux-output/target_hit_seq.txt' already exists and will be overwritten.
-INFO: Exited search early on spectrum 115
+INFO: Exited search early on spectrum 151
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 118
+INFO: Exited search early on spectrum 214
+INFO: Exited search early on spectrum 410
+INFO: Exited search early on spectrum 428
+INFO: Exited search early on spectrum 433
+INFO: Exited search early on spectrum 506
+INFO: Exited search early on spectrum 600
+INFO: Exited search early on spectrum 625
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 119
+INFO: Exited search early on spectrum 708
+INFO: Exited search early on spectrum 721
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 124
+INFO: Exited search early on spectrum 768
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 129
+INFO: Exited search early on spectrum 804
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 142
+INFO: Exited search early on spectrum 954
+INFO: Exited search early on spectrum 1207
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 196
+INFO: Exited search early on spectrum 1208
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 210
+INFO: Exited search early on spectrum 1211
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 283
+INFO: Exited search early on spectrum 1215
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 309
-INFO: Exited search early on spectrum 314
-INFO: Exited search early on spectrum 724
+INFO: Exited search early on spectrum 1216
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 762
+INFO: Exited search early on spectrum 1220
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 869
+INFO: Exited search early on spectrum 1286
+INFO: Exited search early on spectrum 1855
+INFO: Exited search early on spectrum 2245
+INFO: Exited search early on spectrum 2348
+INFO: Exited search early on spectrum 2452
+INFO: Exited search early on spectrum 3172
+INFO: Exited search early on spectrum 3323
+INFO: Exited search early on spectrum 3461
+INFO: Exited search early on spectrum 3724
+INFO: Exited search early on spectrum 3999
+INFO: Exited search early on spectrum 4135
+INFO: Exited search early on spectrum 4217
+INFO: Exited search early on spectrum 4619
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 877
+INFO: Exited search early on spectrum 4630
+INFO: Exited search early on spectrum 4819
+INFO: Exited search early on spectrum 4848
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 912
+INFO: Exited search early on spectrum 4855
+INFO: Exited search early on spectrum 4928
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 939
+INFO: Exited search early on spectrum 4961
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 997
+INFO: Exited search early on spectrum 4978
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1101
+INFO: Exited search early on spectrum 4988
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1113
+INFO: Exited search early on spectrum 4998
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1189
-INFO: Exited search early on spectrum 1195
-INFO: Exited search early on spectrum 1222
-INFO: Exited search early on spectrum 1312
+INFO: Exited search early on spectrum 5011
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1325
+INFO: Exited search early on spectrum 5012
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1332
+INFO: Exited search early on spectrum 5047
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1333
+INFO: Exited search early on spectrum 5073
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1337
+INFO: Exited search early on spectrum 5091
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1343
+INFO: Exited search early on spectrum 5103
+INFO: Exited search early on spectrum 5137
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1350
+INFO: Exited search early on spectrum 5178
+INFO: Exited search early on spectrum 5198
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1358
+INFO: Exited search early on spectrum 5211
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1359
+INFO: Exited search early on spectrum 5219
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1384
-INFO: Exited search early on spectrum 1390
+INFO: Exited search early on spectrum 5248
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1391
+INFO: Exited search early on spectrum 5256
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1400
+INFO: Exited search early on spectrum 5279
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1420
+INFO: Exited search early on spectrum 5286
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1422
+INFO: Exited search early on spectrum 5344
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1423
+INFO: Exited search early on spectrum 5392
+INFO: Exited search early on spectrum 5420
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1427
+INFO: Exited search early on spectrum 5429
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1495
+INFO: Exited search early on spectrum 5486
+INFO: Exited search early on spectrum 5506
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1544
+INFO: Exited search early on spectrum 5556
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1595
+INFO: Exited search early on spectrum 5626
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1604
+INFO: Exited search early on spectrum 5652
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1608
+INFO: Exited search early on spectrum 5720
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 1652
-INFO: Exited search early on spectrum 1767
-INFO: Exited search early on spectrum 1910
-INFO: Exited search early on spectrum 2066
+INFO: Exited search early on spectrum 5721
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 2084
-INFO: Exited search early on spectrum 2398
-INFO: Exited search early on spectrum 2440
+INFO: Exited search early on spectrum 5735
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 2470
-INFO: Exited search early on spectrum 2493
-INFO: Exited search early on spectrum 2875
-INFO: Exited search early on spectrum 2895
-INFO: Exited search early on spectrum 3069
-INFO: Exited search early on spectrum 3133
-INFO: Exited search early on spectrum 3286
-INFO: Exited search early on spectrum 3386
-INFO: Exited search early on spectrum 3416
-INFO: Exited search early on spectrum 3647
-INFO: Exited search early on spectrum 3781
-INFO: Exited search early on spectrum 3832
+INFO: Exited search early on spectrum 5752
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 3848
-INFO: Exited search early on spectrum 4036
+INFO: Exited search early on spectrum 5763
+INFO: Exited search early on spectrum 5770
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 4193
-INFO: Exited search early on spectrum 4263
+INFO: Exited search early on spectrum 5803
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 4293
+INFO: Exited search early on spectrum 5804
+INFO: Exited search early on spectrum 5818
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 4346
+INFO: Exited search early on spectrum 5830
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 4352
+INFO: Exited search early on spectrum 5854
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 4452
+INFO: Exited search early on spectrum 5874
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 4460
+INFO: Exited search early on spectrum 5892
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 4483
+INFO: Exited search early on spectrum 5895
+INFO: Exited search early on spectrum 5905
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 4489
+INFO: Exited search early on spectrum 5924
+INFO: Exited search early on spectrum 5974
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 4494
+INFO: Exited search early on spectrum 6018
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 4544
+INFO: Exited search early on spectrum 6028
+INFO: Exited search early on spectrum 6029
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 4599
+INFO: Exited search early on spectrum 6041
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 4615
+INFO: Exited search early on spectrum 6043
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 4765
-INFO: Exited search early on spectrum 4820
+INFO: Exited search early on spectrum 6051
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 4841
+INFO: Exited search early on spectrum 6059
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 4925
+INFO: Exited search early on spectrum 6105
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 4931
+INFO: Exited search early on spectrum 6128
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 4993
+INFO: Exited search early on spectrum 6134
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 5055
+INFO: Exited search early on spectrum 6140
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 5063
+INFO: Exited search early on spectrum 6165
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 5077
+INFO: Exited search early on spectrum 6173
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 5162
+INFO: Exited search early on spectrum 6180
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 5223
+INFO: Exited search early on spectrum 6192
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 5305
-INFO: Exited search early on spectrum 5518
+INFO: Exited search early on spectrum 6215
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 5600
+INFO: Exited search early on spectrum 6221
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 5603
+INFO: Exited search early on spectrum 6230
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 5645
+INFO: Exited search early on spectrum 6231
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 5682
+INFO: Exited search early on spectrum 6246
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 5687
+INFO: Exited search early on spectrum 6250
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 5690
+INFO: Exited search early on spectrum 6251
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 5732
+INFO: Exited search early on spectrum 6256
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 5733
-INFO: Exited search early on spectrum 5786
+INFO: Exited search early on spectrum 6263
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 5789
-INFO: Exited search early on spectrum 5811
+INFO: Exited search early on spectrum 6267
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 5839
+INFO: Exited search early on spectrum 6268
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 5900
+INFO: Exited search early on spectrum 6278
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 5950
+INFO: Exited search early on spectrum 6294
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 6097
+INFO: Exited search early on spectrum 6297
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 6154
+INFO: Exited search early on spectrum 6307
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 6162
+INFO: Exited search early on spectrum 6313
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 6166
+INFO: Exited search early on spectrum 6315
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 6216
-INFO: Exited search early on spectrum 6238
-INFO: Exited search early on spectrum 6366
+INFO: Exited search early on spectrum 6323
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 6371
+INFO: Exited search early on spectrum 6350
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 6661
-INFO: Exited search early on spectrum 6932
-INFO: Exited search early on spectrum 6987
-INFO: Exited search early on spectrum 7570
+INFO: Exited search early on spectrum 6368
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 7681
-INFO: Exited search early on spectrum 7743
+INFO: Exited search early on spectrum 6403
 INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6411
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6417
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6448
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6449
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6460
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6467
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6474
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6490
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6500
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6504
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6558
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6588
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6591
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6610
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6629
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6642
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6655
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6674
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6678
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6682
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6710
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6731
+INFO: Exited search early on spectrum 6806
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6809
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6822
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6849
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6865
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6883
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6908
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6913
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6947
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6960
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 6990
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7029
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7051
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7098
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7142
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7150
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7177
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7178
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7185
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7186
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7197
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7201
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7208
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7219
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7235
+INFO: Exited search early on spectrum 7254
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7258
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7259
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7317
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7321
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7348
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7385
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7394
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7424
+INFO: Exited search early on spectrum 7443
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7451
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7452
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7501
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7602
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7616
+INFO: Exited search early on spectrum 7653
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7726
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7727
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7800
+INFO: Exited search early on spectrum 7826
+INFO: Exited search early on spectrum 7885
 INFO: Exited search early on spectrum 7934
-INFO: Exited search early on spectrum 8703
-INFO: Exited search early on spectrum 8707
-INFO: Exited search early on spectrum 10535
-INFO: Exited search early on spectrum 10817
-INFO: Exited search early on spectrum 10820
-INFO: Exited search early on spectrum 15325
-INFO: Exited search early on spectrum 16342
-INFO: Exited search early on spectrum 16542
-INFO: Exited search early on spectrum 17438
-INFO: Exited search early on spectrum 19515
-INFO: Exited search early on spectrum 19811
-INFO: Exited search early on spectrum 20663
-INFO: Exited search early on spectrum 26796
-INFO: Exited search early on spectrum 57743
-INFO: Exited search early on spectrum 60804
-INFO: Exited search early on spectrum 63544
-INFO: Exited search early on spectrum 63578
-INFO: Exited search early on spectrum 68620
-INFO: Exited search early on spectrum 69644
-INFO: Exited search early on spectrum 69997
-INFO: Exited search early on spectrum 70256
-INFO: Exited search early on spectrum 70317
-INFO: Exited search early on spectrum 70583
-INFO: Exited search early on spectrum 70614
-INFO: Exited search early on spectrum 70959
-INFO: Exited search early on spectrum 70963
-INFO: Exited search early on spectrum 71123
-INFO: Exited search early on spectrum 71174
-INFO: Exited search early on spectrum 71259
-INFO: Exited search early on spectrum 71289
-INFO: Exited search early on spectrum 71292
-INFO: Exited search early on spectrum 71340
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 7979
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 8036
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 8196
+INFO: Exited search early on spectrum 8227
+INFO: Exited search early on spectrum 8360
+INFO: Exited search early on spectrum 8543
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 8640
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 8662
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 9687
+INFO: Exited search early on spectrum 13111
+INFO: Exited search early on spectrum 17923
+INFO: Exited search early on spectrum 27311
+INFO: Exited search early on spectrum 28781
+INFO: Exited search early on spectrum 47246
+INFO: Exited search early on spectrum 48371
+INFO: Exited search early on spectrum 52385
+INFO: Exited search early on spectrum 53173
+INFO: Exited search early on spectrum 55968
+INFO: Exited search early on spectrum 58743
+INFO: Exited search early on spectrum 60237
+INFO: Exited search early on spectrum 65797
+INFO: Exited search early on spectrum 68069
+INFO: Exited search early on spectrum 68745
+INFO: Exited search early on spectrum 68853
+INFO: Exited search early on spectrum 69034
+INFO: Exited search early on spectrum 69191
+INFO: Exited search early on spectrum 69246
+INFO: Exited search early on spectrum 69303
+INFO: Exited search early on spectrum 69338
+INFO: Exited search early on spectrum 69492
+INFO: Exited search early on spectrum 69608
+INFO: Exited search early on spectrum 69679
+INFO: Exited search early on spectrum 69821
+INFO: Exited search early on spectrum 69826
+INFO: Exited search early on spectrum 69862
+INFO: Exited search early on spectrum 69884
+INFO: Exited search early on spectrum 69948
+INFO: Exited search early on spectrum 70121
+INFO: Exited search early on spectrum 70161
+INFO: Exited search early on spectrum 70202
+INFO: Exited search early on spectrum 70322
+INFO: Exited search early on spectrum 70337
+INFO: Exited search early on spectrum 70414
+INFO: Exited search early on spectrum 70450
+INFO: Exited search early on spectrum 70455
+INFO: Exited search early on spectrum 70486
+INFO: Exited search early on spectrum 70610
+INFO: Exited search early on spectrum 70744
+INFO: Exited search early on spectrum 70745
+INFO: Exited search early on spectrum 70985
+INFO: Exited search early on spectrum 71004
+INFO: Exited search early on spectrum 71019
+INFO: Exited search early on spectrum 71076
+INFO: Exited search early on spectrum 71172
+INFO: Exited search early on spectrum 71192
+INFO: Exited search early on spectrum 71290
+INFO: Exited search early on spectrum 71453
 INFO: Exited search early on spectrum 71454
-INFO: Exited search early on spectrum 71472
-INFO: Exited search early on spectrum 71542
-INFO: Exited search early on spectrum 71616
-INFO: Exited search early on spectrum 71683
-INFO: Exited search early on spectrum 71758
-INFO: Exited search early on spectrum 71768
-INFO: Exited search early on spectrum 71771
-INFO: Exited search early on spectrum 71837
-INFO: Exited search early on spectrum 72004
-INFO: Exited search early on spectrum 72012
-INFO: Exited search early on spectrum 72079
-INFO: Exited search early on spectrum 72154
-INFO: Exited search early on spectrum 72242
-INFO: Exited search early on spectrum 72415
-INFO: Exited search early on spectrum 72452
-INFO: Exited search early on spectrum 72508
-INFO: Exited search early on spectrum 72528
-INFO: Exited search early on spectrum 72586
-INFO: Exited search early on spectrum 72699
-INFO: Exited search early on spectrum 72763
-INFO: Exited search early on spectrum 72784
-INFO: Exited search early on spectrum 72850
-INFO: Exited search early on spectrum 72874
-INFO: Exited search early on spectrum 72878
-INFO: Exited search early on spectrum 72994
-INFO: Exited search early on spectrum 73037
-INFO: Exited search early on spectrum 73063
-INFO: Exited search early on spectrum 73078
-INFO: Exited search early on spectrum 73213
-INFO: Exited search early on spectrum 73219
-INFO: Exited search early on spectrum 73333
-INFO: Exited search early on spectrum 73494
-INFO: Exited search early on spectrum 73502
-INFO: Exited search early on spectrum 73518
-INFO: Exited search early on spectrum 73536
-INFO: Exited search early on spectrum 73561
-INFO: Exited search early on spectrum 73602
-INFO: Exited search early on spectrum 73632
-INFO: Exited search early on spectrum 73640
-INFO: Exited search early on spectrum 73700
-INFO: Exited search early on spectrum 73704
-INFO: Exited search early on spectrum 73749
-INFO: Exited search early on spectrum 73782
-INFO: Exited search early on spectrum 73820
-INFO: Exited search early on spectrum 73828
-INFO: Exited search early on spectrum 73866
-INFO: Exited search early on spectrum 73882
-INFO: Exited search early on spectrum 73893
-INFO: Exited search early on spectrum 73954
-INFO: Exited search early on spectrum 74054
-INFO: Exited search early on spectrum 74071
-INFO: Exited search early on spectrum 74098
-INFO: Exited search early on spectrum 74101
-INFO: Exited search early on spectrum 74113
-INFO: Exited search early on spectrum 74172
-INFO: Exited search early on spectrum 74199
-INFO: Exited search early on spectrum 74204
-INFO: Exited search early on spectrum 74213
-INFO: Exited search early on spectrum 74220
-INFO: Exited search early on spectrum 74235
-INFO: Exited search early on spectrum 74358
-INFO: Exited search early on spectrum 74389
-INFO: Exited search early on spectrum 74415
-INFO: Exited search early on spectrum 74446
-INFO: Exited search early on spectrum 74453
-INFO: Exited search early on spectrum 74472
-INFO: Exited search early on spectrum 74476
-INFO: Exited search early on spectrum 74612
-INFO: Exited search early on spectrum 74616
-INFO: Exited search early on spectrum 74840
-INFO: Exited search early on spectrum 74844
-INFO: Exited search early on spectrum 74877
-INFO: Exited search early on spectrum 74939
-INFO: Exited search early on spectrum 74958
-INFO: Exited search early on spectrum 75143
-INFO: Exited search early on spectrum 75160
-INFO: Exited search early on spectrum 75164
-INFO: Exited search early on spectrum 75165
-INFO: Exited search early on spectrum 75176
-INFO: Exited search early on spectrum 75235
-INFO: Exited search early on spectrum 75321
-INFO: Exited search early on spectrum 75352
-INFO: Exited search early on spectrum 75406
-INFO: Exited search early on spectrum 75444
-INFO: Exited search early on spectrum 75466
-INFO: Exited search early on spectrum 75502
-INFO: Exited search early on spectrum 75508
+INFO: Exited search early on spectrum 71512
+INFO: Exited search early on spectrum 71592
+INFO: Exited search early on spectrum 71618
+INFO: Exited search early on spectrum 71661
+INFO: Exited search early on spectrum 71678
+INFO: Exited search early on spectrum 71729
+INFO: Exited search early on spectrum 71809
+INFO: Exited search early on spectrum 71881
+INFO: Exited search early on spectrum 71891
+INFO: Exited search early on spectrum 71909
+INFO: Exited search early on spectrum 71951
+INFO: Exited search early on spectrum 71967
+INFO: Exited search early on spectrum 71974
+INFO: Exited search early on spectrum 72034
+INFO: Exited search early on spectrum 72103
+INFO: Exited search early on spectrum 72108
+INFO: Exited search early on spectrum 72150
+INFO: Exited search early on spectrum 72158
+INFO: Exited search early on spectrum 72178
+INFO: Exited search early on spectrum 72214
+INFO: Exited search early on spectrum 72250
+INFO: Exited search early on spectrum 72265
+INFO: Exited search early on spectrum 72334
+INFO: Exited search early on spectrum 72403
+INFO: Exited search early on spectrum 72408
+INFO: Exited search early on spectrum 72433
+INFO: Exited search early on spectrum 72462
+INFO: Exited search early on spectrum 72488
+INFO: Exited search early on spectrum 72650
+INFO: Exited search early on spectrum 72664
+INFO: Exited search early on spectrum 72724
+INFO: Exited search early on spectrum 72737
+INFO: Exited search early on spectrum 72796
+INFO: Exited search early on spectrum 72818
+INFO: Exited search early on spectrum 72819
+INFO: Exited search early on spectrum 72932
+INFO: Exited search early on spectrum 72938
+INFO: Exited search early on spectrum 72946
+INFO: Exited search early on spectrum 72974
+INFO: Exited search early on spectrum 73006
+INFO: Exited search early on spectrum 73025
+INFO: Exited search early on spectrum 73062
+INFO: Exited search early on spectrum 73070
+INFO: Exited search early on spectrum 73082
+INFO: Exited search early on spectrum 73151
+INFO: Exited search early on spectrum 73185
+INFO: Exited search early on spectrum 73207
+INFO: Exited search early on spectrum 73221
+INFO: Exited search early on spectrum 73274
+INFO: Exited search early on spectrum 73287
+INFO: Exited search early on spectrum 73306
+INFO: Exited search early on spectrum 73347
+INFO: Exited search early on spectrum 73415
+INFO: Exited search early on spectrum 73427
+INFO: Exited search early on spectrum 73462
+INFO: Exited search early on spectrum 73470
+INFO: Exited search early on spectrum 73509
+INFO: Exited search early on spectrum 73581
+INFO: Exited search early on spectrum 73582
+INFO: Exited search early on spectrum 73586
+INFO: Exited search early on spectrum 73606
+INFO: Exited search early on spectrum 73615
+INFO: Exited search early on spectrum 73637
+INFO: Exited search early on spectrum 73662
+INFO: Exited search early on spectrum 73671
+INFO: Exited search early on spectrum 73702
+INFO: Exited search early on spectrum 73803
+INFO: Exited search early on spectrum 73807
+INFO: Exited search early on spectrum 73880
+INFO: Exited search early on spectrum 73915
+INFO: Exited search early on spectrum 73939
+INFO: Exited search early on spectrum 73982
+INFO: Exited search early on spectrum 73990
+INFO: Exited search early on spectrum 74000
+INFO: Exited search early on spectrum 74022
+INFO: Exited search early on spectrum 74077
+INFO: Exited search early on spectrum 74105
+INFO: Exited search early on spectrum 74131
+INFO: Exited search early on spectrum 74151
+INFO: Exited search early on spectrum 74259
+INFO: Exited search early on spectrum 74262
+INFO: Exited search early on spectrum 74270
+INFO: Exited search early on spectrum 74275
+INFO: Exited search early on spectrum 74282
+INFO: Exited search early on spectrum 74379
+INFO: Exited search early on spectrum 74392
+INFO: Exited search early on spectrum 74413
+INFO: Exited search early on spectrum 74449
+INFO: Exited search early on spectrum 74491
+INFO: Exited search early on spectrum 74499
+INFO: Exited search early on spectrum 74573
+INFO: Exited search early on spectrum 74608
+INFO: Exited search early on spectrum 74699
+INFO: Exited search early on spectrum 74791
+INFO: Exited search early on spectrum 74837
+INFO: Exited search early on spectrum 74884
+INFO: Exited search early on spectrum 74906
+INFO: Exited search early on spectrum 74914
+INFO: Exited search early on spectrum 74919
+INFO: Exited search early on spectrum 74944
+INFO: Exited search early on spectrum 74975
+INFO: Exited search early on spectrum 75133
+INFO: Exited search early on spectrum 75162
+INFO: Exited search early on spectrum 75180
+INFO: Exited search early on spectrum 75219
+INFO: Exited search early on spectrum 75226
+INFO: Exited search early on spectrum 75245
+INFO: Exited search early on spectrum 75276
+INFO: Exited search early on spectrum 75343
+INFO: Exited search early on spectrum 75353
+INFO: Exited search early on spectrum 75446
+INFO: Exited search early on spectrum 75463
+INFO: Exited search early on spectrum 75483
+INFO: Exited search early on spectrum 75525
+INFO: Exited search early on spectrum 75534
+INFO: Exited search early on spectrum 75553
+INFO: Exited search early on spectrum 75567
+INFO: Exited search early on spectrum 75605
+INFO: Exited search early on spectrum 75618
 INFO: Exited search early on spectrum 75643
-INFO: Exited search early on spectrum 75679
-INFO: Exited search early on spectrum 75702
-INFO: Exited search early on spectrum 75756
-INFO: Exited search early on spectrum 75761
-INFO: Exited search early on spectrum 75772
-INFO: Exited search early on spectrum 75794
-INFO: Exited search early on spectrum 75811
-INFO: Exited search early on spectrum 75883
-INFO: Exited search early on spectrum 75947
-INFO: Exited search early on spectrum 75987
-INFO: Exited search early on spectrum 75991
-INFO: Exited search early on spectrum 76000
-INFO: Exited search early on spectrum 76080
-INFO: Exited search early on spectrum 76125
-INFO: Exited search early on spectrum 76205
-INFO: Exited search early on spectrum 76217
-INFO: Exited search early on spectrum 76298
-INFO: Exited search early on spectrum 76325
-INFO: Exited search early on spectrum 76333
-INFO: Exited search early on spectrum 76352
-INFO: Exited search early on spectrum 76449
-INFO: Exited search early on spectrum 76495
-INFO: Exited search early on spectrum 76505
-INFO: Exited search early on spectrum 76513
-INFO: Exited search early on spectrum 76540
-INFO: Exited search early on spectrum 76546
-INFO: Exited search early on spectrum 76570
-INFO: Exited search early on spectrum 76610
-INFO: Exited search early on spectrum 76614
-INFO: Exited search early on spectrum 76653
-INFO: Exited search early on spectrum 76702
-INFO: Exited search early on spectrum 76719
-INFO: Exited search early on spectrum 76783
-INFO: Exited search early on spectrum 76870
-INFO: Exited search early on spectrum 76896
+INFO: Exited search early on spectrum 75647
+INFO: Exited search early on spectrum 75654
+INFO: Exited search early on spectrum 75711
+INFO: Exited search early on spectrum 75727
+INFO: Exited search early on spectrum 75736
+INFO: Exited search early on spectrum 75755
+INFO: Exited search early on spectrum 75764
+INFO: Exited search early on spectrum 75769
+INFO: Exited search early on spectrum 75809
+INFO: Exited search early on spectrum 75870
+INFO: Exited search early on spectrum 75897
+INFO: Exited search early on spectrum 75938
+INFO: Exited search early on spectrum 76007
+INFO: Exited search early on spectrum 76049
+INFO: Exited search early on spectrum 76093
+INFO: Exited search early on spectrum 76140
+INFO: Exited search early on spectrum 76149
+INFO: Exited search early on spectrum 76157
+INFO: Exited search early on spectrum 76187
+INFO: Exited search early on spectrum 76198
+INFO: Exited search early on spectrum 76208
+INFO: Exited search early on spectrum 76211
+INFO: Exited search early on spectrum 76345
+INFO: Exited search early on spectrum 76425
+INFO: Exited search early on spectrum 76455
+INFO: Exited search early on spectrum 76487
+INFO: Exited search early on spectrum 76494
+INFO: Exited search early on spectrum 76539
+INFO: Exited search early on spectrum 76607
+INFO: Exited search early on spectrum 76644
+INFO: Exited search early on spectrum 76648
+INFO: Exited search early on spectrum 76681
+INFO: Exited search early on spectrum 76715
+INFO: Exited search early on spectrum 76720
+INFO: Exited search early on spectrum 76760
+INFO: Exited search early on spectrum 76887
+INFO: Exited search early on spectrum 76903
+INFO: Exited search early on spectrum 76918
 INFO: Exited search early on spectrum 76921
-INFO: Exited search early on spectrum 76969
-INFO: Exited search early on spectrum 77021
-INFO: Exited search early on spectrum 77038
-INFO: Exited search early on spectrum 77042
+INFO: Exited search early on spectrum 76925
+INFO: Exited search early on spectrum 76988
+INFO: Exited search early on spectrum 77004
+INFO: Exited search early on spectrum 77030
+INFO: Exited search early on spectrum 77067
+INFO: Exited search early on spectrum 77079
+INFO: Exited search early on spectrum 77129
 INFO: Exited search early on spectrum 77178
-INFO: Exited search early on spectrum 77219
-INFO: Exited search early on spectrum 77346
-INFO: Exited search early on spectrum 77368
-INFO: Exited search early on spectrum 77439
-INFO: Exited search early on spectrum 77492
-INFO: Exited search early on spectrum 77498
-INFO: Exited search early on spectrum 77518
-INFO: Exited search early on spectrum 77624
-INFO: Exited search early on spectrum 77638
-INFO: Exited search early on spectrum 77682
-INFO: Exited search early on spectrum 77688
-INFO: Exited search early on spectrum 77748
-INFO: Exited search early on spectrum 77801
-INFO: Exited search early on spectrum 77818
-INFO: Exited search early on spectrum 77912
-INFO: Exited search early on spectrum 77936
-INFO: Exited search early on spectrum 77962
-INFO: Exited search early on spectrum 78070
-INFO: Exited search early on spectrum 78073
-INFO: Exited search early on spectrum 78191
-INFO: Exited search early on spectrum 78202
-INFO: Exited search early on spectrum 78265
-INFO: Exited search early on spectrum 78306
-INFO: Exited search early on spectrum 78389
-INFO: Exited search early on spectrum 78405
-INFO: Exited search early on spectrum 78444
-INFO: Exited search early on spectrum 78510
-INFO: Exited search early on spectrum 78585
-INFO: Exited search early on spectrum 78608
-INFO: Exited search early on spectrum 78689
-INFO: Exited search early on spectrum 78746
-INFO: Exited search early on spectrum 78852
-INFO: Exited search early on spectrum 78866
-INFO: Exited search early on spectrum 78894
-INFO: Exited search early on spectrum 78903
-INFO: Exited search early on spectrum 78911
-INFO: Exited search early on spectrum 78920
-INFO: Exited search early on spectrum 78953
-INFO: Exited search early on spectrum 78959
-INFO: Exited search early on spectrum 79040
-INFO: Exited search early on spectrum 79156
-INFO: Exited search early on spectrum 79227
-INFO: Exited search early on spectrum 79262
-INFO: Exited search early on spectrum 79396
-INFO: Exited search early on spectrum 79407
-INFO: Exited search early on spectrum 79460
-INFO: Exited search early on spectrum 79486
-INFO: Exited search early on spectrum 79532
-INFO: Exited search early on spectrum 79606
-INFO: Exited search early on spectrum 79615
-INFO: Exited search early on spectrum 79655
-INFO: Exited search early on spectrum 79767
-INFO: Exited search early on spectrum 79780
-INFO: Exited search early on spectrum 79810
-INFO: Exited search early on spectrum 79835
-INFO: Exited search early on spectrum 79860
-INFO: Exited search early on spectrum 79878
-INFO: Exited search early on spectrum 79909
-INFO: Exited search early on spectrum 79935
-INFO: Exited search early on spectrum 79955
-INFO: Exited search early on spectrum 80037
-INFO: Exited search early on spectrum 80141
-INFO: Exited search early on spectrum 80165
-INFO: Exited search early on spectrum 80404
+INFO: Exited search early on spectrum 77213
+INFO: Exited search early on spectrum 77264
+INFO: Exited search early on spectrum 77291
+INFO: Exited search early on spectrum 77336
+INFO: Exited search early on spectrum 77340
+INFO: Exited search early on spectrum 77405
+INFO: Exited search early on spectrum 77453
+INFO: Exited search early on spectrum 77458
+INFO: Exited search early on spectrum 77465
+INFO: Exited search early on spectrum 77490
+INFO: Exited search early on spectrum 77526
+INFO: Exited search early on spectrum 77582
+INFO: Exited search early on spectrum 77594
+INFO: Exited search early on spectrum 77611
+INFO: Exited search early on spectrum 77619
+INFO: Exited search early on spectrum 77623
+INFO: Exited search early on spectrum 77716
+INFO: Exited search early on spectrum 77808
+INFO: Exited search early on spectrum 77828
+INFO: Exited search early on spectrum 77837
+INFO: Exited search early on spectrum 77941
+INFO: Exited search early on spectrum 77983
+INFO: Exited search early on spectrum 78013
+INFO: Exited search early on spectrum 78065
+INFO: Exited search early on spectrum 78097
+INFO: Exited search early on spectrum 78110
+INFO: Exited search early on spectrum 78117
+INFO: Exited search early on spectrum 78190
+INFO: Exited search early on spectrum 78201
+INFO: Exited search early on spectrum 78237
+INFO: Exited search early on spectrum 78305
+INFO: Exited search early on spectrum 78330
+INFO: Exited search early on spectrum 78366
+INFO: Exited search early on spectrum 78371
+INFO: Exited search early on spectrum 78403
+INFO: Exited search early on spectrum 78428
+INFO: Exited search early on spectrum 78454
+INFO: Exited search early on spectrum 78457
+INFO: Exited search early on spectrum 78518
+INFO: Exited search early on spectrum 78579
+INFO: Exited search early on spectrum 78643
+INFO: Exited search early on spectrum 78649
+INFO: Exited search early on spectrum 78673
+INFO: Exited search early on spectrum 78720
+INFO: Exited search early on spectrum 78737
+INFO: Exited search early on spectrum 78772
+INFO: Exited search early on spectrum 78880
+INFO: Exited search early on spectrum 78961
+INFO: Exited search early on spectrum 79073
+INFO: Exited search early on spectrum 79110
+INFO: Exited search early on spectrum 79166
+INFO: Exited search early on spectrum 79176
+INFO: Exited search early on spectrum 79202
+INFO: Exited search early on spectrum 79256
+INFO: Exited search early on spectrum 79260
+INFO: Exited search early on spectrum 79282
+INFO: Exited search early on spectrum 79357
+INFO: Exited search early on spectrum 79397
+INFO: Exited search early on spectrum 79437
+INFO: Exited search early on spectrum 79456
+INFO: Exited search early on spectrum 79488
+INFO: Exited search early on spectrum 79498
+INFO: Exited search early on spectrum 79551
+INFO: Exited search early on spectrum 79613
+INFO: Exited search early on spectrum 79625
+INFO: Exited search early on spectrum 79739
+INFO: Exited search early on spectrum 79756
+INFO: Exited search early on spectrum 79806
+INFO: Exited search early on spectrum 79885
+INFO: Exited search early on spectrum 79891
+INFO: Exited search early on spectrum 79931
+INFO: Exited search early on spectrum 79970
+INFO: Exited search early on spectrum 80014
+INFO: Exited search early on spectrum 80031
+INFO: Exited search early on spectrum 80067
+INFO: Exited search early on spectrum 80107
+INFO: Exited search early on spectrum 80116
+INFO: Exited search early on spectrum 80120
+INFO: Exited search early on spectrum 80121
+INFO: Exited search early on spectrum 80178
+INFO: Exited search early on spectrum 80210
+INFO: Exited search early on spectrum 80221
+INFO: Exited search early on spectrum 80242
+INFO: Exited search early on spectrum 80270
+INFO: Exited search early on spectrum 80303
+INFO: Exited search early on spectrum 80325
+INFO: Exited search early on spectrum 80359
+INFO: Exited search early on spectrum 80481
+INFO: Exited search early on spectrum 80491
 INFO: Exited search early on spectrum 80495
-INFO: Exited search early on spectrum 80502
-INFO: Exited search early on spectrum 80561
-INFO: Exited search early on spectrum 80577
-INFO: Exited search early on spectrum 80679
-INFO: Exited search early on spectrum 80693
-INFO: Exited search early on spectrum 80704
-INFO: Exited search early on spectrum 80708
-INFO: Exited search early on spectrum 80738
-INFO: Exited search early on spectrum 80776
-INFO: Exited search early on spectrum 80887
-INFO: Exited search early on spectrum 80931
-INFO: Exited search early on spectrum 80951
-INFO: Exited search early on spectrum 80986
-INFO: Exited search early on spectrum 81033
-INFO: Exited search early on spectrum 81041
-INFO: Exited search early on spectrum 81159
-INFO: Exited search early on spectrum 81184
-INFO: Exited search early on spectrum 81185
-INFO: Exited search early on spectrum 81197
-INFO: Exited search early on spectrum 81292
-INFO: Exited search early on spectrum 81305
-INFO: Exited search early on spectrum 81462
-INFO: Exited search early on spectrum 81473
-INFO: Exited search early on spectrum 81482
-INFO: Exited search early on spectrum 81495
-INFO: Exited search early on spectrum 81526
-INFO: Exited search early on spectrum 81545
-INFO: Exited search early on spectrum 81565
-INFO: Exited search early on spectrum 81603
-INFO: Exited search early on spectrum 81651
-INFO: Exited search early on spectrum 81738
-INFO: Exited search early on spectrum 81755
-INFO: Exited search early on spectrum 81764
-INFO: Exited search early on spectrum 81818
-INFO: Exited search early on spectrum 81876
-INFO: Exited search early on spectrum 81922
-INFO: Exited search early on spectrum 81979
-INFO: Exited search early on spectrum 82062
-INFO: Exited search early on spectrum 82102
-INFO: Exited search early on spectrum 82110
-INFO: Exited search early on spectrum 82137
-INFO: Exited search early on spectrum 82174
-INFO: Exited search early on spectrum 82239
-INFO: Exited search early on spectrum 82257
-INFO: Exited search early on spectrum 82323
-INFO: Exited search early on spectrum 82330
-INFO: Exited search early on spectrum 82348
-INFO: Exited search early on spectrum 82494
-INFO: Exited search early on spectrum 82545
-INFO: Exited search early on spectrum 82621
-INFO: Exited search early on spectrum 82723
-INFO: Exited search early on spectrum 82724
-INFO: Exited search early on spectrum 82732
-INFO: Exited search early on spectrum 82757
-INFO: Exited search early on spectrum 82783
-INFO: Exited search early on spectrum 82801
-INFO: Exited search early on spectrum 82828
-INFO: Exited search early on spectrum 82869
-INFO: Exited search early on spectrum 82872
-INFO: Exited search early on spectrum 82884
-INFO: Exited search early on spectrum 82901
-INFO: Exited search early on spectrum 82949
+INFO: Exited search early on spectrum 80568
+INFO: Exited search early on spectrum 80603
+INFO: Exited search early on spectrum 80657
+INFO: Exited search early on spectrum 80726
+INFO: Exited search early on spectrum 80749
+INFO: Exited search early on spectrum 80767
+INFO: Exited search early on spectrum 80770
+INFO: Exited search early on spectrum 80771
+INFO: Exited search early on spectrum 80806
+INFO: Exited search early on spectrum 80813
+INFO: Exited search early on spectrum 80832
+INFO: Exited search early on spectrum 80847
+INFO: Exited search early on spectrum 81048
+INFO: Exited search early on spectrum 81055
+INFO: Exited search early on spectrum 81123
+INFO: Exited search early on spectrum 81164
+INFO: Exited search early on spectrum 81188
+INFO: Exited search early on spectrum 81237
+INFO: Exited search early on spectrum 81255
+INFO: Exited search early on spectrum 81263
+INFO: Exited search early on spectrum 81333
+INFO: Exited search early on spectrum 81373
+INFO: Exited search early on spectrum 81463
+INFO: Exited search early on spectrum 81552
+INFO: Exited search early on spectrum 81561
+INFO: Exited search early on spectrum 81572
+INFO: Exited search early on spectrum 81582
+INFO: Exited search early on spectrum 81698
+INFO: Exited search early on spectrum 81709
+INFO: Exited search early on spectrum 81780
+INFO: Exited search early on spectrum 81874
+INFO: Exited search early on spectrum 81902
+INFO: Exited search early on spectrum 82019
+INFO: Exited search early on spectrum 82070
+INFO: Exited search early on spectrum 82108
+INFO: Exited search early on spectrum 82116
+INFO: Exited search early on spectrum 82133
+INFO: Exited search early on spectrum 82141
+INFO: Exited search early on spectrum 82163
+INFO: Exited search early on spectrum 82173
+INFO: Exited search early on spectrum 82254
+INFO: Exited search early on spectrum 82295
+INFO: Exited search early on spectrum 82366
+INFO: Exited search early on spectrum 82401
+INFO: Exited search early on spectrum 82419
+INFO: Exited search early on spectrum 82498
+INFO: Exited search early on spectrum 82597
+INFO: Exited search early on spectrum 82600
+INFO: Exited search early on spectrum 82640
+INFO: Exited search early on spectrum 82641
+INFO: Exited search early on spectrum 82649
+INFO: Exited search early on spectrum 82653
+INFO: Exited search early on spectrum 82690
+INFO: Exited search early on spectrum 82691
+INFO: Exited search early on spectrum 82710
+INFO: Exited search early on spectrum 82711
+INFO: Exited search early on spectrum 82742
+INFO: Exited search early on spectrum 82762
+INFO: Exited search early on spectrum 82895
+INFO: Exited search early on spectrum 82899
+INFO: Exited search early on spectrum 82932
+INFO: Exited search early on spectrum 82966
+INFO: Exited search early on spectrum 82969
 INFO: Exited search early on spectrum 82995
-INFO: Exited search early on spectrum 83038
-INFO: Exited search early on spectrum 83052
-INFO: Exited search early on spectrum 83064
-INFO: Exited search early on spectrum 83101
-INFO: Exited search early on spectrum 83113
-INFO: Exited search early on spectrum 83188
-INFO: Exited search early on spectrum 83220
-INFO: Exited search early on spectrum 83277
-INFO: Exited search early on spectrum 83335
-INFO: Exited search early on spectrum 83352
-INFO: Exited search early on spectrum 83397
-INFO: Exited search early on spectrum 83439
-INFO: Exited search early on spectrum 83447
-INFO: Exited search early on spectrum 83497
-INFO: Exited search early on spectrum 83505
-INFO: Exited search early on spectrum 83522
-INFO: Exited search early on spectrum 83674
-INFO: Exited search early on spectrum 83719
-INFO: Exited search early on spectrum 83723
-INFO: Exited search early on spectrum 83774
-INFO: Exited search early on spectrum 83778
-INFO: Exited search early on spectrum 83803
-INFO: Exited search early on spectrum 83818
-INFO: Exited search early on spectrum 83833
-INFO: Exited search early on spectrum 83843
-INFO: Exited search early on spectrum 83956
-INFO: Exited search early on spectrum 83994
-INFO: Exited search early on spectrum 84024
-INFO: Exited search early on spectrum 84044
-INFO: Exited search early on spectrum 84070
-INFO: Exited search early on spectrum 84074
-INFO: Exited search early on spectrum 84137
-INFO: Exited search early on spectrum 84141
-INFO: Exited search early on spectrum 84176
+INFO: Exited search early on spectrum 83017
+INFO: Exited search early on spectrum 83056
+INFO: Exited search early on spectrum 83116
+INFO: Exited search early on spectrum 83155
+INFO: Exited search early on spectrum 83165
+INFO: Exited search early on spectrum 83190
+INFO: Exited search early on spectrum 83219
+INFO: Exited search early on spectrum 83240
+INFO: Exited search early on spectrum 83263
+INFO: Exited search early on spectrum 83289
+INFO: Exited search early on spectrum 83310
+INFO: Exited search early on spectrum 83435
+INFO: Exited search early on spectrum 83448
+INFO: Exited search early on spectrum 83464
+INFO: Exited search early on spectrum 83514
+INFO: Exited search early on spectrum 83588
+INFO: Exited search early on spectrum 83622
+INFO: Exited search early on spectrum 83659
+INFO: Exited search early on spectrum 83724
+INFO: Exited search early on spectrum 83742
+INFO: Exited search early on spectrum 83755
+INFO: Exited search early on spectrum 83770
+INFO: Exited search early on spectrum 83781
+INFO: Exited search early on spectrum 83864
+INFO: Exited search early on spectrum 83930
+INFO: Exited search early on spectrum 84002
+INFO: Exited search early on spectrum 84043
+INFO: Exited search early on spectrum 84067
+INFO: Exited search early on spectrum 84087
+INFO: Exited search early on spectrum 84093
+INFO: Exited search early on spectrum 84145
+INFO: Exited search early on spectrum 84199
 INFO: Exited search early on spectrum 84222
-INFO: Exited search early on spectrum 84250
-INFO: Exited search early on spectrum 84340
-INFO: Exited search early on spectrum 84344
-INFO: Exited search early on spectrum 84457
-INFO: Exited search early on spectrum 84473
-INFO: Exited search early on spectrum 84515
-INFO: Exited search early on spectrum 84553
-INFO: Exited search early on spectrum 84601
-INFO: Exited search early on spectrum 84618
-INFO: Exited search early on spectrum 84732
-INFO: Exited search early on spectrum 84774
-INFO: Exited search early on spectrum 84786
-INFO: Exited search early on spectrum 84808
-INFO: Exited search early on spectrum 84815
-INFO: Exited search early on spectrum 84829
+INFO: Exited search early on spectrum 84274
+INFO: Exited search early on spectrum 84314
+INFO: Exited search early on spectrum 84484
+INFO: Exited search early on spectrum 84500
+INFO: Exited search early on spectrum 84511
+INFO: Exited search early on spectrum 84538
+INFO: Exited search early on spectrum 84542
+INFO: Exited search early on spectrum 84621
+INFO: Exited search early on spectrum 84651
+INFO: Exited search early on spectrum 84688
+INFO: Exited search early on spectrum 84700
+INFO: Exited search early on spectrum 84701
+INFO: Exited search early on spectrum 84730
+INFO: Exited search early on spectrum 84738
 INFO: Exited search early on spectrum 84853
-INFO: Exited search early on spectrum 84893
-INFO: Exited search early on spectrum 84924
-INFO: Exited search early on spectrum 85007
-INFO: Exited search early on spectrum 85070
-INFO: Exited search early on spectrum 85097
-INFO: Exited search early on spectrum 85110
+INFO: Exited search early on spectrum 84913
+INFO: Exited search early on spectrum 84925
+INFO: Exited search early on spectrum 84968
+INFO: Exited search early on spectrum 85043
+INFO: Exited search early on spectrum 85046
 INFO: Exited search early on spectrum 85114
-INFO: Exited search early on spectrum 85126
-INFO: Exited search early on spectrum 85174
-INFO: Exited search early on spectrum 85178
-INFO: Exited search early on spectrum 85251
-INFO: Exited search early on spectrum 85273
-INFO: Exited search early on spectrum 85335
-INFO: Exited search early on spectrum 85404
-INFO: Exited search early on spectrum 85499
-INFO: Exited search early on spectrum 85574
-INFO: Exited search early on spectrum 85604
-INFO: Exited search early on spectrum 85612
-INFO: Exited search early on spectrum 85618
-INFO: Exited search early on spectrum 85674
-INFO: Exited search early on spectrum 85801
-INFO: Exited search early on spectrum 85820
-INFO: Exited search early on spectrum 85897
-INFO: Exited search early on spectrum 85906
-INFO: Exited search early on spectrum 85938
-INFO: Exited search early on spectrum 85968
-INFO: Exited search early on spectrum 85993
-INFO: Exited search early on spectrum 86054
-INFO: Exited search early on spectrum 86081
-INFO: Exited search early on spectrum 86099
-INFO: Exited search early on spectrum 86148
-INFO: Exited search early on spectrum 86182
-INFO: Exited search early on spectrum 86197
-INFO: Exited search early on spectrum 86199
-INFO: Exited search early on spectrum 86247
+INFO: Exited search early on spectrum 85124
+INFO: Exited search early on spectrum 85128
+INFO: Exited search early on spectrum 85195
+INFO: Exited search early on spectrum 85213
+INFO: Exited search early on spectrum 85303
+INFO: Exited search early on spectrum 85331
+INFO: Exited search early on spectrum 85339
+INFO: Exited search early on spectrum 85381
+INFO: Exited search early on spectrum 85428
+INFO: Exited search early on spectrum 85438
+INFO: Exited search early on spectrum 85473
+INFO: Exited search early on spectrum 85477
+INFO: Exited search early on spectrum 85515
+INFO: Exited search early on spectrum 85526
+INFO: Exited search early on spectrum 85677
+INFO: Exited search early on spectrum 85756
+INFO: Exited search early on spectrum 85776
+INFO: Exited search early on spectrum 85826
+INFO: Exited search early on spectrum 85876
+INFO: Exited search early on spectrum 85888
+INFO: Exited search early on spectrum 85904
+INFO: Exited search early on spectrum 86022
+INFO: Exited search early on spectrum 86083
+INFO: Exited search early on spectrum 86104
+INFO: Exited search early on spectrum 86140
+INFO: Exited search early on spectrum 86146
+INFO: Exited search early on spectrum 86154
+INFO: Exited search early on spectrum 86295
 INFO: Exited search early on spectrum 86299
-INFO: Exited search early on spectrum 86322
-INFO: Exited search early on spectrum 86348
-INFO: Exited search early on spectrum 86361
-INFO: Exited search early on spectrum 86373
-INFO: Exited search early on spectrum 86519
-INFO: Exited search early on spectrum 86523
-INFO: Exited search early on spectrum 86551
-INFO: Exited search early on spectrum 86570
-INFO: Exited search early on spectrum 86585
-INFO: Exited search early on spectrum 86596
-INFO: Exited search early on spectrum 86645
-INFO: Exited search early on spectrum 86677
-INFO: Exited search early on spectrum 86698
-INFO: Exited search early on spectrum 86723
-INFO: Exited search early on spectrum 86749
-INFO: Exited search early on spectrum 86807
-INFO: Exited search early on spectrum 86811
-INFO: Exited search early on spectrum 86823
-INFO: Exited search early on spectrum 86850
-INFO: Exited search early on spectrum 86859
-INFO: Exited search early on spectrum 87057
-INFO: Exited search early on spectrum 87150
-INFO: Exited search early on spectrum 87227
-INFO: Exited search early on spectrum 87233
-INFO: Exited search early on spectrum 87252
-INFO: Exited search early on spectrum 87261
-INFO: Exited search early on spectrum 87270
-INFO: Exited search early on spectrum 87319
-INFO: Exited search early on spectrum 87407
-INFO: Exited search early on spectrum 87426
-INFO: Exited search early on spectrum 87432
-INFO: Exited search early on spectrum 87452
-INFO: Exited search early on spectrum 87512
-INFO: Exited search early on spectrum 87526
-INFO: Exited search early on spectrum 87531
-INFO: Exited search early on spectrum 87701
-INFO: Exited search early on spectrum 87707
-INFO: Exited search early on spectrum 87727
-INFO: Exited search early on spectrum 87761
-INFO: Exited search early on spectrum 87792
-INFO: Exited search early on spectrum 87830
-INFO: Exited search early on spectrum 87902
-INFO: Exited search early on spectrum 87959
-INFO: Exited search early on spectrum 87967
-INFO: Exited search early on spectrum 88016
+INFO: Exited search early on spectrum 86331
+INFO: Exited search early on spectrum 86375
+INFO: Exited search early on spectrum 86410
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 88020
+INFO: Exited search early on spectrum 86444
+INFO: Exited search early on spectrum 86495
+INFO: Exited search early on spectrum 86502
+INFO: Exited search early on spectrum 86511
+INFO: Exited search early on spectrum 86560
+INFO: Exited search early on spectrum 86572
+INFO: Exited search early on spectrum 86609
+INFO: Exited search early on spectrum 86777
+INFO: Exited search early on spectrum 86786
+INFO: Exited search early on spectrum 86837
+INFO: Exited search early on spectrum 86932
+INFO: Exited search early on spectrum 87051
+INFO: Exited search early on spectrum 87071
+INFO: Exited search early on spectrum 87093
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 88542
-INFO: Exited search early on spectrum 89043
+INFO: Exited search early on spectrum 87094
+INFO: Exited search early on spectrum 87100
+INFO: Exited search early on spectrum 87193
+INFO: Exited search early on spectrum 87239
+INFO: Exited search early on spectrum 87247
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89071
+INFO: Exited search early on spectrum 87318
+INFO: Exited search early on spectrum 87333
+INFO: Exited search early on spectrum 87375
+INFO: Exited search early on spectrum 88255
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89272
+INFO: Exited search early on spectrum 88666
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89350
+INFO: Exited search early on spectrum 88723
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89414
-INFO: Exited search early on spectrum 89608
+INFO: Exited search early on spectrum 88724
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89611
+INFO: Exited search early on spectrum 88770
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89612
+INFO: Exited search early on spectrum 88819
+INFO: Exited search early on spectrum 88883
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89648
+INFO: Exited search early on spectrum 88887
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89672
+INFO: Exited search early on spectrum 88930
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 88978
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 89209
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 89287
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 89310
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 89439
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 89451
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 89492
+INFO: Exited search early on spectrum 89522
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 89589
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 89695
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 89712
 INFO: Not Enough Peaks
 INFO: Exited search early on spectrum 89722
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89733
+INFO: Exited search early on spectrum 89740
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89738
+INFO: Exited search early on spectrum 89800
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89748
+INFO: Exited search early on spectrum 89805
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89760
+INFO: Exited search early on spectrum 89831
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89772
+INFO: Exited search early on spectrum 89856
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89813
+INFO: Exited search early on spectrum 89938
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89828
+INFO: Exited search early on spectrum 89990
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89832
+INFO: Exited search early on spectrum 90031
+INFO: Exited search early on spectrum 90102
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89833
+INFO: Exited search early on spectrum 90189
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89836
+INFO: Exited search early on spectrum 90226
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89954
+INFO: Exited search early on spectrum 90266
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 89977
+INFO: Exited search early on spectrum 90274
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 90075
+INFO: Exited search early on spectrum 90281
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 90076
+INFO: Exited search early on spectrum 90293
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 90140
+INFO: Exited search early on spectrum 90313
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 90191
+INFO: Exited search early on spectrum 90331
+INFO: Exited search early on spectrum 90350
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 90204
+INFO: Exited search early on spectrum 90354
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 90263
+INFO: Exited search early on spectrum 90407
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 90294
+INFO: Exited search early on spectrum 90426
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 90333
+INFO: Exited search early on spectrum 90431
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 90358
+INFO: Exited search early on spectrum 90468
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 90376
+INFO: Exited search early on spectrum 90501
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 90567
+INFO: Exited search early on spectrum 90502
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 90594
+INFO: Exited search early on spectrum 90578
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 90795
+INFO: Exited search early on spectrum 90583
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 90857
+INFO: Exited search early on spectrum 90601
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 90867
+INFO: Exited search early on spectrum 90669
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 90938
+INFO: Exited search early on spectrum 90724
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 90969
+INFO: Exited search early on spectrum 90732
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 91031
+INFO: Exited search early on spectrum 90758
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 91114
-INFO: Exited search early on spectrum 91155
-INFO: Exited search early on spectrum 91174
-INFO: Exited search early on spectrum 91218
-INFO: Exited search early on spectrum 91226
-INFO: Exited search early on spectrum 91238
-INFO: Exited search early on spectrum 91268
+INFO: Exited search early on spectrum 90845
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 91289
+INFO: Exited search early on spectrum 90951
+INFO: Exited search early on spectrum 90974
+INFO: Exited search early on spectrum 90991
+INFO: Exited search early on spectrum 91010
+INFO: Exited search early on spectrum 91021
+INFO: Exited search early on spectrum 91067
+INFO: Exited search early on spectrum 91072
+INFO: Exited search early on spectrum 91111
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 91309
-INFO: Exited search early on spectrum 91319
-INFO: Exited search early on spectrum 91349
+INFO: Exited search early on spectrum 91164
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 91363
+INFO: Exited search early on spectrum 91169
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 91378
+INFO: Exited search early on spectrum 91192
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 91382
-INFO: Exited search early on spectrum 91455
-INFO: Exited search early on spectrum 91475
+INFO: Exited search early on spectrum 91249
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 91483
+INFO: Exited search early on spectrum 91257
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 91485
+INFO: Exited search early on spectrum 91292
+INFO: Exited search early on spectrum 91337
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 91502
+INFO: Exited search early on spectrum 91346
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 91565
+INFO: Exited search early on spectrum 91350
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 91587
+INFO: Exited search early on spectrum 91355
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 91596
+INFO: Exited search early on spectrum 91365
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 91622
+INFO: Exited search early on spectrum 91392
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 91653
-INFO: Exited search early on spectrum 91679
+INFO: Exited search early on spectrum 91406
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91424
+INFO: Exited search early on spectrum 91443
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91451
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91456
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91457
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91466
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91469
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91470
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91514
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91519
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91522
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91523
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91530
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91540
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91552
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91570
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91571
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91577
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91586
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91608
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91617
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91624
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91625
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91647
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91657
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91720
+INFO: Exited search early on spectrum 91758
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91762
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91770
+INFO: Not Enough Peaks
+INFO: Exited search early on spectrum 91771
 INFO: Not Enough Peaks
 INFO: Exited search early on spectrum 91786
+INFO: Exited search early on spectrum 91846
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 91814
+INFO: Exited search early on spectrum 91860
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 91857
+INFO: Exited search early on spectrum 91922
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 91919
+INFO: Exited search early on spectrum 91923
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 91934
+INFO: Exited search early on spectrum 91930
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92034
-INFO: Exited search early on spectrum 92042
-INFO: Exited search early on spectrum 92101
+INFO: Exited search early on spectrum 91946
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92102
+INFO: Exited search early on spectrum 92024
+INFO: Exited search early on spectrum 92207
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92107
+INFO: Exited search early on spectrum 93446
+INFO: Exited search early on spectrum 93614
+INFO: Exited search early on spectrum 93681
+INFO: Exited search early on spectrum 93809
+INFO: Exited search early on spectrum 94028
+INFO: Exited search early on spectrum 94249
+INFO: Exited search early on spectrum 94261
+INFO: Exited search early on spectrum 94304
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92108
+INFO: Exited search early on spectrum 94765
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92111
+INFO: Exited search early on spectrum 94770
+INFO: Exited search early on spectrum 94798
+INFO: Exited search early on spectrum 94842
+INFO: Exited search early on spectrum 94908
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92112
+INFO: Exited search early on spectrum 94912
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92115
+INFO: Exited search early on spectrum 94917
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92119
+INFO: Exited search early on spectrum 94923
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92223
+INFO: Exited search early on spectrum 94931
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92227
+INFO: Exited search early on spectrum 94935
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92259
+INFO: Exited search early on spectrum 94953
 INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92291
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92292
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92305
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92319
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92323
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92335
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92339
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92358
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92366
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92367
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92386
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92394
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92399
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92400
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92417
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92427
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92431
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92432
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92439
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92454
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92458
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92470
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92508
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92534
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92535
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92551
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92556
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92568
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92573
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92576
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92577
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92583
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92599
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92604
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92618
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92799
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92817
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92831
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92841
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92909
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92910
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92918
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92919
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92947
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92956
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92959
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92973
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92978
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92985
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 92986
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93099
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93104
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93143
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93174
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93195
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93214
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93228
-INFO: Exited search early on spectrum 93229
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93242
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93257
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93263
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93268
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93279
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93288
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93289
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93292
-INFO: Exited search early on spectrum 93303
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93313
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93314
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93337
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93340
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93411
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93451
-INFO: Exited search early on spectrum 93460
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93492
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93493
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93494
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93517
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93530
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93564
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93592
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93617
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93629
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93635
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93642
-INFO: Exited search early on spectrum 93656
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93657
-INFO: Exited search early on spectrum 93676
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93687
-INFO: Exited search early on spectrum 93700
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93749
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93751
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93756
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93759
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93777
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93781
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93787
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93798
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93812
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93836
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 93842
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 94030
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 94135
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 94151
-INFO: Exited search early on spectrum 94226
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 94280
-INFO: Exited search early on spectrum 94309
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 94377
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 94411
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 95219
-INFO: Exited search early on spectrum 95547
-INFO: Exited search early on spectrum 95659
-INFO: Exited search early on spectrum 96410
-INFO: Exited search early on spectrum 96415
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 96623
-INFO: Not Enough Peaks
-INFO: Exited search early on spectrum 96704
-INFO: Exited search early on spectrum 96726
-INFO: Not Enough Peaks
-INFO: Elapsed total time: 44.5 s
-INFO: Elapsed time per MS2 spectrum conversion: 0.000982 s
-INFO: There are 6321 MS1 spectra in the input file.
-INFO: There are 45288 MS2 spectra in the input file.
-INFO: There are 45257 MS3 spectra in the input file.
-INFO: Of those spectra, 5809 were hits in the search for the current criteria
-INFO: Of the hits 193 were decoys and 5616 were targets
-INFO: False Discovery rate: 0.033224
+INFO: Exited search early on spectrum 94993
+INFO: Exited search early on spectrum 95035
+INFO: Exited search early on spectrum 95157
+INFO: Exited search early on spectrum 95289
+INFO: Elapsed total time: 42.3 s
+INFO: Elapsed time per MS2 spectrum conversion: 0.000954 s
+INFO: There are 6603 MS1 spectra in the input file.
+INFO: There are 44379 MS2 spectra in the input file.
+INFO: There are 44336 MS3 spectra in the input file.
+INFO: Of those spectra, 2463 were hits in the search for the current criteria
+INFO: Of the hits 40 were decoys and 2423 were targets
+INFO: False Discovery rate: 0.016240

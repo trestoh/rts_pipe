@@ -164,8 +164,6 @@ int main(int argc, char * argv[])
 	//std::ofstream calc_out(argv[3]);
 
 	//ofstream for when we are writing to spectrum for tide to use
-	std::ofstream out("./temp/spec_0.ms2");
-	out.close();
 
 	std::string remove_index_ = "";
 	string output_file_name_;
@@ -244,23 +242,7 @@ int main(int argc, char * argv[])
 		mysrandom(StringUtils::FromString<unsigned>(Params::GetString("seed")));
 	}
 
-	//std::cout << "Trying to make a Search App" << std::endl;
-	//TideSearchApplication pass;
-	//std::cout << "Made the search app" << std::endl;
-
-	//PROBLEM AREA, TEAR OUT THE OLD FUNCTION, GET RID OF THE APP??
-	/*
-	*
-	*
-	* PROCESS PARAMS FOR TIDE SEARCH BY HAND
-	* Can't get this to work so it has been eliminated for now. I think the main replicates some of this functionality anyway?
-	*
-	*/
-
-	//
-	//	EXTREMELY DUMB CODE: Index hard coded, needs to be changed
-	//
-
+	//re parse arguments looking for the custom options we've added
 	argParser.Parse(argc, argv, appArgs);
 	const map<string, string> options = argParser.GetOptions();
 	map<string, string>::const_iterator oms_arg = options.find("oms-src");
@@ -295,18 +277,11 @@ int main(int argc, char * argv[])
 	else
 		deltacn = 0.08;
 
-	//string index = "C:\\dev\\real_time_seq\\oms_tide_2013_tests\\oms_tide_2013_tests\\human-index";
+	
 	string peptides_file = FileUtils::Join(index, "pepix");
 	string proteins_file = FileUtils::Join(index, "protix");
 	string auxlocs_file = FileUtils::Join(index, "auxlocs");
 
-
-	/*
-	const string index = "C:\\dev\\real_time_seq\\oms_tide_2013_tests\\oms_tide_2013_tests\\human-index";
-	if (!FileUtils::Exists(index)) {
-	carp(CARP_FATAL, "'%s' does not exist", index.c_str());
-	}
-	*/
 	/*
 	*
 	* Ignore case where database is not already an index for now, this involves invoking ANOTHER
@@ -340,8 +315,6 @@ int main(int argc, char * argv[])
 	}
 	*/
 
-	//problems here, peptide stuff is failing
-
 
 	// Index is Tide index directory
 	pb::Header pepts_header;
@@ -359,8 +332,12 @@ int main(int argc, char * argv[])
 	Params::Set("digestion", digestString);
 	Params::Set("isotopic-mass", pepsHeader.monoisotopic_precursor() ? "mono" : "average");
 
-	// run param-medic? 
-	// May need param-medic later but for now it seems like no
+	
+	/*
+		The following stuff is for if we want to try to use "auto precursors," to estimate better windows. We do not
+	
+	*/
+
 	/*
 	const string autoPrecursor = Params::GetString("auto-precursor-window");
 	const string autoFragment = Params::GetString("auto-mz-bin-width");
@@ -467,6 +444,13 @@ int main(int argc, char * argv[])
 
 	carp(CARP_INFO, "Running tide-search...");
 
+	/*
+	
+		This section allows for threading, which we are not currently using but probably could? (set up index in one space
+		of memory and have threads as querying entities. Have to refactor things
+	
+	*/
+
 	// prevent different output formats from using threading
 	if (Params::GetBool("peptide-centric-search") == true) {
 		NUM_THREADS = 1;
@@ -486,6 +470,9 @@ int main(int argc, char * argv[])
 	}
 	carp(CARP_INFO, "Number of Threads: %d", NUM_THREADS); // prints the number of threads
 
+	/*
+			END THREADING SETUP
+	*/
 
 	double window = Params::GetDouble("precursor-window");
 	WINDOW_TYPE_T window_type = string_to_window_type(Params::GetString("precursor-window-type"));
@@ -629,10 +616,6 @@ int main(int argc, char * argv[])
 			PROTEIN_LEVEL_DECOYS = true;
 		}
 	}
-
-
-
-	
 	
 	
 
@@ -904,6 +887,8 @@ int main(int argc, char * argv[])
 	double max_time = 0.0;
 	std::vector<double> times;
 	std::vector<std::string> pep_hits;
+
+	carp(CARP_INFO, "Hitting main loop");
 
 	for (int i = spectrum_it; i < msExperimentProfile.getNrSpectra(); i++)
 	{
@@ -1626,10 +1611,29 @@ void collectScoresCompiled(
 		context.Rdi = (DWORD64)results;
 
 		restored = true;
-		RtlRestoreContext(&context, NULL);
+		try{
+			RtlRestoreContext(&context, NULL);
+		}
+
+		catch (...)
+		{
+			carp(CARP_INFO, "Bad Bad Not Good...");
+		}
+
+
 	}
 	else {
-		((void(*)(void))prog)();
+		try{
+			((void(*)(void))prog)();
+		}
+
+		catch (...)
+		{
+			//carp(CARP_INFO, "Bad Bad Not Good...");
+			carp(CARP_INFO, "Queue Dump");
+			active_peptide_queue->dumpQueue(charge);
+		}
+
 	}
 
 	restored = false;

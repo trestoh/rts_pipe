@@ -3,7 +3,7 @@
   <Options>
     <Solution>oms_tide_2013_tests.sln</Solution>
     <CollectionMethod>Sampling</CollectionMethod>
-    <AllocationMethod>None</AllocationMethod>
+    <AllocationMethod>Allocation</AllocationMethod>
     <AddReport>true</AddReport>
     <ResourceBasedAnalysisSelected>true</ResourceBasedAnalysisSelected>
     <UniqueReport>Timestamp</UniqueReport>
@@ -50,7 +50,7 @@
       <LaunchMethod>Executable</LaunchMethod>
       <ExecutablePath>x64\Release\oms_tide_2013_tests.exe</ExecutablePath>
       <StartupDirectory>oms_tide_2013_tests\</StartupDirectory>
-      <Arguments>--overwrite T --compute-sp T --oms-src C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\HELA_2017-04-27_294.mzML</Arguments>
+      <Arguments>--overwrite T --compute-sp T --precursor-window-type ppm --precursor-window 20 --oms-src C:\Users\tstohrer.AD\Documents\test_data\PC362_TMT_Phospho1B.mzML --oms-index C:\dev\workspace\human-phospho-1-index --output-dir PC362_1Phos_1B_data --xc1 1.8 --xc2 2.0 --xc3 3.5 --deltacn 0.08</Arguments>
       <NetAppHost>IIS</NetAppHost>
       <NetBrowser>InternetExplorer</NetBrowser>
       <ExcludeSmallFuncs>true</ExcludeSmallFuncs>
@@ -66,11 +66,6 @@
       <ProjName>oms_tide_2013_tests</ProjName>
     </ProjBinary>
   </Binaries>
-  <Reports>
-    <Report>
-      <Path>oms_tide_2013_tests171027.vsp</Path>
-    </Report>
-  </Reports>
   <Launches>
     <ProjBinary>
       <Path>:PB:{5404D93E-5930-41C8-AB7C-75B315C316AF}|oms_tide_2013_tests\oms_tide_2013_tests.vcxproj</Path>

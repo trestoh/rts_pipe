@@ -6,6 +6,7 @@
 
 #include <deque>
 #include <gflags/gflags.h>
+#include "io/carp.h"
 #include "app/tide/records.h"
 #include "peptides.pb.h"
 #include "app/tide/peptide.h"
@@ -53,6 +54,20 @@ bool ActivePeptideQueue2::isWithinIsotope(vector<double>* min_mass, vector<doubl
 		}
 	}
 	return false;
+}
+
+void ActivePeptideQueue2::dumpQueue(int dump_charge) const
+{
+	deque<Peptide*>::const_iterator walker = iter_;
+	Peptide* temp_pep = *walker;
+	while (walker != end_)
+	{
+		carp(CARP_INFO, "Peptide has sequence %s", temp_pep->SeqWithMods().c_str());
+		carp(CARP_INFO, "Program at address %llx", temp_pep->Prog(dump_charge));
+		walker++;
+		temp_pep = *walker;
+	}
+
 }
 
 int ActivePeptideQueue2::SetActiveRange(vector<double>* min_mass, vector<double>* max_mass, double min_range, double max_range, vector<bool>* candidatePeptideStatus) {

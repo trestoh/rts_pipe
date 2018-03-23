@@ -17,6 +17,7 @@
 
 
 #include <deque>
+#include "io/carp.h" 
 #include "peptides.pb.h"
 #include "app/tide/peptide.h"
 #include "app/tide/theoretical_peak_set.h"
@@ -62,6 +63,8 @@ public:
 
 	int ActiveTargets() const { return active_targets_; }
 	int ActiveDecoys() const { return active_decoys_; }
+
+	void dumpQueue(int dump_charge) const;
 
 	void ReportPeptideHits(Peptide* peptide);
 	void SetOutputs(OutputFiles* output_files, const vector<const pb::AuxLocation*>* locations, int top_matches,
