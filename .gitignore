@@ -1,4 +1,5 @@
 human-index/
-
 *.sdf
 *.opensdf
+*tide-search.target.txt
+*.pdb

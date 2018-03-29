@@ -17,6 +17,7 @@
 
 
 #include <deque>
+#include "io/carp.h" 
 #include "peptides.pb.h"
 #include "app/tide/peptide.h"
 #include "app/tide/theoretical_peak_set.h"
@@ -62,6 +63,8 @@ public:
 
 	int ActiveTargets() const { return active_targets_; }
 	int ActiveDecoys() const { return active_decoys_; }
+
+	void dumpQueue(int dump_charge) const;
 
 	void ReportPeptideHits(Peptide* peptide);
 	void SetOutputs(OutputFiles* output_files, const vector<const pb::AuxLocation*>* locations, int top_matches,
@@ -128,21 +131,7 @@ private:
 	// Set by most recent call to SetActiveRange()
 	double min_mass_, max_mass_;
 
-	// While we maintain a window of active peptides, we allocate and relase them
-	// on a first-in, first-out basis. We use FifoAllocators 
-	// (see fifo_alloc.{h,cc}) to manage memory efficiently for this usage 
-	// pattern. As we read in peptides and compute the theoretical peaks, we
-	// use compiler_prog1 and compiler_prog2 to generate code on the fly for
-	// taking dot products with the theoretical peak set for each peptide. 
-	// FifoAllocators allow us to execute the code thus generated,
-	// since they set the proper permissions. The set of theoretical peaks for 
-	// "dotting" with charge 1 and charge 2 spectra, have different
-	// FifoAllocators and TheoreticalPeakCompilers.
-	FifoAllocator fifo_alloc_peptides_;
-	FifoAllocator fifo_alloc_prog1_;
-	FifoAllocator fifo_alloc_prog2_;
-	TheoreticalPeakCompiler* compiler_prog1_;
-	TheoreticalPeakCompiler* compiler_prog2_;
+
 
 	// Number of targets and decoys in active range
 	int active_targets_, active_decoys_;

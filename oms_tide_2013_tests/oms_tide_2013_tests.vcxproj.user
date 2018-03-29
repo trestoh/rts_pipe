@@ -2,11 +2,11 @@
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>--overwrite T --compute-sp T --oms-src C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\HELA_2017-04-27_294.mzML</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>--overwrite T --compute-sp T --precursor-window-type ppm --precursor-window 20 --oms-src C:\Users\tstohrer.AD\Documents\test_data\PC362_TMT_Phospho2B.mzML --oms-index C:\dev\workspace\human-phospho-1-index --output-dir PC362_1Phos_1B_data --xc1 1.8 --xc2 2.0 --xc3 3.5 --deltacn 0.08</LocalDebuggerCommandArguments>
     <LocalDebuggerEnvironment>_NO_DEBUG_HEAP=1 </LocalDebuggerEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>--oms-src C:\dev\notthere.txt --overwrite T</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>--overwrite T --compute-sp T --precursor-window-type ppm --precursor-window 20 --oms-src C:\Users\tstohrer.AD\Documents\test_data\PC362_TMT_Phospho1B.mzML --oms-index C:\dev\workspace\human-phospho-1-index --output-dir PC362_1Phos_1B_data --xc1 1.8 --xc2 2.0 --xc3 3.5 --deltacn 0.08</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>
