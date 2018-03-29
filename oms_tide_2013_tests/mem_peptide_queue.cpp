@@ -6,6 +6,7 @@
 
 #include <deque>
 #include <gflags/gflags.h>
+#include "io/carp.h"
 #include "app/tide/records.h"
 #include "peptides.pb.h"
 #include "app/tide/peptide.h"
@@ -17,8 +18,6 @@
 #include "app/tide/active_peptide_queue.h"
 #define CHECK(x) GOOGLE_CHECK((x))
 
-const int32_t fifo_page_size = 1;
-
 
 ActivePeptideQueue2::ActivePeptideQueue2(InMemIndex* index, RecordReader* reader, const vector<const pb::Protein*>& proteins)
 	: reader_(reader),
@@ -26,13 +25,8 @@ ActivePeptideQueue2::ActivePeptideQueue2(InMemIndex* index, RecordReader* reader
 	theoretical_peak_set_(2000),   // probably overkill, but no harm
 	theoretical_b_peak_set_(200),  // probably overkill, but no harm
 	active_targets_(0), active_decoys_(0),
-	fifo_alloc_peptides_(fifo_page_size << 20),
-	fifo_alloc_prog1_(fifo_page_size << 20),
-	fifo_alloc_prog2_(fifo_page_size << 20),
 	all_peptides(index){
 	CHECK(reader_->OK());
-	compiler_prog1_ = new TheoreticalPeakCompiler(&fifo_alloc_prog1_);
-	compiler_prog2_ = new TheoreticalPeakCompiler(&fifo_alloc_prog2_);
 	peptide_centric_ = false;
 	elution_window_ = 0;
 }
@@ -41,12 +35,6 @@ ActivePeptideQueue2::~ActivePeptideQueue2() {
 	deque<Peptide*>::iterator i = queue_.begin();
 	// for (; i != queue_.end(); ++i)
 	//   delete (*i)->PB();
-	fifo_alloc_peptides_.ReleaseAll();
-	fifo_alloc_prog1_.ReleaseAll();
-	fifo_alloc_prog2_.ReleaseAll();
-
-	delete compiler_prog1_;
-	delete compiler_prog2_;
 }
 
 // Compute the theoretical peaks of the peptide in the "back" of the queue
@@ -54,8 +42,6 @@ ActivePeptideQueue2::~ActivePeptideQueue2() {
 void ActivePeptideQueue2::ComputeTheoreticalPeaksBack() {
 	theoretical_peak_set_.Clear();
 	Peptide* peptide = queue_.back();
-	peptide->ComputeTheoreticalPeaks(&theoretical_peak_set_, current_pb_peptide_,
-		compiler_prog1_, compiler_prog2_);
 }
 
 bool ActivePeptideQueue2::isWithinIsotope(vector<double>* min_mass, vector<double>* max_mass, double mass, int* isotope_idx) {
@@ -68,6 +54,20 @@ bool ActivePeptideQueue2::isWithinIsotope(vector<double>* min_mass, vector<doubl
 		}
 	}
 	return false;
+}
+
+void ActivePeptideQueue2::dumpQueue(int dump_charge) const
+{
+	deque<Peptide*>::const_iterator walker = iter_;
+	Peptide* temp_pep = *walker;
+	while (walker != end_)
+	{
+		carp(CARP_INFO, "Peptide has sequence %s", temp_pep->SeqWithMods().c_str());
+		carp(CARP_INFO, "Program at address %llx", temp_pep->Prog(dump_charge));
+		walker++;
+		temp_pep = *walker;
+	}
+
 }
 
 int ActivePeptideQueue2::SetActiveRange(vector<double>* min_mass, vector<double>* max_mass, double min_range, double max_range, vector<bool>* candidatePeptideStatus) {
@@ -83,19 +83,10 @@ int ActivePeptideQueue2::SetActiveRange(vector<double>* min_mass, vector<double>
 	//know how much that optimization would actually help
 	while (!queue_.empty()) 
 	{
-		Peptide* peptide = queue_.front();
-		//print hits in peptide-centric search
-		peptide->spectrum_matches_array.clear();
-		vector<Peptide::spectrum_matches>().swap(peptide->spectrum_matches_array);
 		// would delete peptide's underlying pb::Peptide;
 		queue_.pop_front();
 		//    delete peptide;
 	}
-	
-	//clean out queue
-	fifo_alloc_peptides_.ReleaseAll();
-	fifo_alloc_prog1_.ReleaseAll();
-	fifo_alloc_prog2_.ReleaseAll();
 
 	// Enqueue all peptides that are not yet queued but are lighter than
 	// max_range. For each new enqueued peptide compute the corresponding
@@ -131,15 +122,12 @@ int ActivePeptideQueue2::SetActiveRange(vector<double>* min_mass, vector<double>
 
 	else
 	{
-		while (pep_it->mass() <= max_range)
+		while ( pep_it != all_peptides->pep_array.cend() && (*pep_it)->Mass() <= max_range)
 		{
-			current_pb_peptide_ = *pep_it;
-			Peptide* peptide = new(&fifo_alloc_peptides_) Peptide(current_pb_peptide_, proteins_, &fifo_alloc_peptides_);
-			queue_.push_back(peptide);
-			if (peptide->Mass() > max_range) {
+			queue_.push_back(*pep_it);
+			if ((*pep_it)->Mass() > max_range) {
 				break;
 			}
-			ComputeTheoreticalPeaksBack();
 			pep_it++;
 		}
 	}
@@ -150,7 +138,7 @@ int ActivePeptideQueue2::SetActiveRange(vector<double>* min_mass, vector<double>
 
 	// by now, if not EOF, then the last (and only the last) enqueued
 	// peptide is too heavy
-	assert(!queue_.empty() || done);
+	//assert(!queue_.empty() || done);
 
 	// Set up iterator for use with HasNext(),
 	// GetPeptide(), and NextPeptide(). Return the number of enqueued peptides.
@@ -221,12 +209,12 @@ int ActivePeptideQueue2::SetActiveRangeBIons(vector<double>* min_mass, vector<do
 		//    delete peptide;
 	}
 	if (queue_.empty()) {
-		fifo_alloc_peptides_.ReleaseAll();
+		//fifo_alloc_peptides_.ReleaseAll();
 	}
 	else {
 		Peptide* peptide = queue_.front();
 		// Free all peptides up to, but not including peptide.
-		fifo_alloc_peptides_.Release(peptide);
+		//fifo_alloc_peptides_.Release(peptide);
 	}
 
 	// Enqueue all peptides that are not yet queued but are lighter than
@@ -242,13 +230,13 @@ int ActivePeptideQueue2::SetActiveRangeBIons(vector<double>* min_mass, vector<do
 				// we would delete current_pb_peptide_;
 				continue; // skip peptides that fall below min_range
 			}
-			Peptide* peptide = new(&fifo_alloc_peptides_)
-				Peptide(current_pb_peptide_, proteins_, &fifo_alloc_peptides_);
-			queue_.push_back(peptide);
+			//Peptide* peptide = new(&fifo_alloc_peptides_)
+				//Peptide(current_pb_peptide_, proteins_, &fifo_alloc_peptides_);
+			//queue_.push_back(peptide);
 			ComputeBTheoreticalPeaksBack();
-			if (peptide->Mass() > max_range) {
-				break;
-			}
+			//if (peptide->Mass() > max_range) {
+			//	break;
+			//}
 		}
 	}
 	// by now, if not EOF, then the last (and only the last) enqueued
@@ -314,21 +302,21 @@ int ActivePeptideQueue2::CountAAFrequency(
 
 	while (!(reader_->Done())) { // read all peptides in index
 		reader_->Read(&current_pb_peptide_);
-		Peptide* peptide = new(&fifo_alloc_peptides_) Peptide(current_pb_peptide_, proteins_, &fifo_alloc_peptides_);
+		//Peptide* peptide = new(&fifo_alloc_peptides_) Peptide(current_pb_peptide_, proteins_, &fifo_alloc_peptides_);
 
-		double* dAAResidueMass = peptide->getAAMasses(); //retrieves the amino acid masses, modifications included
+		//double* dAAResidueMass = peptide->getAAMasses(); //retrieves the amino acid masses, modifications included
 
-		int nLen = peptide->Len(); //peptide length
-		++nvAAMassCounterN[(unsigned int)(dAAResidueMass[0] / binWidth + 1.0 - binOffset)];
-		for (i = 1; i < nLen - 1; ++i) {
-			++nvAAMassCounterI[(unsigned int)(dAAResidueMass[i] / binWidth + 1.0 - binOffset)];
-			++cntInside;
-		}
-		++nvAAMassCounterC[(unsigned int)(dAAResidueMass[nLen - 1] / binWidth + 1.0 - binOffset)];
-		++cntTerm;
+		//int nLen = peptide->Len(); //peptide length
+		//++nvAAMassCounterN[(unsigned int)(dAAResidueMass[0] / binWidth + 1.0 - binOffset)];
+		//for (i = 1; i < nLen - 1; ++i) {
+		//	++nvAAMassCounterI[(unsigned int)(dAAResidueMass[i] / binWidth + 1.0 - binOffset)];
+		//	++cntInside;
+		//}
+		//++nvAAMassCounterC[(unsigned int)(dAAResidueMass[nLen - 1] / binWidth + 1.0 - binOffset)];
+		//++cntTerm;
 
-		delete[] dAAResidueMass;
-		fifo_alloc_peptides_.ReleaseAll();
+		//delete[] dAAResidueMass;
+		//fifo_alloc_peptides_.ReleaseAll();
 	}
 
 	//calculate the unique masses
