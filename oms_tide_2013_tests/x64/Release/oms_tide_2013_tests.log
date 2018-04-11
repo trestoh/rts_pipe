@@ -1,91 +1,95 @@
-﻿Build started 3/21/2018 4:35:43 PM.
-     1>Project "C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests.vcxproj" on node 2 (Build target(s)).
+﻿Build started 3/29/2018 10:54:30 AM.
+     1>Project "C:\dev\rts-ms3\rts_pipe\oms_tide_2013_tests\oms_tide_2013_tests.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"C:\dev\crux-src-7\ext\build\src\ProteoWizard\libraries\boost_1_56_0" /I"C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include" /IC:\dev\OpenMS_2018\src\openms\include /I"C:\dev\qt-src-4.8.7-2018\include\QtCore" /I"C:\dev\qt-src-4.8.7-2018\include" /I"C:\dev\crux-src-7\ext\include" /I"C:\dev\crux-src-7\src" /I"C:\dev\crux-src-7\src\app\tide\protoobj" /I"C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\src" /I"C:\dev\crux-src-7\ext\build\src\comet\MSToolkit\include" /I"C:\dev\crux-src-7\src\app\tide" /ZI /nologo /W3 /WX- /sdl /Od /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"x64\Release\oms_tide_2013_tests.pch" /Fo"x64\Release\\" /Fd"x64\Release\project.pdb" /Gd /TP /wd4996 /errorReport:prompt /EHa mem_peptide_queue.cpp oms_tide_2013_tests.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"C:\dev\crux-src-03282018\ext\build\src\ProteoWizard\libraries\boost_1_56_0" /I"C:\dev\OpenMS-2.2.0-src\src\openms\include" /I"C:\dev\openms-220\src\openms\include" /I"C:\dev\qt-src-4.8.7\include\QtCore" /I"C:\dev\qt-src-4.8.7\include" /I"C:\dev\crux-src-03282018\ext\include" /I"C:\dev\crux-src-03282018\src" /I"C:\dev\crux-src-03282018\src\app\tide\protoobj" /I"C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src" /I"C:\dev\crux-src-03282018\ext\build\src\comet\MSToolkit\include" /I"C:\dev\crux-src-03282018\src\app\tide" /ZI /nologo /W3 /WX- /sdl /Od /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"x64\Release\oms_tide_2013_tests.pch" /Fo"x64\Release\\" /Fd"x64\Release\project.pdb" /Gd /TP /wd4996 /errorReport:prompt /EHa stdafx.cpp
+     1>cl : Command line warning D9038: /ZI is not supported on this platform; enabling /Zi instead
+     1>cl : Command line warning D9025: overriding '/EHs' with '/EHa'
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"C:\dev\crux-src-03282018\ext\build\src\ProteoWizard\libraries\boost_1_56_0" /I"C:\dev\OpenMS-2.2.0-src\src\openms\include" /I"C:\dev\openms-220\src\openms\include" /I"C:\dev\qt-src-4.8.7\include\QtCore" /I"C:\dev\qt-src-4.8.7\include" /I"C:\dev\crux-src-03282018\ext\include" /I"C:\dev\crux-src-03282018\src" /I"C:\dev\crux-src-03282018\src\app\tide\protoobj" /I"C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src" /I"C:\dev\crux-src-03282018\ext\build\src\comet\MSToolkit\include" /I"C:\dev\crux-src-03282018\src\app\tide" /ZI /nologo /W3 /WX- /sdl /Od /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"x64\Release\oms_tide_2013_tests.pch" /Fo"x64\Release\\" /Fd"x64\Release\project.pdb" /Gd /TP /wd4996 /errorReport:prompt /EHa mem_peptide_queue.cpp oms_tide_2013_tests.cpp
      1>cl : Command line warning D9038: /ZI is not supported on this platform; enabling /Zi instead
      1>cl : Command line warning D9025: overriding '/EHs' with '/EHa'
          mem_peptide_queue.cpp
-     1>C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1445): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-     1>C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1447): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-     1>C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1449): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-     1>C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1455): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-     1>C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1457): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-     1>C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1463): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-     1>C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1465): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-     1>C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1470): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-     1>C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1474): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-     1>C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1478): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-     1>C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\src\google/protobuf/io/coded_stream.h(902): warning C4244: '=' : conversion from '__int64' to 'int', possible loss of data
-     1>C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\src\google/protobuf/io/coded_stream.h(1078): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
-     1>C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(142): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-     1>C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(237): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
-     1>C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(305): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
-     1>c:\dev\crux-src-7\src\app\tide\spectrum_collection.h(59): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
-     1>c:\dev\crux-src-7\src\app\tide\spectrum_collection.h(62): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
-     1>c:\dev\crux-src-7\src\app\tide\spectrum_collection.h(95): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
-     1>c:\dev\crux-src-7\src\app\tide\max_mz.h(58): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
-     1>C:\dev\crux-src-7\src\app/tide/peptide.h(79): warning C4244: 'initializing' : conversion from 'google::protobuf::int64' to 'int', possible loss of data
-     1>C:\dev\crux-src-7\src\app/tide/peptide.h(110): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\dev\crux-src-7\src\parameter.h(43): warning C4305: 'initializing' : truncation from 'double' to 'const FLOAT_T'
-     1>c:\dev\crux-src-7\src\parameter.h(46): warning C4305: 'initializing' : truncation from 'double' to 'const FLOAT_T'
-     1>C:\dev\crux-src-7\src\app/tide/compiler.h(197): warning C4244: 'initializing' : conversion from '__int64' to 'int', possible loss of data
-     1>c:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests\inmemindex.h(40): warning C4291: 'void *Peptide::operator new(size_t,FifoAllocator *)' : no matching operator delete found; memory will not be freed if initialization throws an exception
-                 C:\dev\crux-src-7\src\app/tide/peptide.h(154) : see declaration of 'Peptide::operator new'
+     1>C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1445): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+     1>C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1447): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+     1>C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1449): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+     1>C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1455): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+     1>C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1457): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+     1>C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1463): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+     1>C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1465): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+     1>C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1470): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+     1>C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1474): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+     1>C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src\google/protobuf/descriptor.h(1478): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+     1>C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src\google/protobuf/io/coded_stream.h(902): warning C4244: '=' : conversion from '__int64' to 'int', possible loss of data
+     1>C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src\google/protobuf/io/coded_stream.h(1078): warning C4244: 'return' : conversion from '__int64' to 'int', possible loss of data
+     1>C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(142): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(237): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+     1>C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(305): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+     1>c:\dev\crux-src-03282018\src\app\tide\spectrum_collection.h(59): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+     1>c:\dev\crux-src-03282018\src\app\tide\spectrum_collection.h(62): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+     1>c:\dev\crux-src-03282018\src\app\tide\spectrum_collection.h(114): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+     1>c:\dev\crux-src-03282018\src\app\tide\max_mz.h(58): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>C:\dev\crux-src-03282018\src\app/tide/peptide.h(79): warning C4244: 'initializing' : conversion from 'google::protobuf::int64' to 'int', possible loss of data
+     1>C:\dev\crux-src-03282018\src\app/tide/peptide.h(110): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\dev\crux-src-03282018\src\parameter.h(43): warning C4305: 'initializing' : truncation from 'double' to 'const FLOAT_T'
+     1>c:\dev\crux-src-03282018\src\parameter.h(46): warning C4305: 'initializing' : truncation from 'double' to 'const FLOAT_T'
+     1>C:\dev\crux-src-03282018\src\app/tide/compiler.h(197): warning C4244: 'initializing' : conversion from '__int64' to 'int', possible loss of data
+     1>c:\dev\rts-ms3\rts_pipe\oms_tide_2013_tests\inmemindex.h(40): warning C4291: 'void *Peptide::operator new(size_t,FifoAllocator *)' : no matching operator delete found; memory will not be freed if initialization throws an exception
+                 C:\dev\crux-src-03282018\src\app/tide/peptide.h(154) : see declaration of 'Peptide::operator new'
      1>mem_peptide_queue.cpp(295): warning C4244: 'initializing' : conversion from 'double' to 'const unsigned int', possible loss of data
          oms_tide_2013_tests.cpp
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/FORMAT/XMLFile.h(94): warning C4251: 'OpenMS::Internal::XMLFile::schema_location_' : class 'OpenMS::String' needs to have dll-interface to be used by clients of class 'OpenMS::Internal::XMLFile'
-                 C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/String.h(57) : see declaration of 'OpenMS::String'
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/FORMAT/XMLFile.h(97): warning C4251: 'OpenMS::Internal::XMLFile::schema_version_' : class 'OpenMS::String' needs to have dll-interface to be used by clients of class 'OpenMS::Internal::XMLFile'
-                 C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/String.h(57) : see declaration of 'OpenMS::String'
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/FORMAT/XMLFile.h(100): warning C4251: 'OpenMS::Internal::XMLFile::enforced_encoding_' : class 'OpenMS::String' needs to have dll-interface to be used by clients of class 'OpenMS::Internal::XMLFile'
-                 C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/String.h(57) : see declaration of 'OpenMS::String'
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/CONCEPT/Exception.h(154): warning C4251: 'OpenMS::Exception::BaseException::name_' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'OpenMS::Exception::BaseException'
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/CONCEPT/Exception.h(157): warning C4251: 'OpenMS::Exception::BaseException::what_' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'OpenMS::Exception::BaseException'
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/CONCEPT/PrecisionWrapper.h(107): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/CONCEPT/PrecisionWrapper.h(108): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/CONCEPT/PrecisionWrapper.h(110): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/DPosition.h(183): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/DPosition.h(184): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/DATASTRUCTURES/DPosition.h(187): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/Peak1D.h(171): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/Peak1D.h(172): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/Peak1D.h(174): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/ChromatogramPeak.h(180): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/ChromatogramPeak.h(181): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/ChromatogramPeak.h(183): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/METADATA/ProteinHit.h(69): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/METADATA/ProteinHit.h(70): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/METADATA/ProteinHit.h(72): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/METADATA/ProteinHit.h(88): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/METADATA/ProteinHit.h(89): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/METADATA/ProteinHit.h(91): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/MSSpectrum.h(210): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/MSSpectrum.h(211): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/MSSpectrum.h(222): warning C4068: unknown pragma
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/MSExperiment.h(316): warning C4003: not enough actual parameters for macro 'max'
-     1>C:\dev\OpenMS_src\OpenMS-2.2-new\OpenMS-2.2.0\src\openms\include\OpenMS/KERNEL/MSExperiment.h(359): warning C4003: not enough actual parameters for macro 'max'
-     1>C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(142): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
-     1>C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(237): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
-     1>C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(305): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
-     1>c:\dev\crux-src-7\src\parameter.h(43): warning C4305: 'initializing' : truncation from 'double' to 'const FLOAT_T'
-     1>c:\dev\crux-src-7\src\parameter.h(46): warning C4305: 'initializing' : truncation from 'double' to 'const FLOAT_T'
-     1>c:\dev\crux-src-7\src\app\tide\spectrum_collection.h(59): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
-     1>c:\dev\crux-src-7\src\app\tide\spectrum_collection.h(62): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
-     1>c:\dev\crux-src-7\src\app\tide\spectrum_collection.h(95): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
-     1>c:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests\inmemindex.h(40): warning C4291: 'void *Peptide::operator new(size_t,FifoAllocator *)' : no matching operator delete found; memory will not be freed if initialization throws an exception
-                 c:\dev\crux-src-7\src\app\tide/peptide.h(154) : see declaration of 'Peptide::operator new'
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/FORMAT/XMLFile.h(94): warning C4251: 'OpenMS::Internal::XMLFile::schema_location_' : class 'OpenMS::String' needs to have dll-interface to be used by clients of class 'OpenMS::Internal::XMLFile'
+                 C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/DATASTRUCTURES/String.h(57) : see declaration of 'OpenMS::String'
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/FORMAT/XMLFile.h(97): warning C4251: 'OpenMS::Internal::XMLFile::schema_version_' : class 'OpenMS::String' needs to have dll-interface to be used by clients of class 'OpenMS::Internal::XMLFile'
+                 C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/DATASTRUCTURES/String.h(57) : see declaration of 'OpenMS::String'
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/FORMAT/XMLFile.h(100): warning C4251: 'OpenMS::Internal::XMLFile::enforced_encoding_' : class 'OpenMS::String' needs to have dll-interface to be used by clients of class 'OpenMS::Internal::XMLFile'
+                 C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/DATASTRUCTURES/String.h(57) : see declaration of 'OpenMS::String'
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/CONCEPT/Exception.h(154): warning C4251: 'OpenMS::Exception::BaseException::name_' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'OpenMS::Exception::BaseException'
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/CONCEPT/Exception.h(157): warning C4251: 'OpenMS::Exception::BaseException::what_' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'OpenMS::Exception::BaseException'
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/CONCEPT/PrecisionWrapper.h(107): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/CONCEPT/PrecisionWrapper.h(108): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/CONCEPT/PrecisionWrapper.h(110): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/DATASTRUCTURES/DPosition.h(183): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/DATASTRUCTURES/DPosition.h(184): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/DATASTRUCTURES/DPosition.h(187): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/KERNEL/Peak1D.h(171): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/KERNEL/Peak1D.h(172): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/KERNEL/Peak1D.h(174): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/KERNEL/ChromatogramPeak.h(180): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/KERNEL/ChromatogramPeak.h(181): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/KERNEL/ChromatogramPeak.h(183): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/METADATA/ProteinHit.h(69): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/METADATA/ProteinHit.h(70): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/METADATA/ProteinHit.h(72): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/METADATA/ProteinHit.h(88): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/METADATA/ProteinHit.h(89): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/METADATA/ProteinHit.h(91): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/KERNEL/MSSpectrum.h(210): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/KERNEL/MSSpectrum.h(211): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/KERNEL/MSSpectrum.h(222): warning C4068: unknown pragma
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/KERNEL/MSExperiment.h(316): warning C4003: not enough actual parameters for macro 'max'
+     1>C:\dev\OpenMS-2.2.0-src\src\openms\include\OpenMS/KERNEL/MSExperiment.h(359): warning C4003: not enough actual parameters for macro 'max'
+     1>C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(142): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+     1>C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(237): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+     1>C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src\google/protobuf/unknown_field_set.h(305): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+     1>c:\dev\crux-src-03282018\src\parameter.h(43): warning C4305: 'initializing' : truncation from 'double' to 'const FLOAT_T'
+     1>c:\dev\crux-src-03282018\src\parameter.h(46): warning C4305: 'initializing' : truncation from 'double' to 'const FLOAT_T'
+     1>c:\dev\crux-src-03282018\src\app\tide\spectrum_collection.h(59): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+     1>c:\dev\crux-src-03282018\src\app\tide\spectrum_collection.h(62): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+     1>c:\dev\crux-src-03282018\src\app\tide\spectrum_collection.h(114): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+     1>c:\dev\rts-ms3\rts_pipe\oms_tide_2013_tests\inmemindex.h(40): warning C4291: 'void *Peptide::operator new(size_t,FifoAllocator *)' : no matching operator delete found; memory will not be freed if initialization throws an exception
+                 c:\dev\crux-src-03282018\src\app\tide/peptide.h(154) : see declaration of 'Peptide::operator new'
      1>oms_tide_2013_tests.cpp(602): warning C4018: '<' : signed/unsigned mismatch
      1>oms_tide_2013_tests.cpp(810): warning C4018: '<' : signed/unsigned mismatch
      1>oms_tide_2013_tests.cpp(825): warning C4018: '<' : signed/unsigned mismatch
      1>oms_tide_2013_tests.cpp(832): warning C4018: '<' : signed/unsigned mismatch
-     1>oms_tide_2013_tests.cpp(963): warning C4018: '<' : signed/unsigned mismatch
-     1>oms_tide_2013_tests.cpp(969): warning C4018: '<' : signed/unsigned mismatch
-     1>oms_tide_2013_tests.cpp(975): warning C4018: '<' : signed/unsigned mismatch
-     1>oms_tide_2013_tests.cpp(981): warning C4018: '<' : signed/unsigned mismatch
-     1>oms_tide_2013_tests.cpp(1060): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-     1>oms_tide_2013_tests.cpp(1431): warning C4018: '<' : signed/unsigned mismatch
+     1>oms_tide_2013_tests.cpp(965): warning C4018: '<' : signed/unsigned mismatch
+     1>oms_tide_2013_tests.cpp(971): warning C4018: '<' : signed/unsigned mismatch
+     1>oms_tide_2013_tests.cpp(977): warning C4018: '<' : signed/unsigned mismatch
+     1>oms_tide_2013_tests.cpp(983): warning C4018: '<' : signed/unsigned mismatch
+     1>oms_tide_2013_tests.cpp(1062): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>oms_tide_2013_tests.cpp(1433): warning C4018: '<' : signed/unsigned mismatch
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\x64\Release\oms_tide_2013_tests.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\dev\OpenMS_2018\src\openms\Release /LIBPATH:"C:\dev\crux-src-7\src\app\tide\Release" /LIBPATH:"C:\dev\crux-src-7\src\Release" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib OpenMS.lib "tide-support.lib" "crux-support.lib" ShLwApi.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\x64\Release\oms_tide_2013_tests.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\x64\Release\oms_tide_2013_tests.lib" /MACHINE:X64 "C:\dev\crux-src-7\ext\build\src\percolator-build\src\picked_protein\Release\*.lib" "C:\dev\crux-src-7\ext\build\src\percolator-build\src\Release\*.lib" "C:\dev\crux-src-7\ext\build\src\ProteoWizard\libraries\*.lib" "C:\dev\crux-src-7\ext\build\src\protobuf-2.5.0\vsprojects\x64\Release\*.lib" "C:\dev\crux-src-7\ext\build\src\ProteoWizard\pwiz_aux\msrc\utility\vendor_api\Bruker\x64\*.lib" "C:\dev\crux-src-7\ext\lib\*.lib" "C:\dev\crux-src-7\ext\Lib\boost_release\*.lib" /NODEFAULTLIB:libboost_chrono-vc120-mt-1_56 /NODEFAULTLIB:libboost_date_time-vc120-mt-1_56 /NODEFAULTLIB:libboost_system-vc120-mt-1_56 /NODEFAULTLIB:libboost_thread-vc120-mt-1_56 x64\Release\mem_peptide_queue.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\dev\rts-ms3\rts_pipe\x64\Release\oms_tide_2013_tests.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\dev\openms-220\src\openms\Release" /LIBPATH:"C:\dev\crux-src-03282018\src\app\tide\Release" /LIBPATH:"C:\dev\crux-src-03282018\src\Release" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib OpenMS.lib "tide-support.lib" "crux-support.lib" ShLwApi.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\dev\rts-ms3\rts_pipe\x64\Release\oms_tide_2013_tests.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\dev\rts-ms3\rts_pipe\x64\Release\oms_tide_2013_tests.lib" /MACHINE:X64 "C:\dev\crux-src-03282018\ext\build\src\percolator-build\src\picked_protein\Release\*.lib" "C:\dev\crux-src-03282018\ext\build\src\percolator-build\src\Release\*.lib" "C:\dev\crux-src-03282018\ext\build\src\ProteoWizard\libraries\*.lib" "C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\vsprojects\x64\Release\*.lib" "C:\dev\crux-src-03282018\ext\build\src\ProteoWizard\pwiz_aux\msrc\utility\vendor_api\Bruker\x64\*.lib" "C:\dev\crux-src-03282018\ext\lib\*.lib" "C:\dev\crux-src-03282018\ext\Lib\boost_release\*.lib" /NODEFAULTLIB:libboost_chrono-vc120-mt-1_56 /NODEFAULTLIB:libboost_date_time-vc120-mt-1_56 /NODEFAULTLIB:libboost_system-vc120-mt-1_56 /NODEFAULTLIB:libboost_thread-vc120-mt-1_56 x64\Release\mem_peptide_queue.obj
          x64\Release\oms_tide_2013_tests.obj
          x64\Release\stdafx.obj
          Generating code
@@ -96,9 +100,9 @@
      1>crux-support.lib(TideIndexApplication.obj) : warning LNK4049: locally defined symbol ?FLAGS_min_mods@fLI@@3HA (int fLI::FLAGS_min_mods) imported
      1>crux-support.lib(TideIndexApplication.obj) : warning LNK4049: locally defined symbol ?FLAGS_modsoutputter_file_threshold@fLI@@3HA (int fLI::FLAGS_modsoutputter_file_threshold) imported
      1>oms_tide_2013_tests.obj : warning LNK4049: locally defined symbol ?FLAGS_fifo_page_size@fLI@@3HA (int fLI::FLAGS_fifo_page_size) imported
-         oms_tide_2013_tests.vcxproj -> C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\x64\Release\oms_tide_2013_tests.exe
-     1>Done Building Project "C:\dev\real_time_seq\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests\oms_tide_2013_tests.vcxproj" (Build target(s)).
+         oms_tide_2013_tests.vcxproj -> C:\dev\rts-ms3\rts_pipe\x64\Release\oms_tide_2013_tests.exe
+     1>Done Building Project "C:\dev\rts-ms3\rts_pipe\oms_tide_2013_tests\oms_tide_2013_tests.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:02:07.60
+Time Elapsed 00:00:17.88
