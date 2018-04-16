@@ -34,8 +34,6 @@
 #include <app/tide/records_to_vector-inl.h>
 #include <app/tide/records.h>
 
-//#include <app/TideSearchApplication.h>
-
 #include <io/carp.h>
 #include <parameter.h>
 #include <io/SpectrumRecordWriter.h>
@@ -58,10 +56,10 @@
 
 #include "inmemindex.h"
 #include "mem_peptide_queue.h"
-
-//TideSearchApplication::HAS_DECOYS = true;
+//#include "rt_sequencer.h"
 
 const double XCORR_SCALING = 100000000.0;
+const double CYSTEINE_DEFAULT = 57.021464;
 
 //global vars for timing
 double PCFreq = 0.0;
@@ -103,7 +101,6 @@ struct InputFile {
 };
 
 void collectScoresCompiled(
-	//ActivePeptideQueue* active_peptide_queue,
 	ActivePeptideQueue2* active_peptide_queue,
 	const Spectrum* spectrum,
 	const ObservedPeakSet& observed,
@@ -136,6 +133,409 @@ struct specStruct
 	}
 };
 
+class RT_Sequencer
+{
+public:
+	RT_Sequencer();
+	void init(const char* index_name = NULL, double xc1 = 1.8, double xc2 = 2.2, double xc3 = 3.5, double dcn = 0.08);
+	~RT_Sequencer();
+	bool is_match(Spectrum& sspec, double high_mz, double precursor_mass, OpenMS::Int precursor_charge, string& peptide_hit, bool& decoy);
+
+private:
+	ActivePeptideQueue2* peptide_queue;
+	InMemIndex* pep_index;
+	double window;
+	WINDOW_TYPE_T window_type;
+	double bin_width;
+	double bin_offset;
+	bool compute_sp;
+	vector<int>* negative_isotope_errors;
+	double* aaFreqN;
+	double* aaFreqI;
+	double* aaFreqC;
+	int* aaMass;
+	int nAA;
+	bool HAS_DECOYS;
+	bool PROTEIN_LEVEL_DECOYS;
+	bool overwrite;
+	bool exact_pval_search;
+	double spectrum_min_mz;
+	double spectrum_max_mz;
+	int min_peaks;
+	int top_matches;
+	double highest_mz;
+	double precursor_window;
+	int min_scan;
+	int max_scan;
+	int charge_to_search;
+	double xcorr1;
+	double xcorr2;
+	double xcorr3;
+	double deltacn;
+
+};
+
+RT_Sequencer::RT_Sequencer()
+{
+	pep_index = NULL;
+	peptide_queue = NULL;
+	negative_isotope_errors = NULL;
+	aaFreqN = NULL;
+	aaFreqI = NULL;
+	aaFreqC = NULL;
+	aaMass = NULL;
+}
+
+void RT_Sequencer::init(const char* index_name, double xc1, double xc2, double xc3, double dcn)
+{
+	xcorr1 = xc1;
+	xcorr2 = xc2;
+	xcorr3 = xc3;
+	deltacn = dcn;
+
+	HAS_DECOYS = false;
+	PROTEIN_LEVEL_DECOYS = false;
+
+	if (index_name == NULL)
+	{
+		carp(CARP_FATAL, "Error Reading Index, no name provided");
+		exit(1);
+	}
+
+	std::string peptides_file = FileUtils::Join(index_name, "pepix");
+	std::string proteins_file = FileUtils::Join(index_name, "protix");
+	std::string auxlocs_file = FileUtils::Join(index_name, "auxlocs");
+
+	pb::Header pepts_header;
+	HeadedRecordReader pept_reader(peptides_file, &pepts_header);
+
+	if ((pepts_header.file_type() != pb::Header::PEPTIDES) || !pepts_header.has_peptides_header())
+	{
+		carp(CARP_FATAL, "Error Reading Index, Peptide Header not found");
+		exit(1);
+	}
+
+	const pb::Header::PeptidesHeader& pepsHeader = pepts_header.peptides_header();
+	Params::Set("enzyme", pepsHeader.enzyme());
+	const char* digestString = digest_type_to_string(pepsHeader.full_digestion() ? FULL_DIGEST : PARTIAL_DIGEST);
+	Params::Set("digestion", digestString);
+	Params::Set("isotopic-mass", pepsHeader.monoisotopic_precursor() ? "mono" : "average");
+
+	Params::Finalize();
+	GlobalParams::set();
+
+	window = Params::GetDouble("precursor-window");
+	window_type = string_to_window_type(Params::GetString("precursor-window-type"));
+
+	string charge_string = Params::GetString("spectrum-charge");
+	if (charge_string == "all"){
+		carp(CARP_DEBUG, "Searching all charge states");
+		charge_to_search = 0;
+	}
+
+	else {
+		charge_to_search = atoi(charge_string.c_str());
+		if (charge_to_search < 1 || charge_to_search > 6) {
+			carp(CARP_FATAL, "Invalid  spec-charge state");
+		}
+		carp(CARP_DEBUG, "Searching charge state %d", charge_to_search);
+	}
+
+	string scan_range = Params::GetString("scan-number");
+	if (scan_range.empty()) {
+		min_scan = 0;
+		max_scan = BILLION;
+		carp(CARP_DEBUG, "Searching all scans");
+	}
+	else if (scan_range.find('-') == string::npos) {
+		min_scan = max_scan = atoi(scan_range.c_str());
+		carp(CARP_DEBUG, "Searching single scan %d", min_scan);
+	}
+	else {
+		if (!get_range_from_string(scan_range.c_str(), min_scan, max_scan))
+			carp(CARP_FATAL, "Scan range invalid, must be of form <first>-<last>");
+		else {
+			if (min_scan > max_scan) {
+				int tmp_scan = min_scan;
+				min_scan = max_scan;
+				max_scan = tmp_scan;
+			}
+			carp(CARP_DEBUG, "Searching scan range %d-%d", min_scan, max_scan);
+		}
+	}
+
+	exact_pval_search = Params::GetBool("exact-p-value");
+	bin_width = Params::GetDouble("mz-bin-width");
+	bin_offset = Params::GetDouble("mz-bin-offset");
+
+	bool concat = Params::GetBool("concat");
+
+	compute_sp = Params::GetBool("compute-sp");
+	if (Params::GetBool("sqt-output") && !compute_sp) {
+		compute_sp = true;
+		carp(CARP_INFO, "Enabling parameter compute-sp since SQT output is enabled, will increase runtime");
+	}
+
+	string isotope_errors_string = Params::GetString("isotope-error");
+	if (isotope_errors_string[0] == ',') {
+		carp(CARP_FATAL, "Error in isotope_error parameter formatting: (%s) ", isotope_errors_string.c_str());
+	}
+	for (int i = 0; isotope_errors_string[i] != '\0'; ++i){
+		if (isotope_errors_string[i] == ',' && (isotope_errors_string[i + 1] == ',' || isotope_errors_string[i + 1] == '\0'))
+			carp(CARP_FATAL, "Error in isotope_error parameter formatting: (%s) ", isotope_errors_string.c_str());
+	}
+
+	negative_isotope_errors = new vector<int>();
+	negative_isotope_errors->push_back(0);
+
+	if (isotope_errors_string != "") {
+		vector<int> isotope_errors = StringUtils::Split<int>(Params::GetString("isotope-error"), ',');
+		for (vector<int>::iterator it = isotope_errors.begin(); it != isotope_errors.end(); ++it){
+			if (*it < 0)
+				carp(CARP_FATAL, "Found a negative isotope error, don't do this, model with a modification.");
+			else if (find(negative_isotope_errors->begin(), negative_isotope_errors->end(), -1 * *it) != negative_isotope_errors->end())
+				carp(CARP_FATAL, "Found duplicate when parsing isotope_error parameter");
+			negative_isotope_errors->push_back(-1 * *it);
+		}
+	}
+
+	sort(negative_isotope_errors->begin(), negative_isotope_errors->end());
+
+	ProteinVec proteins;
+	pb::Header protein_header;
+
+	if (!ReadRecordsToVector<pb::Protein, const pb::Protein>(&proteins, proteins_file, &protein_header))
+		carp(CARP_FATAL, "Error Reading Index!");
+
+	aaFreqN = NULL;
+	aaFreqI = NULL;
+	aaFreqC = NULL;
+	aaMass = NULL;
+	nAA = 0;
+
+	pb::Header peptides_header;
+
+	HeadedRecordReader* peptide_reader = new HeadedRecordReader(peptides_file, &peptides_header);
+
+	if ((peptides_header.file_type() != pb::Header::PEPTIDES) || !peptides_header.has_peptides_header())
+		carp(CARP_FATAL, "Error Reading Index");
+
+	const pb::Header::PeptidesHeader& pepHeader = peptides_header.peptides_header();
+	DECOY_TYPE_T headerDecoyType = (DECOY_TYPE_T)pepHeader.decoys();
+	if (headerDecoyType != NO_DECOYS){
+		HAS_DECOYS = true;
+		if (headerDecoyType == PROTEIN_REVERSE_DECOYS)
+			PROTEIN_LEVEL_DECOYS = true;
+	}
+
+	std::vector<const pb::AuxLocation*> locations;
+	if (!ReadRecordsToVector<pb::AuxLocation>(&locations, auxlocs_file))
+		carp(CARP_FATAL, "Error Reading Index");
+	carp(CARP_INFO, "Read %d auxlocs", locations.size());
+
+	MassConstants::Init(&pepHeader.mods(), &pepHeader.nterm_mods(), &pepHeader.cterm_mods(), bin_width, bin_offset);
+	ModificationDefinition::ClearAll();
+	TideMatchSet::initModMap(pepHeader.mods(), ANY);
+	TideMatchSet::initModMap(pepHeader.nterm_mods(), PEPTIDE_N);
+	TideMatchSet::initModMap(pepHeader.cterm_mods(), PEPTIDE_C);
+
+	MaxBin::SetGlobalMax(2000.0);
+
+	pep_index = new InMemIndex(peptide_reader->Reader(), proteins);
+
+	overwrite = Params::GetBool("overwrite");
+	stringstream ss;
+	ss << Params::GetString("enzyme") << '-' << Params::GetString("digestion");
+	TideMatchSet::CleavageType = ss.str();
+
+	spectrum_min_mz = Params::GetDouble("spectrum-min-mz");
+	spectrum_max_mz = Params::GetDouble("spectrum-max-mz");
+	min_peaks = Params::GetInt("min-peaks");
+	top_matches = Params::GetInt("top-match");
+	highest_mz = 0.0f;
+	precursor_window = window;
+
+	peptide_queue = new ActivePeptideQueue2(pep_index, peptide_reader->Reader(), proteins);
+	peptide_queue->SetBinSize(bin_width, bin_offset);
+
+}
+
+RT_Sequencer::~RT_Sequencer()
+{
+	delete pep_index;
+	delete peptide_queue;
+	delete[] aaFreqN;
+	delete[] aaFreqI;
+	delete[] aaFreqC;
+	delete[] aaMass;
+	delete negative_isotope_errors;
+}
+
+bool RT_Sequencer::is_match(Spectrum& sspec, double high_mz, double precursor_mass, OpenMS::Int precursor_charge, std::string& peptide_hit, bool& decoy)
+{
+	highest_mz = high_mz;
+	vector<SpectrumCollection::SpecCharge> spec;
+	vector<SpectrumCollection::SpecCharge>* spec_charges = &spec;
+
+	spec_charges->push_back(SpectrumCollection::SpecCharge(precursor_mass, precursor_charge, &sspec, 0));
+	int elution_window = Params::GetInt("elution-window-size");
+	bool peptide_centric = Params::GetBool("peptide-centric-search");
+	bool use_neutral_loss_peaks = Params::GetBool("use-neutral-loss-peaks");
+	bool use_flanking_peaks = Params::GetBool("use-flanking-peaks");
+	int max_charge = Params::GetInt("max-precursor-charge");
+	ObservedPeakSet observed(bin_width, bin_offset, use_neutral_loss_peaks, use_flanking_peaks);
+
+	if (peptide_centric == false) {
+		elution_window = 0;
+	}
+
+	peptide_queue->setElutionWindow(elution_window);
+	peptide_queue->setPeptideCentric(peptide_centric);
+
+	if (elution_window > 0 && elution_window % 2 == 0)
+		peptide_queue->setElutionWindow(elution_window + 1);
+
+	if (!peptide_centric || !exact_pval_search)
+		peptide_queue->setElutionWindow(0);
+
+	for (vector<SpectrumCollection::SpecCharge>::const_iterator sc = spec_charges->begin(); sc < spec_charges->end(); sc++)
+	{
+		Spectrum* spectrum = sc->spectrum;
+		double precursor_mz = spectrum->PrecursorMZ();
+		int charge = sc->charge;
+		int scan_num = spectrum->SpectrumNumber();
+
+		if (precursor_mz < spectrum_min_mz || precursor_mz > spectrum_max_mz || scan_num < min_scan || scan_num > max_scan
+			|| spectrum->Size() < min_peaks || (charge_to_search != 0 && charge != charge_to_search) || charge > max_charge) {
+			carp(CARP_INFO, "Exited search early");
+			if (spectrum->Size() < min_peaks)
+				carp(CARP_INFO, "Not Enough Peaks.");
+			return false;
+		}
+
+		vector<double>* min_mass = new vector<double>();
+		vector<double>* max_mass = new vector<double>();
+		vector<bool>* candidatePeptideStatus = new vector<bool>();
+		double min_range, max_range;
+		double* min_ran = &min_range;
+		double* max_ran = &max_range;
+
+		computeWindow(*sc, window_type, precursor_window, max_charge, negative_isotope_errors, min_mass, max_mass, &min_range, &max_range);
+
+		if (!exact_pval_search) {
+			observed.PreprocessSpectrum(*spectrum, charge);
+			int nCandPeptide = peptide_queue->SetActiveRange(min_mass, max_mass, min_range, max_range, candidatePeptideStatus);
+			if (nCandPeptide == 0) {
+				delete min_mass;
+				delete max_mass;
+				delete candidatePeptideStatus;
+				return false;
+			}
+
+			int candidatePeptideStatusSize = candidatePeptideStatus->size();
+			TideMatchSet::Arr2 match_arr2(candidatePeptideStatusSize);
+
+			collectScoresCompiled(peptide_queue, spectrum, observed, &match_arr2, candidatePeptideStatusSize, charge);
+
+			if (peptide_centric) {
+				carp(CARP_INFO, "Peptide Centric Search, iterating matches");
+				deque<Peptide*>::const_iterator iter_ = peptide_queue->iter_;
+				TideMatchSet::Arr2::iterator it = match_arr2.begin();
+				for (; it != match_arr2.end(); ++iter_, ++it) {
+					int peptide_idx = candidatePeptideStatusSize - (it->second);
+					if ((*candidatePeptideStatus)[peptide_idx]) {
+						(*iter_)->AddHit(spectrum, it->first, 0.0, it->second, charge);
+					}
+				}
+			} //end peptide centric
+
+			else {
+				TideMatchSet::Arr match_arr(nCandPeptide);
+				for (TideMatchSet::Arr2::iterator it = match_arr2.begin(); it != match_arr2.end(); ++it){
+					int peptide_idx = candidatePeptideStatusSize - (it->second);
+					if ((*candidatePeptideStatus)[peptide_idx]) {
+						TideMatchSet::Scores curScore;
+						curScore.xcorr_score = (double)(it->first / XCORR_SCALING);
+						curScore.rank = it->second;
+						match_arr.push_back(curScore);
+					}
+				}
+
+				double max_corr = match_arr.begin()->xcorr_score;
+				double second_corr = match_arr.begin()->xcorr_score;
+				int max_corr_rank = 0;
+				int precision = Params::GetInt("precision");
+
+				for (TideMatchSet::Arr::iterator it = match_arr.begin(); it != match_arr.end(); ++it) {
+					if (it->xcorr_score > max_corr) {
+						second_corr = max_corr;
+						max_corr = it->xcorr_score;
+						max_corr_rank = it->rank;
+					}
+				}
+
+				double delta_corr = (max_corr - second_corr) / second_corr;
+				double threshold;
+				switch (charge) {
+				case 1:
+					threshold = xcorr1;
+					break;
+				case 2:
+					threshold = xcorr2;
+					break;
+				default:
+					threshold = xcorr3;
+					break;
+				}
+
+				double delta_threshold = deltacn;
+
+				const Peptide& peptid = *(peptide_queue->GetPeptide(max_corr_rank));
+
+				if (peptid.IsDecoy())
+					decoy = true;
+				else
+					decoy = false;
+
+				vector<Crux::Modification> modVector;
+				string seq(peptid.Seq());
+				const ModCoder::Mod* mods;
+				int pep_mods = peptid.Mods(&mods);
+				for (int i = 0; i < pep_mods; i++){
+					int mod_index;
+					double mod_delta;
+					MassConstants::DecodeMod(mods[i], &mod_index, &mod_delta);
+					const ModificationDefinition* modDef = ModificationDefinition::Find(mod_delta, false);
+					if (modDef == NULL)
+						continue;
+					modVector.push_back(Crux::Modification(modDef, mod_index));
+				}
+
+				Crux::Peptide cruxPep = Crux::Peptide(peptid.Seq(), modVector);
+					
+				peptide_hit = cruxPep.getModifiedSequenceWithMasses();
+
+				if (max_corr >= threshold && delta_corr >= delta_threshold) {
+					delete min_mass;
+					delete max_mass;
+					delete candidatePeptideStatus;
+					return true;
+				}
+
+			} //end spectrum centric search
+
+		}//end NOT exact p value version of search
+
+		delete min_mass;
+		delete max_mass;
+		delete candidatePeptideStatus;
+
+	}//end loop through spectrum charges
+
+	return false;
+
+}
+
 int main(int argc, char * argv[])
 {
 #ifdef _MSC_VER
@@ -144,37 +544,13 @@ int main(int argc, char * argv[])
 	_set_fmode(_O_BINARY);
 #endif 
 
-	/*
-	OpenMS::MzMLFile mzMLDataFileProfile;
-	OpenMS::MSExperiment msExperimentProfile;
-	try {
-	mzMLDataFileProfile.load(argv[1], msExperimentProfile);
-	}
-	catch (std::exception& e) {
-	std::cout << e.what() << std::endl;
-	//usage();
-	return 1;
-	}
-	*/
-
-
 	set_verbosity_level(CARP_DEBUG);
-
-	//std::ofstream out(argv[2]);
-	//std::ofstream calc_out(argv[3]);
-
-	//ofstream for when we are writing to spectrum for tide to use
-
-	std::string remove_index_ = "";
+	
 	string output_file_name_;
-	const double CYSTEINE_DEFAULT = 57.021464;
+	
 	bool HAS_DECOYS = false;
-	bool PROTEIN_LEVEL_DECOYS = false;
 
 	int spectrum_it = 0;
-
-	//test our ability to parse arguments
-	unsigned int NUM_THREADS;
 
 	//variables for parameters and such
 	const string appName = "rts-pipe";
@@ -197,8 +573,8 @@ int main(int argc, char * argv[])
 		if (!parameter_file.empty()) {
 			parse_parameter_file(parameter_file.c_str());
 		}
+
 		// Process command line options
-		//options = argParser.GetOptions();
 		for (map<string, string>::const_iterator i = options.begin(); i != options.end(); i++) {
 			if (i->first != "oms-src" && i->first != "oms-index" && i->first != "xc1" && i->first != "xc2" && i->first != "xc3" && i->first != "deltacn" )
 			{
@@ -210,8 +586,8 @@ int main(int argc, char * argv[])
 					throw ArgParserException(e.what());
 				}
 			}
-
 		}
+
 		// Process command line arguments
 		const map< string, vector<string> >& args = argParser.GetArgs();
 		for (map< string, vector<string> >::const_iterator i = args.begin(); i != args.end(); i++) {
@@ -226,6 +602,7 @@ int main(int argc, char * argv[])
 			}
 		}
 	}
+
 	catch (const runtime_error& e) {
 		carp(CARP_FATAL, "%s", e.what());
 	}
@@ -277,131 +654,6 @@ int main(int argc, char * argv[])
 	else
 		deltacn = 0.08;
 
-	
-	string peptides_file = FileUtils::Join(index, "pepix");
-	string proteins_file = FileUtils::Join(index, "protix");
-	string auxlocs_file = FileUtils::Join(index, "auxlocs");
-
-	/*
-	*
-	* Ignore case where database is not already an index for now, this involves invoking ANOTHER
-	* application, this may be fine down the road but for now it is not worth worrying about
-	*
-	*
-	else if (FileUtils::IsRegularFile(index)) {
-	// Index is FASTA file
-	carp(CARP_INFO, "Creating index from '%s'", index.c_str());
-	string targetIndexName = Params::GetString("store-index");
-	if (targetIndexName.empty()) {
-	targetIndexName = FileUtils::Join(Params::GetString("output-dir"),
-	"tide-search.tempindex");
-	remove_index_ = targetIndexName;
-	}
-
-	string default_cysteine = "C+" + StringUtils::ToString(CYSTEINE_DEFAULT);
-	string mods_spec = Params::GetString("mods-spec");
-	if (mods_spec.find('C') == string::npos) {
-	mods_spec = mods_spec.empty() ?
-	default_cysteine : default_cysteine + ',' + mods_spec;
-	carp(CARP_DEBUG, "Using default cysteine mod '%s' ('%s')",
-	default_cysteine.c_str(), mods_spec.c_str());
-	}
-	Params::Set("mods-spec", mods_spec);
-
-	if (indexApp.main(index, targetIndexName) != 0) {
-	carp(CARP_FATAL, "tide-index failed.");
-	}
-	Params::Set("tide database", targetIndexName);
-	}
-	*/
-
-
-	// Index is Tide index directory
-	pb::Header pepts_header;
-
-	HeadedRecordReader pept_reader(peptides_file, &pepts_header);
-	if ((pepts_header.file_type() != pb::Header::PEPTIDES) ||
-		!pepts_header.has_peptides_header()) {
-		carp(CARP_FATAL, "Error reading index (%s)", peptides_file.c_str());
-	}
-
-	const pb::Header::PeptidesHeader& pepsHeader = pepts_header.peptides_header();
-
-	Params::Set("enzyme", pepsHeader.enzyme());
-	const char* digestString = digest_type_to_string(pepsHeader.full_digestion() ? FULL_DIGEST : PARTIAL_DIGEST);
-	Params::Set("digestion", digestString);
-	Params::Set("isotopic-mass", pepsHeader.monoisotopic_precursor() ? "mono" : "average");
-
-	
-	/*
-		The following stuff is for if we want to try to use "auto precursors," to estimate better windows. We do not
-	
-	*/
-
-	/*
-	const string autoPrecursor = Params::GetString("auto-precursor-window");
-	const string autoFragment = Params::GetString("auto-mz-bin-width");
-	if (autoPrecursor != "false" || autoFragment != "false") {
-	if (autoPrecursor != "false" && Params::GetString("precursor-window-type") != "ppm") {
-	carp(CARP_FATAL, "Automatic peptide mass tolerance detection is only supported with ppm "
-	"units. Please rerun with either auto-precursor-window set to 'false' or "
-	"precursor-window-type set to 'ppm'.");
-	}
-	ParamMedicErrorCalculator errCalc;
-	errCalc.processFiles(Params::GetStrings("tide spectra file"));
-	string precursorFailure, fragmentFailure;
-	double precursorSigmaPpm = 0;
-	double fragmentSigmaPpm = 0;
-	double fragmentSigmaTh = 0;
-	double precursorPredictionPpm = 0;
-	double fragmentPredictionPpm = 0;
-	double fragmentPredictionTh = 0;
-	errCalc.calcMassErrorDist(&precursorFailure, &fragmentFailure,
-	&precursorSigmaPpm, &fragmentSigmaPpm,
-	&precursorPredictionPpm, &fragmentPredictionTh);
-
-	if (autoPrecursor != "false") {
-	if (precursorFailure.empty()) {
-	carp(CARP_INFO, "precursor ppm standard deviation: %f", precursorSigmaPpm);
-	carp(CARP_INFO, "Precursor error estimate (ppm): %.2f", precursorPredictionPpm);
-	Params::Set("precursor-window", precursorPredictionPpm);
-	}
-	else {
-	carp(autoPrecursor == "fail" ? CARP_FATAL : CARP_ERROR,
-	"failed to calculate precursor error: %s", precursorFailure.c_str());
-	}
-	}
-	if (autoFragment != "false") {
-	if (fragmentFailure.empty()) {
-	carp(CARP_INFO, "fragment standard deviation (ppm): %f", fragmentSigmaPpm);
-	carp(CARP_INFO, "Fragment bin size estimate (Th): %.4f", fragmentPredictionTh);
-	Params::Set("mz-bin-width", fragmentPredictionTh);
-	}
-	else {
-	carp(autoFragment == "fail" ? CARP_FATAL : CARP_ERROR,
-	"failed to calculate fragment error: %s", fragmentFailure.c_str());
-	}
-	}
-	}
-	*/
-
-	//pass.processParams();
-	Params::Finalize();
-	GlobalParams::set();
-
-	//open_log_file( "tide-search.log.txt");
-	//carp(CARP_DEBUG, "CPU: %s", hostname());
-
-	// Store the host name, start date and time, version number, and command line.
-	//carp(CARP_DEBUG, "CPU: %s", hostname());
-	//carp(CARP_DEBUG, "Crux version: %s", CRUX_VERSION);
-	//carp(CARP_DEBUG, date_and_time());
-	//log_command_line(argc, argv);
-
-	//carp(CARP_DEBUG, "Running tide-search...");
-
-	carp(CARP_INFO, "Beginning %s.", appName.c_str());
-
 	// Create output directory if appliation needs it.
 	// Create output directory 
 	string output_folder = Params::GetString("output-dir");
@@ -416,8 +668,6 @@ int main(int argc, char * argv[])
 	carp(CARP_INFO, "CPU: %s", hostname());
 	carp(CARP_INFO, "Crux version: %s", CRUX_VERSION);
 	carp(CARP_INFO, date_and_time());
-	//log_command_line(argc, argv);
-	//std::cout << "Passed log_command_line..." << std::endl;
 
 	// Write the parameter file
 	string paramFile = make_file_path(appName + ".params.txt");
@@ -430,17 +680,8 @@ int main(int argc, char * argv[])
 	delete file;
 
 	/*
-	*
-	*
-	*
-	*
-	*	This is the point where we begin to emulate the behavior of the tide search app main and manipulate it to use non-file data
-	*
-	*
-	*
-	*
-	*
-	*/
+	 *	This is the point where we begin to emulate the behavior of the tide search app main and manipulate it to use non-file data
+	 */
 
 	carp(CARP_INFO, "Running tide-search...");
 
@@ -452,85 +693,27 @@ int main(int argc, char * argv[])
 	*/
 
 	// prevent different output formats from using threading
-	if (Params::GetBool("peptide-centric-search") == true) {
-		NUM_THREADS = 1;
-		carp(CARP_INFO, "Threading for peptide-centric formats are not supported yet");
-	}
-	else {
+	//if (Params::GetBool("peptide-centric-search") == true) {
+	//	NUM_THREADS = 1;
+	//	carp(CARP_INFO, "Threading for peptide-centric formats are not supported yet");
+	//}
+	//else {
 		//NUM_THREADS = Params::GetInt("num-threads");
-		NUM_THREADS = 1;
-	}
-	if (NUM_THREADS < 1) {
-		NUM_THREADS = boost::thread::hardware_concurrency(); // MINIMUM # = 1.
+	//	NUM_THREADS = 1;
+	//}
+	//if (NUM_THREADS < 1) {
+	//	NUM_THREADS = boost::thread::hardware_concurrency(); // MINIMUM # = 1.
 		// (Meaning just main thread) Do not make this value below 1.
 		// make sure that number of threads are reasonable, e.g. user did not specify millions of threads...
-	}
-	else if (NUM_THREADS > 64) {
-		carp(CARP_FATAL, "Requested more than 64 threads.");
-	}
-	carp(CARP_INFO, "Number of Threads: %d", NUM_THREADS); // prints the number of threads
+	//}
+	//else if (NUM_THREADS > 64) {
+	//	carp(CARP_FATAL, "Requested more than 64 threads.");
+	//}
+	//carp(CARP_INFO, "Number of Threads: %d", NUM_THREADS); // prints the number of threads
 
 	/*
 			END THREADING SETUP
 	*/
-
-	double window = Params::GetDouble("precursor-window");
-	WINDOW_TYPE_T window_type = string_to_window_type(Params::GetString("precursor-window-type"));
-
-	// Check spectrum-charge parameter
-	string charge_string = Params::GetString("spectrum-charge");
-	int charge_to_search;
-	if (charge_string == "all") {
-		carp(CARP_DEBUG, "Searching all charge states");
-		charge_to_search = 0;
-	}
-	else {
-		charge_to_search = atoi(charge_string.c_str());
-		if (charge_to_search < 1 || charge_to_search > 6) {
-			carp(CARP_FATAL, "Invalid spectrum-charge value %s", charge_string.c_str());
-		}
-		carp(CARP_DEBUG, "Searching charge state %d", charge_to_search);
-	}
-
-	// Check scan-number parameter
-	string scan_range = Params::GetString("scan-number");
-	int min_scan, max_scan;
-	if (scan_range.empty()) {
-		min_scan = 0;
-		max_scan = BILLION;
-		carp(CARP_DEBUG, "Searching all scans");
-	}
-	else if (scan_range.find('-') == string::npos) {
-		// Single scan
-		min_scan = max_scan = atoi(scan_range.c_str());
-		carp(CARP_DEBUG, "Searching single scan %d", min_scan);
-	}
-	else {
-		if (!get_range_from_string(scan_range.c_str(), min_scan, max_scan)) {
-			carp(CARP_FATAL, "The scan number range '%s' is invalid. "
-				"Must be of the form <first>-<last>", scan_range.c_str());
-		}
-		else {
-			if (min_scan > max_scan) {
-				int tmp_scan = min_scan;
-				min_scan = max_scan;
-				max_scan = tmp_scan;
-				carp(CARP_DEBUG, "Switched scan range min and max");
-			}
-			carp(CARP_DEBUG, "Searching scan range %d-%d", min_scan, max_scan);
-		}
-	}
-
-	//check to compute exact p-value 
-	bool exact_pval_search = Params::GetBool("exact-p-value");
-	double bin_width = Params::GetDouble("mz-bin-width");
-	double bin_offset = Params::GetDouble("mz-bin-offset");
-
-	// for now don't allow XCorr p-value searches with variable bin width
-	if (exact_pval_search && !Params::IsDefault("mz-bin-width")) {
-		carp(CARP_FATAL, "Tide-search with XCorr p-values and variable bin width "
-			"is not allowed in this version of Crux.");
-	}
 
 	// Check concat parameter
 	bool concat = Params::GetBool("concat");
@@ -542,142 +725,14 @@ int main(int argc, char * argv[])
 		carp(CARP_INFO, "Enabling parameter compute-sp since SQT output is enabled "
 			"(this will increase runtime).");
 	}
-
-	// Check isotope-error parameter
-	string isotope_errors_string = Params::GetString("isotope-error");
-	if (isotope_errors_string[0] == ',') {
-		carp(CARP_FATAL, "Error in isotope_error parameter formatting: (%s)", isotope_errors_string.c_str());
-	}
-	for (int i = 0; isotope_errors_string[i] != '\0'; ++i) {
-		if (isotope_errors_string[i] == ',' && (isotope_errors_string[i + 1] == ',' || isotope_errors_string[i + 1] == '\0')) {
-			carp(CARP_FATAL, "Error in isotope_error parameter formatting: (%s) ", isotope_errors_string.c_str());
-		}
-	}
-
-	vector<int>* negative_isotope_errors = new vector<int>();
-	negative_isotope_errors->push_back(0);
-
-	if (isotope_errors_string != "") {
-		vector<int> isotope_errors = StringUtils::Split<int>(Params::GetString("isotope-error"), ',');
-		for (vector<int>::iterator it = isotope_errors.begin(); it != isotope_errors.end(); ++it) {
-			if (*it < 0) {
-				carp(CARP_FATAL, "Found a negative isotope error: %d. There should not be any legitimate reasons to use negative isotope errors. Try modeling with a modification instead.", *it);
-			}
-			else if (find(negative_isotope_errors->begin(), negative_isotope_errors->end(), -1 * *it) != negative_isotope_errors->end()) {
-				carp(CARP_FATAL, "Found duplicate when parsing isotope_error parameter: %d", *it);
-			}
-			negative_isotope_errors->push_back(-1 * *it);
-		}
-	}
-
-	sort(negative_isotope_errors->begin(), negative_isotope_errors->end());
-
-	//everything above here honestly seems good. So I'm getting worried now lol
-	//this is where the "Process Params" started to get into trouble
-
-	carp(CARP_INFO, "Reading index %s", index.c_str());
-
-	//std::cout << "Reading Index: " << index.c_str() << std::endl;
-
 	
-
-	// Read proteins index file
-	ProteinVec proteins;
-	pb::Header protein_header;
-	if (!ReadRecordsToVector<pb::Protein, const pb::Protein>(&proteins,
-		proteins_file, &protein_header)) {
-		carp(CARP_FATAL, "Error reading index (%s)", proteins_file.c_str());
-	}
-
-	double* aaFreqN = NULL;
-	double* aaFreqI = NULL;
-	double* aaFreqC = NULL;
-	int* aaMass = NULL;
-	int nAA = 0;
-
-	// Read peptides index file
-	pb::Header peptides_header;
-
-	std::vector<HeadedRecordReader*> peptide_reader;
-	for (int i = 0; i < NUM_THREADS; i++) {
-		peptide_reader.push_back(new HeadedRecordReader(peptides_file, &peptides_header));
-	}
-
-	if ((peptides_header.file_type() != pb::Header::PEPTIDES) ||
-		!peptides_header.has_peptides_header()) {
-		carp(CARP_FATAL, "Error reading index (%s)", peptides_file.c_str());
-	}
-
-	const pb::Header::PeptidesHeader& pepHeader = peptides_header.peptides_header();
-	DECOY_TYPE_T headerDecoyType = (DECOY_TYPE_T)pepHeader.decoys();
-	if (headerDecoyType != NO_DECOYS) {
-		HAS_DECOYS = true;
-		if (headerDecoyType == PROTEIN_REVERSE_DECOYS) {
-			PROTEIN_LEVEL_DECOYS = true;
-		}
-	}
-	
-	
-
-	if (exact_pval_search) {
-		pb::Header aaf_peptides_header;
-		HeadedRecordReader aaf_peptide_reader(peptides_file, &aaf_peptides_header);
-
-		if ((aaf_peptides_header.file_type() != pb::Header::PEPTIDES) ||
-			!aaf_peptides_header.has_peptides_header()) {
-			carp(CARP_FATAL, "Error reading index (%s)", peptides_file.c_str());
-		}
-		MassConstants::Init(&aaf_peptides_header.peptides_header().mods(),
-			&aaf_peptides_header.peptides_header().nterm_mods(),
-			&aaf_peptides_header.peptides_header().cterm_mods(),
-			bin_width, bin_offset);
-		ActivePeptideQueue* active_peptide_queue = new ActivePeptideQueue(aaf_peptide_reader.Reader(), proteins);
-		//ActivePeptideQueue2* active_peptide_queue = new ActivePeptideQueue2(test_index, aaf_peptide_reader.Reader(), proteins);
-		nAA = active_peptide_queue->CountAAFrequency(bin_width, bin_offset,
-			&aaFreqN, &aaFreqI, &aaFreqC, &aaMass);
-		delete active_peptide_queue;
-	} // End calculation AA frequencies
-
-	// Read auxlocs index file
-	vector<const pb::AuxLocation*> locations;
-	if (!ReadRecordsToVector<pb::AuxLocation>(&locations, auxlocs_file)) {
-		carp(CARP_FATAL, "Error reading index (%s)", auxlocs_file.c_str());
-	}
-	carp(CARP_INFO, "Read %d auxlocs", locations.size());
-
-	MassConstants::Init(&pepHeader.mods(), &pepHeader.nterm_mods(),
-		&pepHeader.cterm_mods(), bin_width, bin_offset);
-	ModificationDefinition::ClearAll();
-	TideMatchSet::initModMap(pepHeader.mods(), ANY);
-	TideMatchSet::initModMap(pepHeader.nterm_mods(), PEPTIDE_N);
-	TideMatchSet::initModMap(pepHeader.cterm_mods(), PEPTIDE_C);
-
-	MaxBin::SetGlobalMax(2000.0);
-
-	//reading "test_index"
-	InMemIndex* test_index = new InMemIndex(peptide_reader[0]->Reader(), proteins);
-
-	/*
-	for (int i = 0; i < test_index->pep_array.size(); i++)
-	{
-		Peptide* temp_temp = (test_index->pep_array)[i];
-		carp(CARP_INFO, "Peptide %s with mass %f", temp_temp->Seq().c_str(), temp_temp->Mass());
-	}
-	*/
-	
-	//
-	//	All below here I believe is involved with writing stuff to disk, meaning we will not want to use it and
-	//	will instead want to reimplement with everything kept in memory
-	//
+	//Everything below here is an aspect of "main" and will not be used in the library version of the program
 
 	ofstream* target_file = NULL;
 	ofstream* decoy_file = NULL;
 
 	carp(CARP_DEBUG, "Using TideMatchSet to write matches");
 	bool overwrite = Params::GetBool("overwrite");
-	stringstream ss;
-	ss << Params::GetString("enzyme") << '-' << Params::GetString("digestion");
-	TideMatchSet::CleavageType = ss.str();
 	if (!concat) {
 		string target_file_name = make_file_path("tide-search-junk.target.txt");
 		target_file = create_stream_in_path(target_file_name.c_str(), NULL, overwrite);
@@ -699,85 +754,11 @@ int main(int argc, char * argv[])
 		TideMatchSet::writeHeaders(decoy_file, true, compute_sp);
 	}
 
-	// Try to read all spectrum files as spectrumrecords, convert those that fail
-	// AKA: we must by hand convert spectrum into the format wanted. In the ultimate
-	// version of the program this will be basically sitting around waiting for a trigger
-	// but for now we can build a loop using our OpenMS stuff. Ultimately we need to figure
-	// out how the spectrumrecord format works and how to build it up using OpenMS or maybe
-	// something external.
-	//
-	//There's a bunch of file convert/clean shit that we also don't need
-	/*
-	vector<string> input_files;
-
-	input_files.push_back("C:\\dev\\real_time_seq\\oms_tide_2013_tests\\oms_tide_2013_tests\\HELA_2017-04-27_294.mzML");
-
-	vector<InputFile> input_sr;
-
-	//single file version
-	vector<string>::const_iterator f = input_files.begin();
-	SpectrumCollection spectra;
-	pb::Header spectrum_header;
-	string spectrumrecords = *f;
-	bool keepSpectrumrecords = true;
-	if (!spectra.ReadSpectrumRecords(spectrumrecords, &spectrum_header)) {
-	// Failed, try converting to spectrumrecords file
-	carp(CARP_INFO, "Converting %s to spectrumrecords format", f->c_str());
-	carp(CARP_INFO, "Elapsed time starting conversion: %.3g s", wall_clock() / 1e6);
-	spectrumrecords = Params::GetString("store-spectra");
-	keepSpectrumrecords = !spectrumrecords.empty();
-	if (!keepSpectrumrecords) {
-	spectrumrecords = make_file_path(FileUtils::BaseName(*f) + ".spectrumrecords.tmp");
-	}
-	else if (input_files.size() > 1) {
-	carp(CARP_FATAL, "Cannot use store-spectra option with multiple input "
-	"spectrum files");
-	}
-	carp(CARP_DEBUG, "New spectrumrecords filename: %s", spectrumrecords.c_str());
-
-	//this is where convert/read needs to go
-	//auto_ptr<Crux::SpectrumCollection> spectra(SpectrumCollectionFactory::create(f->c_str()));
-
-	carp(CARP_DEBUG, "Reading converted spectra file %s", spectrumrecords.c_str());
-	// Re-read converted file as spectrumrecords file
-	if (!spectra.ReadSpectrumRecords(spectrumrecords, &spectrum_header)) {
-	carp(CARP_DEBUG, "Deleting %s", spectrumrecords.c_str());
-	remove(spectrumrecords.c_str());
-	carp(CARP_FATAL, "Error reading spectra file %s", spectrumrecords.c_str());
-	}
-	}
-	input_sr.push_back(InputFile(*f, spectrumrecords, keepSpectrumrecords));
-	*/
-
-
-	//Set up active peptide queue. May need to set up per spectra? Or is each one grabbing a spectra? Figure it out
-	//in the code for search
-
-	//problem with the APQ here?
-
-	/*
-	vector<ActivePeptideQueue*> active_peptide_queue;
-	for (int i = 0; i < NUM_THREADS; i++) {
-		active_peptide_queue.push_back(new ActivePeptideQueue(peptide_reader[i]->Reader(), proteins));
-		active_peptide_queue[i]->SetBinSize(bin_width, bin_offset);
-	}
-	*/
-
-	carp(CARP_INFO, "Set up peptide queue");
-
-	//can we add to this collection by hand? Or not?
-	//SpectrumCollection spectra;
-
-	// read oms-src, for now (we will use similar stuff in the future but not yet). build up a single spectra spectrum collection
-	// from that, modeled after functions called heretofore, then do our version of search on that singular collection. Or single
-	// spectra if need be (pulling that OUT of search function)
-
-	//build spectra and then do search
-	
+	//inittialize sequencer, may want to have initalize as a separate function
+	RT_Sequencer sequencer;
+	sequencer.init(index.c_str(), xcorr1, xcorr2, xcorr3, deltacn);
 
 	carp(CARP_INFO, "Re-parsed succefully");
-
-	//printf("OMS eating spectra from %s", oms.c_str());
 
 	OpenMS::MzMLFile mzMLDataFileProfile;
 	OpenMS::MSExperiment msExperimentProfile;
@@ -804,65 +785,11 @@ int main(int argc, char * argv[])
 	int min_peaks = Params::GetInt("min-peaks");
 	int top_matches = Params::GetInt("top-match");
 	double highest_mz = 0.0f;
-	double precursor_window = window;
-
-	if (!peptide_reader[0]) {
-		for (int j = 0; j < NUM_THREADS; j++) {
-			peptide_reader[j] = new HeadedRecordReader(peptides_file, &peptides_header);
-		}
-	}
-
-	
-	
-	//for (int k = 0; k < test_index->pep_array.size(); k++)
-	//	carp(CARP_INFO, "Mass for index member %d is %f", k , test_index->pep_array[k].mass());
-
-
-	//delete test_index;
-
-	
-	if (!peptide_reader[0]) {
-		for (int j = 0; j < NUM_THREADS; j++) {
-			peptide_reader[j] = new HeadedRecordReader(peptides_file, &peptides_header);
-		}
-	}
-
-	vector<ActivePeptideQueue2*> active_peptide_queue;
-	//vector<ActivePeptideQueue*> active_peptide_queue;
-	for (int j = 0; j < NUM_THREADS; j++) {
-		//active_peptide_queue.push_back(new ActivePeptideQueue(peptide_reader[j]->Reader(), proteins));
-		active_peptide_queue.push_back(new ActivePeptideQueue2(test_index, peptide_reader[j]->Reader(), proteins));
-		active_peptide_queue[j]->SetBinSize(bin_width, bin_offset);
-	}
 
 	// Start the timer.
 	wall_clock();
 	
-
-	//stuff for sorting the spectra
-	
-	//vector<OpenMS::MSSpectrum<>> testa;
-	/*
-	vector<specStruct> specs;
-
-	for (int i = 0; i < msExperimentProfile.getNrSpectra(); i++)
-	{
-		s = msExperimentProfile.getSpectrum(i);
-		if (s.getMSLevel() == 2)
-		{
-			specs.push_back(specStruct((double)s.getPrecursors()[0].getUnchargedMass(), i));
-		}
-		//testa.push_back(msExperimentProfile.getSpectrum(i));
-	}
-
-	//for (int i = 0; i < testa.size(); i++)
-	//	specs.push_back(&(testa[i]));
-
-	std::sort(specs.begin(), specs.end());
-	*/
-
-	//for (int i = 0; i < specs.size(); i++)
-
+	//various counting variables
 	int db_hits = 0;
 	int ms2_count = 0;
 	int ms1_count = 0;
@@ -881,7 +808,7 @@ int main(int argc, char * argv[])
 	string times_out_name = make_file_path("search_times.txt");
 	ofstream times_out(times_out_name, std::ios_base::app);
 
-	//making sure no git shenanigans have occurred
+	//outputtting the parameters
 	(*target_hits) << xcorr1 << " " << xcorr2 << " " << xcorr3 << " " << deltacn << std::endl;
 
 	double max_time = 0.0;
@@ -892,12 +819,9 @@ int main(int argc, char * argv[])
 
 	for (int i = spectrum_it; i < msExperimentProfile.getNrSpectra(); i++)
 	{
-		
-
 		//non-sorted version
 		s = msExperimentProfile.getSpectrum(i);
-
-		
+	
 		//sorted version
 		//s = msExperimentProfile.getSpectrum(specs[i].index);
 		if (s.getMSLevel() == 1)
@@ -908,27 +832,9 @@ int main(int argc, char * argv[])
 
 		if (s.getMSLevel() == 2)
 		{
-			//double start_time = wall_clock();
-			//std::chrono::high_resolution_clock::time_point start_time = std::chrono::high_resolution_clock::now();
-			//StartCounter();
 			StartCounter();
 
 			++ms2_count;
-
-			/*
-			if (!peptide_reader[0]) {
-				for (int j = 0; j < NUM_THREADS; j++) {
-					peptide_reader[j] = new HeadedRecordReader(peptides_file, &peptides_header);
-				}
-			}
-
-			vector<ActivePeptideQueue*> active_peptide_queue;
-			for (int j = 0; j < NUM_THREADS; j++) {
-				active_peptide_queue.push_back(new ActivePeptideQueue(peptide_reader[j]->Reader(), proteins));
-				//active_peptide_queue.push_back(new ActivePeptideQueue2(test_index, peptide_reader[j]->Reader(), proteins));
-				active_peptide_queue[j]->SetBinSize(bin_width, bin_offset);
-			}
-			*/
 
 			natID = std::istringstream(s.getNativeID());
 			natID >> junk >> junk >> scan;
@@ -938,421 +844,25 @@ int main(int argc, char * argv[])
 			for (OpenMS::MSSpectrum<>::ConstIterator it = s.begin(); it != s.end(); ++it)
 			{
 				sspec.AddPeak(it->getPos(), it->getIntensity());
-			}
+			}			
 
 			highest_mz = (s.end() - 1)->getPos();
-			//MaxBin::SetGlobalMax(highest_mz);
-			vector<SpectrumCollection::SpecCharge> spec;
-			vector<SpectrumCollection::SpecCharge>* spec_charges = &spec;
 
-			spec_charges->push_back(SpectrumCollection::SpecCharge(s.getPrecursors()[0].getUnchargedMass(), s.getPrecursors()[0].getCharge(), &sspec, 0));
+			std::string pep_seq;
+			bool isDecoy;
 
-			//need to do something different if we want a per spectrum value for time
-			//carp(CARP_INFO, "Elapsed time per spectrum %d conversion: %.3g s", i, wall_clock() /  (1e6*msExperimentProfile.getNrSpectra()) );
+			bool db_match = sequencer.is_match(sspec, highest_mz, s.getPrecursors()[0].getUnchargedMass(), s.getPrecursors()[0].getCharge(), pep_seq, isDecoy);
 
-			//spectrum is set up. do the search and figure out how to get results in memory nice and clean
-			int elution_window = Params::GetInt("elution-window-size");
-			bool peptide_centric = Params::GetBool("peptide-centric-search");
-			bool use_neutral_loss_peaks = Params::GetBool("use-neutral-loss-peaks");
-			bool use_flanking_peaks = Params::GetBool("use-flanking-peaks");
-			int max_charge = Params::GetInt("max-precursor-charge");
-			ObservedPeakSet observed(bin_width, bin_offset, use_neutral_loss_peaks, use_flanking_peaks);
-
-			if (peptide_centric == false) {
-				elution_window = 0;
-			}
-
-			for (int j = 0; j < NUM_THREADS; j++) {
-				active_peptide_queue[j]->setElutionWindow(elution_window);
-				active_peptide_queue[j]->setPeptideCentric(peptide_centric);
-			}
-
-			if (elution_window > 0 && elution_window % 2 == 0) {
-				for (int j = 0; j < NUM_THREADS; j++) {
-					active_peptide_queue[j]->setElutionWindow(elution_window + 1);
-				}
-			}
-
-			if (!peptide_centric || !exact_pval_search) {
-				for (int j = 0; j < NUM_THREADS; j++) {
-					active_peptide_queue[j]->setElutionWindow(0);
-				}
-			}
-
-			//why does the queue need outputs? will this be used later?
-			for (int j = 0; j < NUM_THREADS; j++) {
-				active_peptide_queue[j]->SetOutputs(NULL, &locations, top_matches, compute_sp, target_file, decoy_file, highest_mz);
-			}
-
-			//carp(CARP_INFO, "Iterating on spec_charges, with size %d", spec_charges-> size());
-			//carp(CARP_INFO, "Spec goes from %d to %d", spec_charges->begin(), spec_charges->end() );
-
-			/*for (int i = 0; i < 10; i++)
-			while (sc < spec_charges->end())
+			if (db_match)
 			{
-			carp(CARP_INFO, "Spec iteration test at: %d", sc);
-			sc++;
-			}
-			*/
-
-			for (vector<SpectrumCollection::SpecCharge>::const_iterator sc = spec_charges->begin();
-				sc < spec_charges->end();
-				sc++)
-			{
-
-				Spectrum* spectrum = sc->spectrum;
-				double precursor_mz = spectrum->PrecursorMZ();
-				int charge = sc->charge;
-				int scan_num = spectrum->SpectrumNumber();
-
-				//there's some shit about spectrum flags here for some reason
-				if (precursor_mz < spectrum_min_mz || precursor_mz > spectrum_max_mz ||
-					scan_num < min_scan || scan_num > max_scan ||
-					spectrum->Size() < min_peaks ||
-					(charge_to_search != 0 && charge != charge_to_search) || charge > max_charge) {
-					carp(CARP_INFO, "Exited search early on spectrum %d", i);
-					if (spectrum->Size() < min_peaks)
-						carp(CARP_INFO, "Not Enough Peaks");
-					continue;
+				db_hits++;
+				if (isDecoy)
+					++decoy_count;
+				else {
+					++target_count;
+					pep_hits.push_back(pep_seq);
 				}
-
-				vector<double>* min_mass = new vector<double>();
-				vector<double>* max_mass = new vector<double>();
-				vector<bool>* candidatePeptideStatus = new vector<bool>();
-				double min_range, max_range;
-				double *min_ran = &min_range;
-				double *max_ran = &max_range;
-
-				computeWindow(*sc, window_type, precursor_window, max_charge, negative_isotope_errors, min_mass, max_mass, &min_range, &max_range);
-
-				if (!exact_pval_search) {  //execute original tide-search program
-
-					//verbose output of search ranges
-					/*
-					for (vector<double>::const_iterator di = min_mass->begin(); di != min_mass->end(); di++)
-					{
-						carp(CARP_INFO, "min mass at %f", *di);
-					}
-
-					for (vector<double>::const_iterator di = max_mass->begin(); di != max_mass->end(); di++)
-					{
-						carp(CARP_INFO, "max mass at %f", *di);
-					}
-
-					carp(CARP_INFO, "min range at %f", min_range);
-					carp(CARP_INFO, "max range at %f", min_range);
-					*/
-
-
-
-
-					// Normalize the observed spectrum and compute the cache of
-					// frequently-needed values for taking dot products with theoretical
-					// spectra.
-					observed.PreprocessSpectrum(*spectrum, charge);
-					int nCandPeptide = active_peptide_queue[0]->SetActiveRange(min_mass, max_mass, min_range, max_range, candidatePeptideStatus);
-					if (nCandPeptide == 0) {
-						delete min_mass;
-						delete max_mass;
-						delete candidatePeptideStatus;
-						//carp(CARP_INFO, "SetActiveRange on APQ failed, stopping search");
-						continue;
-					}
-
-					int candidatePeptideStatusSize = candidatePeptideStatus->size();
-					TideMatchSet::Arr2 match_arr2(candidatePeptideStatusSize); // Scored peptides will go here.
-
-
-					for (int j = 1; j <= candidatePeptideStatusSize; j++)
-					{
-						const Peptide* tempo = active_peptide_queue[0]->GetPeptide(j);
-						double cand_mass = tempo->Mass();
-						std::string cand_name = tempo->Seq();
-
-						//carp(CARP_INFO, "Candidate at %d, %s has Mass %f and program at %d" , j, cand_name.c_str(), cand_mass, tempo->Prog(charge) );
-					}
-
-					//carp(CARP_INFO, "Peaks for observed spectra:");
-					//observed.ShowPeaks();
-					//observed.ShowCache();
-
-					// Programs for taking the dot-product with the observed spectrum are laid
-					// out in memory managed by the active_peptide_queue, one program for each
-					// candidate peptide. The programs will store the results directly into
-					// match_arr. We now pass control to those programs.
-
-					//replicate collect scores compiled.  active queue will be active_peptide_queue[0]
-					//will use match_arr2 rather than match_arr, others stay same name. candidatePeptidestatussize is called queue_size
-
-					collectScoresCompiled(active_peptide_queue[0], spectrum, observed, &match_arr2,
-						candidatePeptideStatusSize, charge);
-
-
-					// matches will arrange the results in a heap by score, return the top
-					// few, and recover the association between counter and peptide. We output
-					// the top matches.
-					if (peptide_centric) {
-						carp(CARP_INFO, "Peptide Centric Search, iterating matches");
-						deque<Peptide*>::const_iterator iter_ = active_peptide_queue[0]->iter_;
-						TideMatchSet::Arr2::iterator it = match_arr2.begin();
-						for (; it != match_arr2.end(); ++iter_, ++it) {
-							int peptide_idx = candidatePeptideStatusSize - (it->second);
-							if ((*candidatePeptideStatus)[peptide_idx]) {
-								(*iter_)->AddHit(spectrum, it->first, 0.0, it->second, charge);
-							}
-						}
-					}
-					else {  //spectrum centric match report.
-						TideMatchSet::Arr match_arr(nCandPeptide);
-						for (TideMatchSet::Arr2::iterator it = match_arr2.begin();
-							it != match_arr2.end();
-							++it) {
-							int peptide_idx = candidatePeptideStatusSize - (it->second);
-							if ((*candidatePeptideStatus)[peptide_idx]) {
-								TideMatchSet::Scores curScore;
-								curScore.xcorr_score = (double)(it->first / XCORR_SCALING);
-								curScore.rank = it->second;
-								match_arr.push_back(curScore);
-								//if ((double)(it->first / XCORR_SCALING) > 1.9f )
-								//carp(CARP_INFO, "Candidate with rank %d has XCORR %f", it->second, (double)(it->first / XCORR_SCALING));
-							}
-						}
-
-
-						//
-						//
-						//	Here down is match set stuff
-						//
-						//
-
-						//TideMatchSet::Arr* matches = &match_arr;
-
-						//TideMatchSet matches(&match_arr, highest_mz);
-						//matches.exact_pval_search_ = exact_pval_search;
-
-						//true is highScoreBest, exact_pval_search_ is same
-						//top_n is top_matches, peptides is active peptide queue[0] probably
-						// matches_ = matches , max_mz_ = highest_mz , exact_pval_search_ = exact_pval_search, elution_window_ = elution_window
-						//files stuff needs to be changed/fixed rather than writing out
-
-						/*
-						*
-						*	full ass all wires pulled out version
-						*
-						*/
-
-						//set up App and do everything but the write to file
-
-						//fix this later, right now other stuff is broken
-						
-						double max_corr = match_arr.begin()->xcorr_score;
-						double second_corr = match_arr.begin()->xcorr_score;
-						int max_corr_rank = 0;
-						int precision = Params::GetInt("precision");
-						bool decoy = false;
-
-						//carp(CARP_INFO, "XCORR Results for spectrum %d", spectrum->SpectrumNumber());
-						//carp(CARP_INFO, "Tide MatchSet reporting %d matches", match_arr.size());
-						/*
-						if (scan_num == 8650)
-							carp(CARP_INFO, "Stopping for scan 8650");
-							*/
-						for (TideMatchSet::Arr::iterator it = match_arr.begin();
-							it != match_arr.end();
-							++it)
-						{
-
-							/*
-							if (scan_num == 8650)
-							{
-								char junk;
-								carp(CARP_INFO, "Candidate with rank %d has XCORR: %f", it->rank, it->xcorr_score);
-								const Peptide* temp_pep = active_peptide_queue[0]->GetPeptide(it->rank);
-								const Peptide& peptid = *(active_peptide_queue[0]->GetPeptide(it->rank));
-								vector<Crux::Modification> modVector;
-								string seq(peptid.Seq());
-								const ModCoder::Mod* mods;
-								int pep_mods = peptid.Mods(&mods);
-								for (int i = 0; i < pep_mods; i++) {
-									int mod_index;
-									double mod_delta;
-									MassConstants::DecodeMod(mods[i], &mod_index, &mod_delta);
-									const ModificationDefinition* modDef = ModificationDefinition::Find(mod_delta, false);
-									if (modDef == NULL) {
-										carp(CARP_ERROR, "Could not find modification with delta %f", mod_delta);
-										continue;
-									}
-									modVector.push_back(Crux::Modification(modDef, mod_index));
-								}
-								Crux::Peptide cruxPep = Crux::Peptide(peptid.Seq(), modVector);
-								std::string crux_pep_hit = std::to_string(scan_num) + '\t' + cruxPep.getModifiedSequenceWithMasses();
-								carp(CARP_INFO, "Candidate peptide has sequence: %s and mass %f", cruxPep.getModifiedSequenceWithMasses().c_str(), temp_pep->Mass());
-								cin >> junk;
-							}
-							*/
-							if (it->xcorr_score > max_corr)
-							{
-								second_corr = max_corr;
-								max_corr = it->xcorr_score;
-								max_corr_rank = it->rank;
-								
-							}
-
-							
-
-						}
-
-						double delta_corr = (max_corr - second_corr) / second_corr;
-						/*
-						if (scan_num == 8650)
-						{
-							char junk;
-							carp(CARP_INFO, "Top candidate peptide has %f percent delta and %f XCorr", delta_corr, max_corr);
-							const Peptide* temp_pep = active_peptide_queue[0]->GetPeptide(max_corr_rank);
-							carp(CARP_INFO, "Top candidate peptide has sequence: %s", temp_pep->Seq());
-							cin >> junk;
-						}
-						*/
-						//
-						//if (temp_pep->IsDecoy())
-						//	decoy = true;
-
-						//carp(CARP_INFO, "XCORR Results for spectrum %d", spectrum->SpectrumNumber());
-						//carp(CARP_INFO, "Tide MatchSet reporting top %d of %d matches", top_matches, match_arr.size());
-						double threshold;
-						switch (charge)
-						{
-						case 1:
-							threshold = xcorr1;
-							break;
-						case 2:
-							threshold = xcorr2;
-							break;
-						default:
-							threshold = xcorr3;
-							break;
-
-						}
-
-						double delta_threshold = deltacn;
-
-						if (max_corr >= threshold && delta_corr >= delta_threshold)
-						{
-							/*
-							if (scan_num == 8650)
-							{	
-								char junk;
-								carp(CARP_INFO, "Candidate with rank %d has max XCORR, and a hit, with: %f", max_corr_rank, max_corr);
-								cin >> junk;
-							}
-							*/
-							db_hits++;
-							const Peptide& peptid = *(active_peptide_queue[0]->GetPeptide(max_corr_rank ));
-							if (peptid.IsDecoy())
-								decoy = true;
-							
-							if (decoy)
-								++decoy_count;
-							else
-							{
-								++target_count;
-								vector<Crux::Modification> modVector;
-								string seq(peptid.Seq());
-								const ModCoder::Mod* mods;
-								int pep_mods = peptid.Mods(&mods);
-								for (int i = 0; i < pep_mods; i++) {
-									int mod_index;
-									double mod_delta;
-									MassConstants::DecodeMod(mods[i], &mod_index, &mod_delta);
-									const ModificationDefinition* modDef = ModificationDefinition::Find(mod_delta, false);
-									if (modDef == NULL) {
-										carp(CARP_ERROR, "Could not find modification with delta %f", mod_delta);
-										continue;
-									}
-									modVector.push_back(Crux::Modification(modDef, mod_index));
-								}
-								Crux::Peptide cruxPep = Crux::Peptide(peptid.Seq(), modVector);
-								std::string crux_pep_hit = std::to_string(scan_num) + '\t' + cruxPep.getModifiedSequenceWithMasses();
-								pep_hits.push_back(crux_pep_hit);
-								//(*target_hits)  << scan_num << '\t' << cruxPep.getModifiedSequenceWithMasses() << std::endl;
-							}
-						}
-
-						TideMatchSet::Arr* matches_ = &match_arr;
-
-						
-
-						TideMatchSet matches(&match_arr, highest_mz);
-						matches.exact_pval_search_ = exact_pval_search;
-
-					
-
-						//report will not work with ActivePeptideQueue2
-						//*********************************************
-						//*********************************************
-						//*********************************************
-						//*********************************************
-						/*
-						boost::mutex * rwlock = new boost::mutex();
-
-						const string spectrum_filename = "HELA_2017-04-27_294.mzML";
-
-						matches.report(target_file, decoy_file, top_matches, spectrum_filename,
-							spectrum, charge, active_peptide_queue[0], proteins,
-							locations, compute_sp, true, rwlock);
-
-						delete rwlock;
-						*/
-
-						if (matches_->size() == 0) {
-							//carp(CARP_INFO, "Matches empty, moving to next spectra");
-
-							delete min_mass;
-							delete max_mass;
-							delete candidatePeptideStatus;
-							continue;
-						}
-						
-						//verbose reports per spectra
-
-						//carp(CARP_INFO, "Searching spectrum %d", spectrum->SpectrumNumber());
-
-						//carp(CARP_INFO, "Tide MatchSet reporting top %d of %d matches",
-						//	top_matches, matches_->size());
-
-
-
-						//matches.report(target_file, decoy_file, top_matches, spectrum_filename,
-						//spectrum, charge, active_peptide_queue, proteins,
-						//locations, compute_sp, true, locks_array[0]);
-						
-
-						//
-						//
-						//	END Match set report stuff
-						//
-						//
-
-
-					}  //end peptide_centric == true
-				}	//end !exact_pval_search
-
-				/*
-
-
-				Extremeley long code for exact PVAL search would go here
-				WE DO NOT DO EXACT P VAL
-
-
-
-				*/
-
-
-				delete min_mass;
-				delete max_mass;
-				delete candidatePeptideStatus;
-
-			} //end inner "search loop" over spec charge pairs
+			}
 
 			//more file non-sense
 			PSMConvertApplication converter;
@@ -1405,39 +915,16 @@ int main(int argc, char * argv[])
 				}
 			}
 
-			
-			//delete is here for APQ1
-			/*
-			for (int i = 0; i < NUM_THREADS; i++) {
-				delete active_peptide_queue[i];
-				delete peptide_reader[i];
-				peptide_reader[i] = NULL;
-			}
-			*/
-
-			//double end_time = wall_clock();
-			//std::chrono::high_resolution_clock::time_point end_time = std::chrono::high_resolution_clock::now();
-			//std::chrono::duration<double> elapsed = std::chrono::duration_cast<std::chrono::duration<double>>(end_time - start_time);
-			
-			//GetCounter()
 			double elapsed = GetCounter();
 			times.push_back(elapsed);
 
 		} //end search for spectra that are MS2
 
-		
-
 	} //end individual spectra loop
-
-	//delete is here for APQ2
-	for (int i = 0; i < NUM_THREADS; i++) {
-		delete active_peptide_queue[i];
-		delete peptide_reader[i];
-		peptide_reader[i] = NULL;
-	}
 
 	double false_discovery = ((double)decoy_count) / db_hits;
 
+	//various information output
 	carp(CARP_INFO, "Elapsed total time: %.3g s", wall_clock() / 1e6);
 	carp(CARP_INFO, "Elapsed time per MS2 spectrum conversion: %.3g s", wall_clock() / (1e6*ms2_count) );
 	carp(CARP_INFO, "There are %d MS1 spectra in the input file.", ms1_count);
@@ -1459,98 +946,15 @@ int main(int argc, char * argv[])
 		times_out << times[i] << std::endl;
 	}
 
-	//this is the multifile system, we will be modifying to work on either single file or single spectra
-	/*
-	for (vector<string>::const_iterator f = input_files.begin(); f != input_files.end(); f++)
-	{
-	SpectrumCollection spectra;
-	pb::Header spectrum_header;
-	string spectrumrecords = *f;
-	bool keepSpectrumrecords = true;
-	if (!spectra.ReadSpectrumRecords(spectrumrecords, &spectrum_header)) {
-	// Failed, try converting to spectrumrecords file
-	carp(CARP_INFO, "Converting %s to spectrumrecords format", f->c_str());
-	carp(CARP_INFO, "Elapsed time starting conversion: %.3g s", wall_clock() / 1e6);
-	spectrumrecords = Params::GetString("store-spectra");
-	keepSpectrumrecords = !spectrumrecords.empty();
-	if (!keepSpectrumrecords) {
-	spectrumrecords = make_file_path(FileUtils::BaseName(*f) + ".spectrumrecords.tmp");
-	}
-	else if (input_files.size() > 1) {
-	carp(CARP_FATAL, "Cannot use store-spectra option with multiple input "
-	"spectrum files");
-	}
-	carp(CARP_DEBUG, "New spectrumrecords filename: %s", spectrumrecords.c_str());
+	//end various outputs
 
-	//
-	//
-	//This SpectrumRecordWriter::convert function is the one we must replicate the behavior of
-	//
-	//
-	if (!SpectrumRecordWriter::convert(*f, spectrumrecords)) {
-	carp(CARP_FATAL, "Error converting %s to spectrumrecords format", f->c_str());
-	}
-	carp(CARP_DEBUG, "Reading converted spectra file %s", spectrumrecords.c_str());
-	// Re-read converted file as spectrumrecords file
-	if (!spectra.ReadSpectrumRecords(spectrumrecords, &spectrum_header)) {
-	carp(CARP_DEBUG, "Deleting %s", spectrumrecords.c_str());
-	remove(spectrumrecords.c_str());
-	carp(CARP_FATAL, "Error reading spectra file %s", spectrumrecords.c_str());
-	}
-	}
-	input_sr.push_back(InputFile(*f, spectrumrecords, keepSpectrumrecords));
-	}
-	*/
-	/*
-	for (vector<InputFile>::const_iterator f = input_sr.begin();
-	f != input_sr.end();
-	f++)
-	{
-	string spectra_file = f->SpectrumRecords;
-	if (!f->Keep) {
-	carp(CARP_DEBUG, "Deleting %s", spectra_file.c_str());
-	remove(spectra_file.c_str());
-	}
-	}
-	*/
-	//next is loop through the spectra, including the search itself. In the final version this will be a function
-	//that is waiting and will be called whenever an MS2 takes place
-
-
-
-	//
-	//
-	//
-	//clean up
-	//
-	//
-	//
-
-	/*
-	for (int i = 0; i < NUM_THREADS; i++) {
-		delete active_peptide_queue[i];
-		delete peptide_reader[i];
-		peptide_reader[i] = NULL;
-	}
-	*/
-
-	delete test_index;
-	delete negative_isotope_errors;
-
-	for (ProteinVec::iterator i = proteins.begin(); i != proteins.end(); ++i) {
-		delete *i;
-	}
 	if (target_file) {
 		delete target_file;
 		if (decoy_file) {
 			delete decoy_file;
 		}
 	}
-	delete[] aaFreqN;
-	delete[] aaFreqI;
-	delete[] aaFreqC;
-	delete[] aaMass;
-
+	
 	return 0;
 }
 
@@ -1736,180 +1140,3 @@ void computeWindow(
 	carp(CARP_DETAILED_DEBUG, "Scan %d.%d mass window is [%f, %f]",
 		sc.spectrum->SpectrumNumber(), sc.charge, (*out_min)[0], (*out_max)[0]);
 }
-
-	/*
-	*
-	*
-	*
-	*	HERE DOWN IS CUSTOM CODE
-	*
-	*
-	*
-	*/
-
-
-	//carp(CARP_DEBUG, "Number of Threads: %d", NUM_THREADS); // prints the number of threads
-	//printf("Number of Threads: %d\n", NUM_THREADS);
-	
-	//we should open and deal with the index files here before doing anything else. Human index is only about 100MB
-
-
-		/*
-		*
-		*
-		*	Everything below is a useful model for going through individual spectra, which we will eventually pass to the above
-		*
-		*
-		*
-
-		OpenMS::MSSpectrum<> s = msExperimentProfile.getSpectrum(spectrum);
-		std::string junk;
-		std::string scan;
-
-		std::istringstream natID = std::istringstream( s.getNativeID() );
-
-		natID >> junk >> junk >> scan;
-
-		scan = scan.substr(scan.find('=') + 1);
-
-		while (s.getMSLevel() == 1)
-		{
-		spectrum++;
-		s = msExperimentProfile.getSpectrum(spectrum);
-		}
-
-		out << "H	CreationDate	10 / 4 / 2017 3:02 : 18 PM" << std::endl;
-		out << "H	Extractor	TSMS2" << std::endl;
-		out << "H	ExtractorVersion	1.0" << std::endl;
-		out << "H	Comments	TSMS2 written by Trent Stohrer, 2017" << std::endl;
-		out << "H	ExtractorOptions	MS2 / MS1" << std::endl;
-		out << "S \t" << scan << "\t" << scan << "\t" << s.getPrecursors()[0].getMZ() << std::endl;
-		out << "Z \t" << s.getPrecursors()[0].getCharge() << "\t" << (s.getPrecursors()[0].getUnchargedMass() + OpenMS::Constants::PROTON_MASS_U) << std::endl;
-		for (OpenMS::MSSpectrum<>::ConstIterator it = s.begin(); it != s.end(); ++it)
-		{
-		out << it->getPos() << "\t" << it->getIntensity() << std::endl;
-		}
-
-		out.close();
-		std::string write_file = "";
-
-		for (int i = spectrum + 1; i < msExperimentProfile.getNrSpectra(); i++)
-		//for (int i = 0; i <= spectrum; i++)
-		{
-		s = msExperimentProfile.getSpectrum(i);
-		if (s.getMSLevel() == 2)
-		{
-		write_file = "./temp/spec_" + std::to_string(i) + ".ms2";
-		out.open(write_file);
-		natID = std::istringstream(s.getNativeID());
-		natID >> junk >> junk >> scan;
-		scan = scan.substr(scan.find('=') + 1);
-		out << "S \t" << scan << "\t" << scan << "\t" << s.getPrecursors()[0].getMZ() << std::endl;
-		out << "Z \t" << s.getPrecursors()[0].getCharge() << "\t" << (s.getPrecursors()[0].getUnchargedMass() + OpenMS::Constants::PROTON_MASS_U) << std::endl;
-		for (OpenMS::MSSpectrum<>::ConstIterator it = s.begin(); it != s.end(); ++it)
-		{
-		out << it->getPos() << "\t" << it->getIntensity() << std::endl;
-		}
-
-		out.close();
-		}
-		//std::cout << "The " << i << " spectrum has " << s.size() << " peaks and is at MS level: " << s.getMSLevel() << std::endl;
-		}
-
-		out.close();
-
-		*/
-
-		//std::cout << "There are " << msExperimentProfile.getNrSpectra() << " spectra in the input file." << std::endl;
-
-		//TideSearchApplication pass;
-
-		//pass.TideSearchApplication::main(argc, argv);
-
-		/*
-		 *
-		 *
-		 *
-		 *
-		 *
-		 *	DENNIS'S STUFF PROVIDING EXAMPLE CODE BELOW HERE
-		 *
-		 *
-		 *
-		 *
-		 *
-		 *
-		 */
-
-
-
-		//out << "isotope.range" << "\t" << "ion.index" << "\t" << "ion.name" << "\t" << "mz" << "\t" << "int" << std::endl;
-		//calc_out << "isotope.range" << "\t" << "ion.index" << "\t" << "ion.name" << "\t" << "mz" << "\t" << "int" << "\t" << "method" << std::endl;
-
-		//const Ion precursorIon = Ion(OpenMS::AASequence::fromString("[-18.010565]ELYENKPRRPYIL"), OpenMS::Residue::Full, 3);
-
-		//create list of b and y ions
-		//std::vector<Ion> ionList;
-		//Ion::generateFragmentIons(ionList, precursorIon.sequence, precursorIon.charge);
-
-		//double isotopeStep = OpenMS::Constants::NEUTRON_MASS_U / precursorIon.charge;
-
-		//Loop through all spectra
-		//for (int specIndex = 0; specIndex < msExperimentCentroid.getNrSpectra(); ++specIndex) {
-		//for (int specIndex = 0; specIndex < 10; ++specIndex)
-		//{
-
-		//	OpenMS::MSSpectrum<OpenMS::Peak1D> currentSpectrumCentroid = msExperimentCentroid.getSpectrum(specIndex);
-		//	OpenMS::MSSpectrum<OpenMS::Peak1D> currentSpectrumProfile = msExperimentProfile.getSpectrum(specIndex);
-
-		//	if (currentSpectrumCentroid.getMSLevel() == 1) continue;
-
-		//	currentSpectrumCentroid.sortByPosition();
-
-		//const OpenMS::Precursor precursorInfo = currentSpectrumCentroid.getPrecursors()[0];
-		//	std::vector<OpenMS::UInt> precursorIsotopes;
-
-		//}
-
-//old code
-
-//compute window replication
-/*
-double unit_dalton = BIN_WIDTH;
-
-switch (window_type) {
-case WINDOW_MASS:
-for (vector<int>::const_iterator ie = negative_isotope_errors->begin(); ie != negative_isotope_errors->end(); ++ie) {
-min_mass->push_back(sc->neutral_mass + (*ie * unit_dalton) - precursor_window);
-max_mass->push_back(sc->neutral_mass + (*ie * unit_dalton) + precursor_window);
-}
-*min_ran = (sc->neutral_mass + (negative_isotope_errors->front() * unit_dalton)) - precursor_window;
-*max_ran = (sc->neutral_mass + (negative_isotope_errors->back() * unit_dalton)) + precursor_window;
-break;
-case WINDOW_MZ: {
-double mz_minus_proton = sc->spectrum->PrecursorMZ() - MASS_PROTON;
-for (vector<int>::const_iterator ie = negative_isotope_errors->begin(); ie != negative_isotope_errors->end(); ++ie) {
-min_mass->push_back((mz_minus_proton - precursor_window) * sc->charge + (*ie * unit_dalton));
-max_mass->push_back((mz_minus_proton + precursor_window) * sc->charge + (*ie * unit_dalton));
-}
-*min_ran = (mz_minus_proton*sc->charge + (negative_isotope_errors->front() * unit_dalton)) - precursor_window*max_charge;
-*max_ran = (mz_minus_proton*sc->charge + (negative_isotope_errors->back() * unit_dalton)) + precursor_window*max_charge;
-break;
-}
-case WINDOW_PPM: {
-double tiny_precursor = precursor_window * 1e-6;
-for (vector<int>::const_iterator ie = negative_isotope_errors->begin(); ie != negative_isotope_errors->end(); ++ie) {
-min_mass->push_back((sc->neutral_mass + (*ie * unit_dalton)) * (1.0 - tiny_precursor));
-max_mass->push_back((sc->neutral_mass + (*ie * unit_dalton)) * (1.0 + tiny_precursor));
-}
-*min_ran = (sc->neutral_mass + (negative_isotope_errors->front() * unit_dalton)) * (1.0 - tiny_precursor);
-*max_ran = (sc->neutral_mass + (negative_isotope_errors->back() * unit_dalton)) * (1.0 + tiny_precursor);
-break;
-}
-default:
-carp(CARP_FATAL, "Invalid window type");
-}
-carp(CARP_DETAILED_DEBUG, "Scan %d.%d mass window is [%f, %f]",
-sc->spectrum->SpectrumNumber(), sc->charge, (*min_mass)[0], (*max_mass)[0]);
-//end compute window replication
-*/
