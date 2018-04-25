@@ -77,9 +77,19 @@ enzyme=trypsin
 # are enclosed in curly braces, '{' and '}'. Use X to indicate all residues. For
 # example, trypsin cuts after R or K but not before P which is represented as
 # [RK]|{P}. AspN cuts after any residue but only before D which is represented
-# as [X]|[D].
+# as [X]|[D]. To prevent the sequences from being digested at all, use [Z]|[Z].
 # 
 custom-enzyme=
+
+# Perform a simple deisotoping operation across each MS2 spectrum. For each peak
+# in an MS2 spectrum, consider lower m/z peaks. If the current peak occurs where
+# an expected peak would lie for any charge state less than the charge state of
+# the precursor, within mass tolerance, and if the current peak is of lower
+# abundance, then the peak is removed.  The value of this parameter is the mass
+# tolerance, in units of parts-per-million.  If set to 0, no deisotoping is
+# performed.
+# Available for tide-search.
+deisotope=0
 
 # Specify whether every peptide in the database must have two enzymatic termini
 # (full-digest) or if peptides with only one enzymatic terminus are also
@@ -98,7 +108,7 @@ missed-cleavages=0
 # 'precursor-window' of the spectrum value. The precursor window units depend
 # upon precursor-window-type.
 # Available for tide-search and crux-generate-peptides.
-precursor-window=3
+precursor-window=20
 
 # Specify the units for the window that is used to select peptides around the
 # precursor mass location (mass, mz, ppm). The magnitude of the window is
@@ -116,7 +126,7 @@ precursor-window=3
 # mass / (1.0 + (precursor-window / 1000000)) and the upper bound is defined as
 # spectrum mass / (1.0 - (precursor-window / 1000000)).
 # Available for search-for-xlinks and tide-search.
-precursor-window-type=mass
+precursor-window-type=ppm
 
 # Automatically estimate optimal value for the precursor-window parameter from
 # the spectra themselves. false=no estimation, warn=try to estimate but use the
@@ -266,6 +276,12 @@ temp-dir=
 # Available for tide-search and crux percolator
 top-match=5
 
+# Specify the maximum rank to allow when parsing results files. Matches with
+# ranks higher than this value will be ignored (a value of zero allows matches
+# with any rank).
+# 
+top-match-in=0
+
 # When given a unsigned integer value seeds the random number generator with
 # that value. When given the string "time" seeds the random number generator
 # with the system time.
@@ -366,7 +382,9 @@ search-input=auto
 # Available for all percolator
 percolator-seed=1
 
-# Output the computed features in tab-delimited text format.
+# Output the computed features in tab-delimited Percolator input (.pin) format.
+# The features will be normalized, using either unit norm or standard deviation
+# normalization (depending upon the value of the unit-norm option).
 # Available for percolator and q-ranker.
 feature-file-out=false
 
@@ -463,10 +481,6 @@ unitnorm=false
 # Available for crux percolator.
 test-each-iteration=false
 
-# When set to T, interpret the input file as a PIN file.
-# Available for crux percolator.
-feature-file-in=false
-
 # Use the picked protein-level FDR to infer protein probabilities, provide the
 # fasta file as the argument to this flag.
 # Available for crux percolator
@@ -549,6 +563,17 @@ klammer=false
 # probability.
 # Available for crux percolator
 only-psms=false
+
+# Enforce that, for each spectrum, at most one PSM is included in the positive
+# set during each training iteration. Note that if the user only provides one
+# PSM per spectrum, then this option will have no effect.
+# Available for crux percolator
+train-best-positive=false
+
+# Report the number of unique PSMs and total (including shared peptides) PSMs as
+# two extra columns in the protein tab-delimited output.
+# Available for crux percolator
+spectral-counting-fdr=0
 
 # Include a decoy version of every peptide by shuffling or reversing the target
 # sequence or protein. In shuffle or peptide-reverse mode, each peptide is
@@ -668,6 +693,26 @@ peptide-centric-search=false
 # Skip preprocessing steps on spectra. Default = F.
 # Available for tide-search
 skip-preprocessing=false
+
+# Function used for scoring PSMs. 'xcorr' is the original scoring function used
+# by SEQUEST; 'residue-evidence' is designed to score high-resolution MS2
+# spectra; and 'both' calculates both scores. The latter requires that
+# exact-p-value=T.
+# Available for tide-search.
+score-function=xcorr
+
+# Mass tolerance (in Da) for scoring pairs of peaks when creating the residue
+# evidence matrix. This parameter only makes sense when score-function is
+# 'residue-evidence' or 'both'.
+# Available for tide-search.
+fragment-tolerance=0.02
+
+# When exact-pvalue=T, this parameter controls the granularity of the entries in
+# the dynamic programming matrix.  Smaller values make the program run faster
+# but give less exact p-values; larger values make the program run more slowly
+# but give more exact p-values.
+# Available for tide-search
+evidence-granularity=25
 
 # List of positive, non-zero integers.
 # Isotope errors to include. Specify a comma-separated list of isotope errors of
@@ -1384,6 +1429,11 @@ pm-max-scan-separation=1000
 # distribution.
 # Available for param-medic and tide-search and comet
 pm-min-peak-pairs=100
+
+# Ignore implied modifications where the absolute value of its mass is below
+# this value and only score the unmodified peptide.
+# Available for localize-modification
+min-mod-mass=0
 
 # Consider modifications on any amino acid in aa list with at most
 # max-per-peptide in one peptide. The parameter takes the form

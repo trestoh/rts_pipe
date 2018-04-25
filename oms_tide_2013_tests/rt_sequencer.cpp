@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include "rt_sequencer.h"
 
 RT_Sequencer::RT_Sequencer()
@@ -13,6 +15,8 @@ RT_Sequencer::RT_Sequencer()
 
 void RT_Sequencer::init(const char* index_name, double xc1, double xc2, double xc3, double dcn)
 {
+	//OutputDebugString(L"test");
+
 	xcorr1 = xc1;
 	xcorr2 = xc2;
 	xcorr3 = xc3;
@@ -361,7 +365,7 @@ bool RT_Sequencer::is_match(Spectrum& sspec, double high_mz, double precursor_ma
 
 }
 
-void collectScoresCompiled(
+void RT_Sequencer::collectScoresCompiled(
 	//ActivePeptideQueue* active_peptide_queue,
 	ActivePeptideQueue2* active_peptide_queue,
 	const Spectrum* spectrum,
@@ -494,7 +498,7 @@ void collectScoresCompiled(
 	match_arr->set_size(queue_size);
 }
 
-void computeWindow(
+void RT_Sequencer::computeWindow(
 	const SpectrumCollection::SpecCharge& sc,
 	WINDOW_TYPE_T window_type,
 	double precursor_window,
