@@ -1,7 +1,0 @@
-INFO: CPU: LCCCFJZJBM1
-INFO: Crux version: 3.1
-INFO: Mon 02/12/2018 
-INFO: Running tide-search...
-INFO: Number of Threads: 1
-INFO: Reading index C:\dev\workspace\human-tmt-improved-index
-INFO: Read 335367 auxlocs

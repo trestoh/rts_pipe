@@ -1,1 +1,0 @@
-file	scan	charge	spectrum precursor m/z	spectrum neutral mass	peptide mass	delta_cn	delta_lcn	sp score	sp rank	xcorr score	xcorr rank	b/y ions matched	b/y ions total	distinct matches/spectrum	sequence	modifications	cleavage type	protein id	flanking aa	target/decoy
