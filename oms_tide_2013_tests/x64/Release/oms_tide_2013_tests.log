@@ -1,4 +1,4 @@
-﻿Build started 4/25/2018 4:10:59 PM.
+﻿Build started 12/19/2018 11:45:00 AM.
      1>Project "C:\dev\rts-ms3\rts_pipe\oms_tide_2013_tests\oms_tide_2013_tests.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"C:\dev\crux-src-03282018\ext\build\src\ProteoWizard\libraries\boost_1_56_0" /I"C:\dev\OpenMS-2.2.0-src\src\openms\include" /I"C:\dev\openms-220\src\openms\include" /I"C:\dev\qt-src-4.8.7\include\QtCore" /I"C:\dev\qt-src-4.8.7\include" /I"C:\dev\crux-src-03282018\ext\include" /I"C:\dev\crux-src-03282018\src" /I"C:\dev\crux-src-03282018\src\app\tide\protoobj" /I"C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src" /I"C:\dev\crux-src-03282018\ext\build\src\comet\MSToolkit\include" /I"C:\dev\crux-src-03282018\src\app\tide" /ZI /nologo /W3 /WX- /sdl /Od /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"x64\Release\oms_tide_2013_tests.pch" /Fo"x64\Release\\" /Fd"x64\Release\project.pdb" /Gd /TP /wd4996 /errorReport:prompt /EHa oms_tide_2013_tests.cpp
@@ -46,6 +46,7 @@
      1>c:\dev\crux-src-03282018\src\app\tide\spectrum_collection.h(114): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
      1>c:\dev\rts-ms3\rts_pipe\oms_tide_2013_tests\inmemindex.h(40): warning C4291: 'void *Peptide::operator new(size_t,FifoAllocator *)' : no matching operator delete found; memory will not be freed if initialization throws an exception
                  c:\dev\crux-src-03282018\src\app\tide/peptide.h(154) : see declaration of 'Peptide::operator new'
+     1>oms_tide_2013_tests.cpp(446): warning C4101: 'isDecoy' : unreferenced local variable
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\dev\rts-ms3\rts_pipe\x64\Release\oms_tide_2013_tests.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\dev\openms-220\src\openms\Release" /LIBPATH:"C:\dev\crux-src-03282018\src\app\tide\Release" /LIBPATH:"C:\dev\crux-src-03282018\src\Release" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib OpenMS.lib "tide-support.lib" "crux-support.lib" ShLwApi.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\dev\rts-ms3\rts_pipe\x64\Release\oms_tide_2013_tests.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\dev\rts-ms3\rts_pipe\x64\Release\oms_tide_2013_tests.lib" /MACHINE:X64 "C:\dev\crux-src-03282018\ext\build\src\percolator-build\src\picked_protein\Release\*.lib" "C:\dev\crux-src-03282018\ext\build\src\percolator-build\src\Release\*.lib" "C:\dev\crux-src-03282018\ext\build\src\ProteoWizard\libraries\*.lib" "C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\vsprojects\x64\Release\*.lib" "C:\dev\crux-src-03282018\ext\build\src\ProteoWizard\pwiz_aux\msrc\utility\vendor_api\Bruker\x64\*.lib" "C:\dev\crux-src-03282018\ext\lib\*.lib" "C:\dev\crux-src-03282018\ext\Lib\boost_release\*.lib" /NODEFAULTLIB:libboost_chrono-vc120-mt-1_56 /NODEFAULTLIB:libboost_date_time-vc120-mt-1_56 /NODEFAULTLIB:libboost_system-vc120-mt-1_56 /NODEFAULTLIB:libboost_thread-vc120-mt-1_56 x64\Release\mem_peptide_queue.obj
          x64\Release\oms_tide_2013_tests.obj
@@ -64,4 +65,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:15.80
+Time Elapsed 00:00:16.07

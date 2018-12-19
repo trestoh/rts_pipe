@@ -11,37 +11,123 @@ RT_Sequencer::RT_Sequencer()
 	aaFreqI = NULL;
 	aaFreqC = NULL;
 	aaMass = NULL;
+	curr_spectrum = NULL;
 }
 
-void RT_Sequencer::init(const char* index_name, double xc1, double xc2, double xc3, double dcn)
+bool RT_Sequencer::protInclude(std::string prot_name)
 {
-	//OutputDebugString(L"test");
+	if (inclusion_list.empty())
+		return true;
+
+	if (inclusion_list.count(prot_name))
+		return true;
+
+	else
+		return false;
+
+}
+
+void RT_Sequencer::addPeak(double mz, double intensity)
+{
+	if (curr_spectrum == NULL)
+		return;
+
+	curr_spectrum->AddPeak(mz, intensity);
+
+}
+
+void RT_Sequencer::makeSpec(int scan_num, double prec_mz)
+{
+	if (curr_spectrum != NULL)
+		delete curr_spectrum;
+
+	curr_spectrum = new Spectrum(scan_num, prec_mz);
+}
+
+double RT_Sequencer::score()
+{
+	return last_score;
+}
+
+void RT_Sequencer::init(const char* index_name, const char* param_name, const char* inclusion_name, double xc1, double xc2, double xc3, double dcn, int window_type_index, double window_size)
+{
+	//wchar_t* msgbuf = (wchar_t*) index_name;
+	set_verbosity_level(30);
+	//sprintf(msgbuf, "Index is %s", index_name);
+
+	OutputDebugStringA(index_name);
 
 	xcorr1 = xc1;
 	xcorr2 = xc2;
 	xcorr3 = xc3;
 	deltacn = dcn;
 
+	last_score = 0.0;
+	last_seq = "";
+
+	//open_ms_seq = OpenMS::AASequence::fromString("EHQEALHQQR");
+	//computeFragments(3);
+	//for (int j = 0; j < last_fragments.size(); j++)
+	//carp(CARP_INFO, "Theoretical Fragment of %f", last_fragments.at(j));
+	//	std::cout << "Theoretical Fragment of " << last_fragments.at(j) << std::endl;
+
 	HAS_DECOYS = false;
 	PROTEIN_LEVEL_DECOYS = false;
 
 	if (index_name == NULL)
 	{
+		OutputDebugString(L"Error Reading Index, name misread");
 		carp(CARP_FATAL, "Error Reading Index, no name provided");
-		exit(1);
+		exit(2);
+	}
+
+	if (param_name != NULL)
+	{
+		parse_parameter_file(param_name);
+		window = Params::GetDouble("precursor-window");
+		window_type = string_to_window_type(Params::GetString("precursor-window-type"));
+	}
+
+	else
+	{
+		window = window_size;
+		window_type = WINDOW_TYPE_T(window_type_index);
+	}
+
+	if (inclusion_name != NULL)
+	{
+		std::ifstream inc_list(inclusion_name);
+		if (inc_list)
+		{
+			std::string line;
+			std::string prot;
+			std::string kin_family;
+			while (std::getline(inc_list, line))
+			{
+				std::istringstream iss(line);
+				iss >> prot >> kin_family;
+				inclusion_list.insert({ prot, kin_family });
+			}
+		}
 	}
 
 	std::string peptides_file = FileUtils::Join(index_name, "pepix");
 	std::string proteins_file = FileUtils::Join(index_name, "protix");
 	std::string auxlocs_file = FileUtils::Join(index_name, "auxlocs");
 
+	//OutputDebugStringA(peptides_file.c_str());
+
 	pb::Header pepts_header;
+	carp(CARP_INFO, "Declaring Headed Record Reader");
 	HeadedRecordReader pept_reader(peptides_file, &pepts_header);
+	carp(CARP_INFO, "Declared Headed Record Reader");
 
 	if ((pepts_header.file_type() != pb::Header::PEPTIDES) || !pepts_header.has_peptides_header())
 	{
+		OutputDebugString(L"Error Reading Index, Peptide Header not found");
+		Sleep(5000);
 		carp(CARP_FATAL, "Error Reading Index, Peptide Header not found");
-		exit(1);
+		//exit(2);
 	}
 
 	const pb::Header::PeptidesHeader& pepsHeader = pepts_header.peptides_header();
@@ -53,8 +139,30 @@ void RT_Sequencer::init(const char* index_name, double xc1, double xc2, double x
 	Params::Finalize();
 	GlobalParams::set();
 
-	window = Params::GetDouble("precursor-window");
-	window_type = string_to_window_type(Params::GetString("precursor-window-type"));
+	const pb::ModTable mods = pepsHeader.mods();
+
+	static_mods = false;
+
+	auto s_mods = mods.static_mod();
+
+	auto s_walker = s_mods.begin();
+	s_walker++;
+
+	if (s_walker == s_mods.end())
+		static_delta = "";
+
+	while (s_walker != s_mods.end())
+	{
+		pb::Modification ok = (*s_walker);
+		//double is_tmt = ok.delta() - 229.162932;
+		//if (is_tmt <= 0.000001)
+		//	static_mods = true;
+
+		static_mods = true;
+		static_delta = to_string(ok.delta());
+
+		s_walker++;
+	}
 
 	string charge_string = Params::GetString("spectrum-charge");
 	if (charge_string == "all"){
@@ -107,6 +215,7 @@ void RT_Sequencer::init(const char* index_name, double xc1, double xc2, double x
 
 	string isotope_errors_string = Params::GetString("isotope-error");
 	if (isotope_errors_string[0] == ',') {
+		OutputDebugString(L"Error in isotope_error parameter formatting");
 		carp(CARP_FATAL, "Error in isotope_error parameter formatting: (%s) ", isotope_errors_string.c_str());
 	}
 	for (int i = 0; isotope_errors_string[i] != '\0'; ++i){
@@ -130,7 +239,6 @@ void RT_Sequencer::init(const char* index_name, double xc1, double xc2, double x
 
 	sort(negative_isotope_errors->begin(), negative_isotope_errors->end());
 
-	ProteinVec proteins;
 	pb::Header protein_header;
 
 	if (!ReadRecordsToVector<pb::Protein, const pb::Protein>(&proteins, proteins_file, &protein_header))
@@ -187,6 +295,8 @@ void RT_Sequencer::init(const char* index_name, double xc1, double xc2, double x
 	peptide_queue = new ActivePeptideQueue2(pep_index, peptide_reader->Reader(), proteins);
 	peptide_queue->SetBinSize(bin_width, bin_offset);
 
+	OutputDebugString(L"Sequencer Initialized");
+
 }
 
 RT_Sequencer::~RT_Sequencer()
@@ -198,15 +308,16 @@ RT_Sequencer::~RT_Sequencer()
 	delete[] aaFreqC;
 	delete[] aaMass;
 	delete negative_isotope_errors;
+	delete curr_spectrum;
 }
 
-bool RT_Sequencer::is_match(Spectrum& sspec, double high_mz, double precursor_mass, OpenMS::Int precursor_charge, std::string& peptide_hit, bool& decoy)
+bool RT_Sequencer::is_match(double high_mz, double precursor_mass, int precursor_charge)
 {
 	highest_mz = high_mz;
 	vector<SpectrumCollection::SpecCharge> spec;
 	vector<SpectrumCollection::SpecCharge>* spec_charges = &spec;
 
-	spec_charges->push_back(SpectrumCollection::SpecCharge(precursor_mass, precursor_charge, &sspec, 0));
+	spec_charges->push_back(SpectrumCollection::SpecCharge(precursor_mass, precursor_charge, curr_spectrum, 0));
 	int elution_window = Params::GetInt("elution-window-size");
 	bool peptide_centric = Params::GetBool("peptide-centric-search");
 	bool use_neutral_loss_peaks = Params::GetBool("use-neutral-loss-peaks");
@@ -234,11 +345,19 @@ bool RT_Sequencer::is_match(Spectrum& sspec, double high_mz, double precursor_ma
 		int charge = sc->charge;
 		int scan_num = spectrum->SpectrumNumber();
 
+		OutputDebugString(L"In Spec Collec loop, peaks for spectrum is: ");
+		char spec_size[100];
+		sprintf(spec_size, "%d", spectrum->Size());
+		OutputDebugStringA(spec_size);
+
+
 		if (precursor_mz < spectrum_min_mz || precursor_mz > spectrum_max_mz || scan_num < min_scan || scan_num > max_scan
 			|| spectrum->Size() < min_peaks || (charge_to_search != 0 && charge != charge_to_search) || charge > max_charge) {
 			carp(CARP_INFO, "Exited search early");
 			if (spectrum->Size() < min_peaks)
 				carp(CARP_INFO, "Not Enough Peaks.");
+			delete curr_spectrum;
+			curr_spectrum = NULL;
 			return false;
 		}
 
@@ -258,13 +377,17 @@ bool RT_Sequencer::is_match(Spectrum& sspec, double high_mz, double precursor_ma
 				delete min_mass;
 				delete max_mass;
 				delete candidatePeptideStatus;
+				delete curr_spectrum;
+				curr_spectrum = NULL;
 				return false;
 			}
 
 			int candidatePeptideStatusSize = candidatePeptideStatus->size();
 			TideMatchSet::Arr2 match_arr2(candidatePeptideStatusSize);
 
-			collectScoresCompiled(peptide_queue, spectrum, observed, &match_arr2, candidatePeptideStatusSize, charge);
+			OutputDebugString(L"Hitting collect scores compiled");
+			this->collectScoresCompiled(peptide_queue, spectrum, observed, &match_arr2, candidatePeptideStatusSize, charge);
+			OutputDebugString(L"Passed collect scores compiled");
 
 			if (peptide_centric) {
 				carp(CARP_INFO, "Peptide Centric Search, iterating matches");
@@ -292,7 +415,7 @@ bool RT_Sequencer::is_match(Spectrum& sspec, double high_mz, double precursor_ma
 
 				double max_corr = match_arr.begin()->xcorr_score;
 				double second_corr = match_arr.begin()->xcorr_score;
-				int max_corr_rank = 0;
+				int max_corr_rank = match_arr.size();
 				int precision = Params::GetInt("precision");
 
 				for (TideMatchSet::Arr::iterator it = match_arr.begin(); it != match_arr.end(); ++it) {
@@ -302,6 +425,8 @@ bool RT_Sequencer::is_match(Spectrum& sspec, double high_mz, double precursor_ma
 						max_corr_rank = it->rank;
 					}
 				}
+
+				last_score = max_corr;
 
 				double delta_corr = (max_corr - second_corr) / second_corr;
 				double threshold;
@@ -318,36 +443,102 @@ bool RT_Sequencer::is_match(Spectrum& sspec, double high_mz, double precursor_ma
 				}
 
 				double delta_threshold = deltacn;
-
+				/*
 				const Peptide& peptid = *(peptide_queue->GetPeptide(max_corr_rank));
 
-				if (peptid.IsDecoy())
-					decoy = true;
-				else
-					decoy = false;
+				//if (peptid.IsDecoy())
+				//	decoy = true;
+				//else
+				//	decoy = false;
 
 				vector<Crux::Modification> modVector;
 				string seq(peptid.Seq());
 				const ModCoder::Mod* mods;
 				int pep_mods = peptid.Mods(&mods);
 				for (int i = 0; i < pep_mods; i++){
-					int mod_index;
-					double mod_delta;
-					MassConstants::DecodeMod(mods[i], &mod_index, &mod_delta);
-					const ModificationDefinition* modDef = ModificationDefinition::Find(mod_delta, false);
-					if (modDef == NULL)
-						continue;
-					modVector.push_back(Crux::Modification(modDef, mod_index));
+				int mod_index;
+				double mod_delta;
+				MassConstants::DecodeMod(mods[i], &mod_index, &mod_delta);
+				const ModificationDefinition* modDef = ModificationDefinition::Find(mod_delta, false);
+				if (modDef == NULL)
+				continue;
+				modVector.push_back(Crux::Modification(modDef, mod_index));
 				}
 
 				Crux::Peptide cruxPep = Crux::Peptide(peptid.Seq(), modVector);
+				*/
+				//peptide_hit = cruxPep.getModifiedSequenceWithMasses();
 
-				peptide_hit = cruxPep.getModifiedSequenceWithMasses();
+				//carp(CARP_DETAILED_DEBUG, "Max XCorr for Scan is: %f and dCn is: %f", max_corr, delta_corr);
+				const Peptide& peptid01 = *(peptide_queue->GetPeptide(max_corr_rank));
+				const pb::Protein* protein = proteins[peptid01.FirstLocProteinId()];
+				int pos = peptid01.FirstLocPos();
+				string proteinName = protein->name();//getProteinName(*protein,
+				//(!protein->has_target_pos()) ? pos : protein->target_pos());
+				int start_pos = 0;
+				while (proteinName[start_pos] != '|')
+					start_pos++;
+				start_pos++;
+				int end_pos = start_pos;
+				while (proteinName[end_pos] != '-' && proteinName[end_pos] != '|')
+					end_pos++;
+				proteinName = proteinName.substr(start_pos, end_pos - start_pos);
 
-				if (max_corr >= threshold && delta_corr >= delta_threshold) {
+
+				if (max_corr >= threshold && delta_corr >= delta_threshold && protInclude(proteinName)) {
+					const Peptide& peptid = *(peptide_queue->GetPeptide(max_corr_rank));
+					last_seq = peptid.SeqWithMods();
+					for (int i = 0; i < last_seq.size(); i++)
+					{
+						if (last_seq.at(i) == '[')
+							if (last_seq.substr(i, 8) == "[+229.2]")
+							{
+								//carp(CARP_INFO, "Found a dang TMT");
+								//carp(CARP_INFO, "Sequence started as %s", last_seq.c_str());
+								//last_seq.replace(i, 8, "(TMT6plex)");
+								if (i == 1)
+								{
+									last_seq.erase(i, 8);
+									last_seq = "(TMT6plex)" + last_seq;
+									i = 10;
+								}
+								else
+								{
+									last_seq.replace(i, 8, "(TMT6plex)");
+									i += 9;
+								}
+								//carp(CARP_INFO, "Changed sequence to %s", last_seq.c_str());
+							}
+					}
+
+					if (static_mods)
+					{
+						//last_seq.insert(0, ".(TMT6plex)");
+						last_seq.insert(0, (".[+" + static_delta + "]"));
+						if (last_seq.at(last_seq.size() - 1) == 'K')
+							//last_seq.append("(TMT6plex)");
+							last_seq.append(("[+" + static_delta + "]"));
+					}
+
+					open_ms_seq = OpenMS::AASequence::fromString(last_seq);
+
+					computeFragments(precursor_charge);
+					//for (int j = 0; j < last_fragments.size(); j++)
+					//carp(CARP_INFO, "Theoretical Fragment of %f", last_fragments.at(j));
+					//	std::cout << "Theoretical Fragment of " << last_fragments.at(j) << std::endl;
+
+					//for (int k = 0; k < curr_spectrum->Size(); k++)
+					//	std::cout << "Observed Peak MZ: " << curr_spectrum->M_Z(k) << " Intensity: " << curr_spectrum->Intensity(k) << std::endl;
+
+					//for (int m = 0; m < sps_targets.size(); m++)
+					//	std::cout << "Sps Target: " << sps_targets.at(m) << std::endl;
+
+					//carp(CARP_INFO, "Search was at charge state %d", precursor_charge);
 					delete min_mass;
 					delete max_mass;
 					delete candidatePeptideStatus;
+					delete curr_spectrum;
+					curr_spectrum = NULL;
 					return true;
 				}
 
@@ -361,7 +552,147 @@ bool RT_Sequencer::is_match(Spectrum& sspec, double high_mz, double precursor_ma
 
 	}//end loop through spectrum charges
 
+	delete curr_spectrum;
+	curr_spectrum = NULL;
 	return false;
+
+}
+
+void RT_Sequencer::computeFragments(int charge)
+{
+	last_fragments.clear();
+	sps_targets.clear();
+
+	std::vector<std::vector<double>> temp_fragment_lists;
+	temp_fragment_lists.push_back(std::vector<double>());
+	temp_fragment_lists.push_back(std::vector<double>());
+	temp_fragment_lists.push_back(std::vector<double>());
+	temp_fragment_lists.push_back(std::vector<double>());
+
+	bool nterm = open_ms_seq.hasNTerminalModification() ? ((open_ms_seq.getNTerminalModificationName() == "TMT6plex") ? true : false) : false;
+
+	nterm = open_ms_seq.hasNTerminalModification();
+
+	int second_tmt = open_ms_seq.size();
+	bool second_mod = false;
+
+	OpenMS::AASequence::Iterator it = --open_ms_seq.end();
+	while (it != open_ms_seq.begin())
+	{
+		if (it->isModified())
+		{
+			std::string mod = it->getModificationName();
+			if (mod == "TMT6plex")
+			{
+				second_mod = true;
+				break;
+			}
+
+			second_mod = true;
+			break;
+
+		}
+		--second_tmt;
+		--it;
+	}
+
+	int right_index = open_ms_seq.size() - second_tmt;
+
+	//if (second_mod && right_index != 0)
+	//	bool temp = true;
+
+	for (int i = 1; i < open_ms_seq.size(); i++)
+	{
+		if (nterm)
+		{
+			temp_fragment_lists.at(0).push_back(open_ms_seq.getPrefix(i).getMonoWeight(OpenMS::Residue::ResidueType::BIon, 1) - 18.0091422);
+			temp_fragment_lists.at(0).push_back(open_ms_seq.getPrefix(i).getMonoWeight(OpenMS::Residue::ResidueType::BIon, 1) - 17.0086343);
+			temp_fragment_lists.at(0).push_back(open_ms_seq.getPrefix(i).getMonoWeight(OpenMS::Residue::ResidueType::BIon, 1));
+		}
+
+		if (second_mod)
+		{
+			if (i > right_index)
+			{
+				temp_fragment_lists.at(1).push_back(open_ms_seq.getSuffix(i).getMonoWeight(OpenMS::Residue::ResidueType::YIon, 1) - 18.0091422);
+				temp_fragment_lists.at(1).push_back(open_ms_seq.getSuffix(i).getMonoWeight(OpenMS::Residue::ResidueType::YIon, 1) - 17.0086343);
+				temp_fragment_lists.at(1).push_back(open_ms_seq.getSuffix(i).getMonoWeight(OpenMS::Residue::ResidueType::YIon, 1));
+			}
+		}
+
+		if (charge > 2)
+		{
+			if (nterm)
+				temp_fragment_lists.at(2).push_back(open_ms_seq.getPrefix(i).getMonoWeight(OpenMS::Residue::ResidueType::BIon, 2) / 2);
+
+			if (second_mod)
+				if (i > right_index)
+					temp_fragment_lists.at(3).push_back(open_ms_seq.getSuffix(i).getMonoWeight(OpenMS::Residue::ResidueType::YIon, 2) / 2);
+		}
+	}
+
+	std::vector<double>::iterator iter[4];
+	iter[0] = temp_fragment_lists.at(0).begin();
+	iter[1] = temp_fragment_lists.at(1).begin();
+	iter[2] = temp_fragment_lists.at(2).begin();
+	iter[3] = temp_fragment_lists.at(3).begin();
+
+	std::priority_queue<fragmentNode, std::vector<fragmentNode>, std::greater<fragmentNode>> queue;
+	for (int i = 0; i < 4; i++)
+	{
+		if (iter[i] != temp_fragment_lists.at(i).end())
+		{
+			queue.push(fragmentNode(*(iter[i]++), i));
+		}
+	}
+
+	fragmentNode temp(0.0, 0);
+
+	while (!queue.empty())
+	{
+		temp = queue.top();
+		//std::cout << "Queue Test: "  << temp.mz << std::endl;
+		last_fragments.push_back(temp.mz);
+		queue.pop();
+		if (iter[temp.list] != temp_fragment_lists.at(temp.list).end())
+		{
+			queue.push(fragmentNode(*(iter[temp.list]++), temp.list));
+		}
+	}
+
+	std::priority_queue<peakNode, std::vector<peakNode>, std::greater<peakNode>> peak_queue;
+	int peaks = 0;
+	int frags = 0;
+	while (peaks < curr_spectrum->Size() && frags < last_fragments.size())
+	{
+		double mz_diff = curr_spectrum->M_Z(peaks) - last_fragments.at(frags);
+
+		if (abs(mz_diff) < 0.5)
+		{
+			if (peak_queue.size() != 10)
+				peak_queue.push(peakNode(curr_spectrum->M_Z(peaks), curr_spectrum->Intensity(peaks)));
+			else if (curr_spectrum->Intensity(peaks) > peak_queue.top().intensity)
+			{
+				peak_queue.pop();
+				peak_queue.push(peakNode(curr_spectrum->M_Z(peaks), curr_spectrum->Intensity(peaks)));
+			}
+
+			peaks++;
+
+		}
+
+		else if (mz_diff >= 0.0)
+			frags++;
+		else
+			peaks++;
+	}
+
+	while (!peak_queue.empty())
+	{
+		sps_targets.push_back(peak_queue.top().mz);
+		peak_queue.pop();
+	}
+
 
 }
 
@@ -434,16 +765,16 @@ void RT_Sequencer::collectScoresCompiled(
 
 	}
 	else {
-		try{
-			((void(*)(void))prog)();
-		}
+		//try{
+		((void(*)(void))prog)();
+		//}
 
-		catch (...)
-		{
-			//carp(CARP_INFO, "Bad Bad Not Good...");
-			carp(CARP_INFO, "Queue Dump");
-			active_peptide_queue->dumpQueue(charge);
-		}
+		//catch (...)
+		//{
+		//carp(CARP_INFO, "Bad Bad Not Good...");
+		//carp(CARP_INFO, "Queue Dump");
+		//active_peptide_queue->dumpQueue(charge);
+		//}
 
 	}
 

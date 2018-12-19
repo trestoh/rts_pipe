@@ -5,27 +5,22 @@
 
 #include "stdafx.h"
 
+#include <io.h>
+
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <sstream>
 #include <chrono>
+//#include <thread> //maybe not needed
 #include <ctime>
 #include <map>
 #include <vector>
 #include <gflags/gflags.h>
 #include <ratio>
 #include <windows.h>
-
-
-#include <OpenMS/FORMAT/MzMLFile.h>
-#include <OpenMS/MATH/MISC/MathFunctions.h>
-#include <OpenMS/CHEMISTRY/Residue.h>
-#include <OpenMS/CHEMISTRY/AASequence.h>
-#include <OpenMS/CHEMISTRY/IsotopeDistribution.h>
-#include <OpenMS/CHEMISTRY/ElementDB.h>
-#include <OpenMS/KERNEL/MSExperiment.h>
-#include <OpenMS/KERNEL/MSSpectrum.h>
+#include <queue>
+#include <functional>
 
 #include <util/GlobalParams.h>
 #include <util/WinCrux.h>
@@ -49,6 +44,8 @@
 #include <util/ArgParser.h>
 #include <io/SpectrumCollectionFactory.h>
 
+#include <OpenMS/CHEMISTRY/AASequence.h>
+
 #include "peptides.pb.h"
 #include "spectrum.pb.h"
 #include "app/tide/theoretical_peak_set.h"
@@ -63,9 +60,18 @@ class RT_Sequencer
 {
 public:
 	RT_Sequencer();
-	void init(const char* index_name = NULL, double xc1 = 1.8, double xc2 = 2.2, double xc3 = 3.5, double dcn = 0.08);
+	void init(const char* index_name = NULL, const char* param_name = NULL, const char* inclusion_name = NULL, double xc1 = 1.8, double xc2 = 2.2, double xc3 = 3.5, double dcn = 0.08, int window_type_index = 1, double window_size = 3.0);
 	~RT_Sequencer();
-	bool is_match(Spectrum& sspec, double high_mz, double precursor_mass, OpenMS::Int precursor_charge, string& peptide_hit, bool& decoy);
+	bool is_match(double high_mz, double precursor_mass, int precursor_charge);
+	void addPeak(double mz, double intensity);
+	void makeSpec(int scan_num, double prec_mz);
+	double score();
+	std::string sequence() { return open_ms_seq.toString(); }
+	std::vector<double> get_sps() { return sps_targets; }
+
+private:
+	bool protInclude(std::string prot_name);
+	void computeFragments(int charge);
 	void collectScoresCompiled(
 		ActivePeptideQueue2* active_peptide_queue,
 		const Spectrum* spectrum,
@@ -88,6 +94,8 @@ public:
 private:
 	ActivePeptideQueue2* peptide_queue;
 	InMemIndex* pep_index;
+	Spectrum* curr_spectrum;
+	ProteinVec proteins;
 	double window;
 	WINDOW_TYPE_T window_type;
 	double bin_width;
@@ -116,7 +124,36 @@ private:
 	double xcorr2;
 	double xcorr3;
 	double deltacn;
+	double last_score;
+	std::vector<double> last_fragments;
+	std::vector<double> sps_targets;
+	std::map<std::string, std::string> inclusion_list;
+	std::string last_seq;
+	OpenMS::AASequence open_ms_seq;
+	bool static_mods;
+	std::string static_delta;
 
+};
+
+class fragmentNode
+{
+public:
+	double mz;
+	int list;
+
+	friend bool operator>(const fragmentNode& l, const fragmentNode& r) { return ((l.mz > r.mz) ? true : false); }
+	fragmentNode(double mymz, int mylist) : mz(mymz), list(mylist) {}
+
+};
+
+class peakNode
+{
+public:
+	double mz;
+	double intensity;
+
+	friend bool operator>(const peakNode& l, const peakNode& r) { return ((l.intensity > r.intensity) ? true : false); }
+	peakNode(double mymz, double myintense) : mz(mymz), intensity(myintense) {}
 };
 
 #endif

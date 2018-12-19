@@ -336,7 +336,10 @@ int main(int argc, char * argv[])
 	//inittialize sequencer, may want to have initalize as a separate function
 
 	RT_Sequencer* sequencer = new RT_Sequencer();
-	sequencer->init(index.c_str(), xcorr1, xcorr2, xcorr3, deltacn);
+	//sequencer->init(index.c_str(), xcorr1, xcorr2, xcorr3, deltacn);
+	//sequencer->init(index.c_str(), NULL, NULL, 1.8, 2.2, 3.5, 0.08, 3, 20.0);
+	sequencer->init(index.c_str(), NULL, NULL, 1.8, 2.2, 3.5, 0.08);
+
 
 	carp(CARP_INFO, "Re-parsed succefully");
 
@@ -421,9 +424,16 @@ int main(int argc, char * argv[])
 			scan = scan.substr(scan.find('=') + 1);
 
 			Spectrum sspec = Spectrum(atoi(scan.c_str()), s.getPrecursors()[0].getMZ());
+
+			sequencer->makeSpec(atoi(scan.c_str()), s.getPrecursors()[0].getMZ());
+
+
 			for (OpenMS::MSSpectrum<>::ConstIterator it = s.begin(); it != s.end(); ++it)
 			{
 				sspec.AddPeak(it->getPos(), it->getIntensity());
+
+				sequencer->addPeak(it->getPos(), it->getIntensity());
+
 				//if (atoi(scan.c_str()) == 16613)
 				//{
 				//	carp(CARP_INFO, "testSpec.AddPeak(%f,%f);", it->getPos(), it->getIntensity());
@@ -435,7 +445,11 @@ int main(int argc, char * argv[])
 			std::string pep_seq;
 			bool isDecoy;
 
-			bool db_match = sequencer->is_match(sspec, highest_mz, s.getPrecursors()[0].getUnchargedMass(), s.getPrecursors()[0].getCharge(), pep_seq, isDecoy);
+			
+
+			//bool db_match = sequencer->is_match(sspec, highest_mz, s.getPrecursors()[0].getUnchargedMass(), s.getPrecursors()[0].getCharge(), pep_seq, isDecoy);
+			bool db_match = sequencer->is_match(highest_mz, s.getPrecursors()[0].getMZ(), s.getPrecursors()[0].getCharge());
+
 
 			if (db_match)
 			{
@@ -443,12 +457,14 @@ int main(int argc, char * argv[])
 				//carp(CARP_INFO, "Hit: Scan No: %d, prec mz: %f, prec uncharged mass: %f prec charge: %d mighest mz: %f", atoi(scan.c_str()), s.getPrecursors()[0].getMZ(), s.getPrecursors()[0].getUnchargedMass(), s.getPrecursors()[0].getCharge(), highest_mz);
 
 				db_hits++;
+				/*
 				if (isDecoy)
 					++decoy_count;
 				else {
 					++target_count;
 					pep_hits.push_back(pep_seq);
 				}
+				*/
 			}
 
 			//more file non-sense
