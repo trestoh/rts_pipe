@@ -338,7 +338,7 @@ int main(int argc, char * argv[])
 	RT_Sequencer* sequencer = new RT_Sequencer();
 	//sequencer->init(index.c_str(), xcorr1, xcorr2, xcorr3, deltacn);
 	//sequencer->init(index.c_str(), NULL, NULL, 1.8, 2.2, 3.5, 0.08, 3, 20.0);
-	sequencer->init(index.c_str(), NULL, NULL, 1.8, 2.2, 3.5, 0.08);
+	sequencer->init(index.c_str(), NULL, NULL, 1.8, 2.0, 3.5, 0.08, 3, 20.0);
 
 
 	carp(CARP_INFO, "Re-parsed succefully");
@@ -448,7 +448,7 @@ int main(int argc, char * argv[])
 			
 
 			//bool db_match = sequencer->is_match(sspec, highest_mz, s.getPrecursors()[0].getUnchargedMass(), s.getPrecursors()[0].getCharge(), pep_seq, isDecoy);
-			bool db_match = sequencer->is_match(highest_mz, s.getPrecursors()[0].getMZ(), s.getPrecursors()[0].getCharge());
+			bool db_match = sequencer->is_match(highest_mz, s.getPrecursors()[0].getUnchargedMass(), s.getPrecursors()[0].getCharge());
 
 
 			if (db_match)

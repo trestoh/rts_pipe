@@ -1,4 +1,4 @@
-﻿Build started 12/19/2018 11:45:00 AM.
+﻿Build started 12/20/2018 11:06:40 AM.
      1>Project "C:\dev\rts-ms3\rts_pipe\oms_tide_2013_tests\oms_tide_2013_tests.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"C:\dev\crux-src-03282018\ext\build\src\ProteoWizard\libraries\boost_1_56_0" /I"C:\dev\OpenMS-2.2.0-src\src\openms\include" /I"C:\dev\openms-220\src\openms\include" /I"C:\dev\qt-src-4.8.7\include\QtCore" /I"C:\dev\qt-src-4.8.7\include" /I"C:\dev\crux-src-03282018\ext\include" /I"C:\dev\crux-src-03282018\src" /I"C:\dev\crux-src-03282018\src\app\tide\protoobj" /I"C:\dev\crux-src-03282018\ext\build\src\protobuf-2.5.0\src" /I"C:\dev\crux-src-03282018\ext\build\src\comet\MSToolkit\include" /I"C:\dev\crux-src-03282018\src\app\tide" /ZI /nologo /W3 /WX- /sdl /Od /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"x64\Release\oms_tide_2013_tests.pch" /Fo"x64\Release\\" /Fd"x64\Release\project.pdb" /Gd /TP /wd4996 /errorReport:prompt /EHa oms_tide_2013_tests.cpp
@@ -65,4 +65,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:16.07
+Time Elapsed 00:00:22.29
