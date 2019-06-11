@@ -488,6 +488,8 @@ bool RT_Sequencer::is_match(double high_mz, double precursor_mass, int precursor
 				if (max_corr >= threshold && delta_corr >= delta_threshold && protInclude(proteinName)) {
 					const Peptide& peptid = *(peptide_queue->GetPeptide(max_corr_rank));
 					last_seq = peptid.SeqWithMods();
+					//if (last_seq.find('C') != std::string::npos)
+						//std::cout << last_seq << std::endl;
 					for (int i = 0; i < last_seq.size(); i++)
 					{
 						if (last_seq.at(i) == '[')

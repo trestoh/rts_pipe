@@ -338,7 +338,7 @@ int main(int argc, char * argv[])
 	RT_Sequencer* sequencer = new RT_Sequencer();
 	//sequencer->init(index.c_str(), xcorr1, xcorr2, xcorr3, deltacn);
 	//sequencer->init(index.c_str(), NULL, NULL, 1.8, 2.2, 3.5, 0.08, 3, 20.0);
-	sequencer->init(index.c_str(), NULL, NULL, 1.8, 2.0, 3.5, 0.08, 3, 20.0);
+	sequencer->init(index.c_str(), NULL, NULL, 1.8, 1.3, 1.5, 0.08, 3, 20.0);
 
 
 	carp(CARP_INFO, "Re-parsed succefully");
@@ -422,6 +422,11 @@ int main(int argc, char * argv[])
 			natID = std::istringstream(s.getNativeID());
 			natID >> junk >> junk >> scan;
 			scan = scan.substr(scan.find('=') + 1);
+
+			if (scan == "10663")
+			{
+				std::cout << "Scan of interest here" << std::endl;
+			}
 
 			Spectrum sspec = Spectrum(atoi(scan.c_str()), s.getPrecursors()[0].getMZ());
 
