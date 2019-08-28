@@ -1,1 +1,0 @@
-Parmeters: (1.3, 1.8, 2, 0.08) with 865 false positives over Percolator and 164 targets missed from percolator
