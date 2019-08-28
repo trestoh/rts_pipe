@@ -96,21 +96,13 @@ private:
 	InMemIndex* pep_index;
 	Spectrum* curr_spectrum;
 	ProteinVec proteins;
-	double window;
 	WINDOW_TYPE_T window_type;
 	double bin_width;
 	double bin_offset;
 	bool compute_sp;
 	vector<int>* negative_isotope_errors;
-	double* aaFreqN;
-	double* aaFreqI;
-	double* aaFreqC;
-	int* aaMass;
-	int nAA;
 	bool HAS_DECOYS;
 	bool PROTEIN_LEVEL_DECOYS;
-	bool overwrite;
-	bool exact_pval_search;
 	double spectrum_min_mz;
 	double spectrum_max_mz;
 	int min_peaks;
@@ -132,6 +124,8 @@ private:
 	OpenMS::AASequence open_ms_seq;
 	bool static_mods;
 	std::string static_delta;
+
+	int low_peak;
 
 };
 

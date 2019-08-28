@@ -7,10 +7,6 @@ RT_Sequencer::RT_Sequencer()
 	pep_index = NULL;
 	peptide_queue = NULL;
 	negative_isotope_errors = NULL;
-	aaFreqN = NULL;
-	aaFreqI = NULL;
-	aaFreqC = NULL;
-	aaMass = NULL;
 	curr_spectrum = NULL;
 }
 
@@ -62,6 +58,8 @@ void RT_Sequencer::init(const char* index_name, const char* param_name, const ch
 	xcorr3 = xc3;
 	deltacn = dcn;
 
+	low_peak = 0;
+
 	last_score = 0.0;
 	last_seq = "";
 
@@ -84,13 +82,13 @@ void RT_Sequencer::init(const char* index_name, const char* param_name, const ch
 	if (param_name != NULL)
 	{
 		parse_parameter_file(param_name);
-		window = Params::GetDouble("precursor-window");
+		precursor_window = Params::GetDouble("precursor-window");
 		window_type = string_to_window_type(Params::GetString("precursor-window-type"));
 	}
 
 	else
 	{
-		window = window_size;
+		precursor_window = window_size;
 		window_type = WINDOW_TYPE_T(window_type_index);
 	}
 
@@ -201,7 +199,6 @@ void RT_Sequencer::init(const char* index_name, const char* param_name, const ch
 		}
 	}
 
-	exact_pval_search = Params::GetBool("exact-p-value");
 	bin_width = Params::GetDouble("mz-bin-width");
 	bin_offset = Params::GetDouble("mz-bin-offset");
 
@@ -244,11 +241,6 @@ void RT_Sequencer::init(const char* index_name, const char* param_name, const ch
 	if (!ReadRecordsToVector<pb::Protein, const pb::Protein>(&proteins, proteins_file, &protein_header))
 		carp(CARP_FATAL, "Error Reading Index!");
 
-	aaFreqN = NULL;
-	aaFreqI = NULL;
-	aaFreqC = NULL;
-	aaMass = NULL;
-	nAA = 0;
 
 	pb::Header peptides_header;
 
@@ -280,7 +272,6 @@ void RT_Sequencer::init(const char* index_name, const char* param_name, const ch
 
 	pep_index = new InMemIndex(peptide_reader->Reader(), proteins);
 
-	overwrite = Params::GetBool("overwrite");
 	stringstream ss;
 	ss << Params::GetString("enzyme") << '-' << Params::GetString("digestion");
 	TideMatchSet::CleavageType = ss.str();
@@ -290,7 +281,6 @@ void RT_Sequencer::init(const char* index_name, const char* param_name, const ch
 	min_peaks = Params::GetInt("min-peaks");
 	top_matches = Params::GetInt("top-match");
 	highest_mz = 0.0f;
-	precursor_window = window;
 
 	peptide_queue = new ActivePeptideQueue2(pep_index, peptide_reader->Reader(), proteins);
 	peptide_queue->SetBinSize(bin_width, bin_offset);
@@ -303,10 +293,6 @@ RT_Sequencer::~RT_Sequencer()
 {
 	delete pep_index;
 	delete peptide_queue;
-	delete[] aaFreqN;
-	delete[] aaFreqI;
-	delete[] aaFreqC;
-	delete[] aaMass;
 	delete negative_isotope_errors;
 	delete curr_spectrum;
 }
@@ -319,24 +305,18 @@ bool RT_Sequencer::is_match(double high_mz, double precursor_mass, int precursor
 
 	spec_charges->push_back(SpectrumCollection::SpecCharge(precursor_mass, precursor_charge, curr_spectrum, 0));
 	int elution_window = Params::GetInt("elution-window-size");
-	bool peptide_centric = Params::GetBool("peptide-centric-search");
 	bool use_neutral_loss_peaks = Params::GetBool("use-neutral-loss-peaks");
 	bool use_flanking_peaks = Params::GetBool("use-flanking-peaks");
 	int max_charge = Params::GetInt("max-precursor-charge");
 	ObservedPeakSet observed(bin_width, bin_offset, use_neutral_loss_peaks, use_flanking_peaks);
 
-	if (peptide_centric == false) {
-		elution_window = 0;
-	}
-
 	peptide_queue->setElutionWindow(elution_window);
-	peptide_queue->setPeptideCentric(peptide_centric);
+	peptide_queue->setPeptideCentric(false);
 
 	if (elution_window > 0 && elution_window % 2 == 0)
 		peptide_queue->setElutionWindow(elution_window + 1);
 
-	if (!peptide_centric || !exact_pval_search)
-		peptide_queue->setElutionWindow(0);
+	peptide_queue->setElutionWindow(0);
 
 	for (vector<SpectrumCollection::SpecCharge>::const_iterator sc = spec_charges->begin(); sc < spec_charges->end(); sc++)
 	{
@@ -355,7 +335,10 @@ bool RT_Sequencer::is_match(double high_mz, double precursor_mass, int precursor
 			|| spectrum->Size() < min_peaks || (charge_to_search != 0 && charge != charge_to_search) || charge > max_charge) {
 			carp(CARP_INFO, "Exited search early");
 			if (spectrum->Size() < min_peaks)
+			{
 				carp(CARP_INFO, "Not Enough Peaks.");
+				low_peak++;
+			}
 			delete curr_spectrum;
 			curr_spectrum = NULL;
 			return false;
@@ -370,183 +353,170 @@ bool RT_Sequencer::is_match(double high_mz, double precursor_mass, int precursor
 
 		computeWindow(*sc, window_type, precursor_window, max_charge, negative_isotope_errors, min_mass, max_mass, &min_range, &max_range);
 
-		if (!exact_pval_search) {
-			observed.PreprocessSpectrum(*spectrum, charge);
-			int nCandPeptide = peptide_queue->SetActiveRange(min_mass, max_mass, min_range, max_range, candidatePeptideStatus);
-			if (nCandPeptide == 0) {
-				delete min_mass;
-				delete max_mass;
-				delete candidatePeptideStatus;
-				delete curr_spectrum;
-				curr_spectrum = NULL;
-				return false;
+		
+		observed.PreprocessSpectrum(*spectrum, charge);
+		int nCandPeptide = peptide_queue->SetActiveRange(min_mass, max_mass, min_range, max_range, candidatePeptideStatus);
+		if (nCandPeptide == 0) {
+			delete min_mass;
+			delete max_mass;
+			delete candidatePeptideStatus;
+			delete curr_spectrum;
+			curr_spectrum = NULL;
+			return false;
+		}
+
+		int candidatePeptideStatusSize = candidatePeptideStatus->size();
+		TideMatchSet::Arr2 match_arr2(candidatePeptideStatusSize);
+
+		OutputDebugString(L"Hitting collect scores compiled");
+		this->collectScoresCompiled(peptide_queue, spectrum, observed, &match_arr2, candidatePeptideStatusSize, charge);
+		OutputDebugString(L"Passed collect scores compiled");
+
+			
+		TideMatchSet::Arr match_arr(nCandPeptide);
+		for (TideMatchSet::Arr2::iterator it = match_arr2.begin(); it != match_arr2.end(); ++it){
+			int peptide_idx = candidatePeptideStatusSize - (it->second);
+			if ((*candidatePeptideStatus)[peptide_idx]) {
+				TideMatchSet::Scores curScore;
+				curScore.xcorr_score = (double)(it->first / XCORR_SCALING);
+				curScore.rank = it->second;
+				match_arr.push_back(curScore);
+			}
+		}
+
+		double max_corr = match_arr.begin()->xcorr_score;
+		double second_corr = match_arr.begin()->xcorr_score;
+		int max_corr_rank = match_arr.size();
+		int precision = Params::GetInt("precision");
+
+		for (TideMatchSet::Arr::iterator it = match_arr.begin(); it != match_arr.end(); ++it) {
+			if (it->xcorr_score > max_corr) {
+				second_corr = max_corr;
+				max_corr = it->xcorr_score;
+				max_corr_rank = it->rank;
+			}
+		}
+
+		last_score = max_corr;
+
+		double delta_corr = (max_corr - second_corr) / second_corr;
+		double threshold;
+		switch (charge) {
+		case 1:
+			threshold = xcorr1;
+			break;
+		case 2:
+			threshold = xcorr2;
+			break;
+		default:
+			threshold = xcorr3;
+			break;
+		}
+
+		double delta_threshold = deltacn;
+		/*
+		const Peptide& peptid = *(peptide_queue->GetPeptide(max_corr_rank));
+
+		//if (peptid.IsDecoy())
+		//	decoy = true;
+		//else
+		//	decoy = false;
+
+		vector<Crux::Modification> modVector;
+		string seq(peptid.Seq());
+		const ModCoder::Mod* mods;
+		int pep_mods = peptid.Mods(&mods);
+		for (int i = 0; i < pep_mods; i++){
+		int mod_index;
+		double mod_delta;
+		MassConstants::DecodeMod(mods[i], &mod_index, &mod_delta);
+		const ModificationDefinition* modDef = ModificationDefinition::Find(mod_delta, false);
+		if (modDef == NULL)
+		continue;
+		modVector.push_back(Crux::Modification(modDef, mod_index));
+		}
+
+		Crux::Peptide cruxPep = Crux::Peptide(peptid.Seq(), modVector);
+		*/
+		//peptide_hit = cruxPep.getModifiedSequenceWithMasses();
+
+		//carp(CARP_DETAILED_DEBUG, "Max XCorr for Scan is: %f and dCn is: %f", max_corr, delta_corr);
+		const Peptide& peptid01 = *(peptide_queue->GetPeptide(max_corr_rank));
+		const pb::Protein* protein = proteins[peptid01.FirstLocProteinId()];
+		int pos = peptid01.FirstLocPos();
+		string proteinName = protein->name();//getProteinName(*protein,
+		//(!protein->has_target_pos()) ? pos : protein->target_pos());
+		int start_pos = 0;
+		while (proteinName[start_pos] != '|')
+			start_pos++;
+		start_pos++;
+		int end_pos = start_pos;
+		while (proteinName[end_pos] != '-' && proteinName[end_pos] != '|')
+			end_pos++;
+		proteinName = proteinName.substr(start_pos, end_pos - start_pos);
+
+
+		if (max_corr >= threshold && delta_corr >= delta_threshold && protInclude(proteinName)) {
+			const Peptide& peptid = *(peptide_queue->GetPeptide(max_corr_rank));
+			last_seq = peptid.SeqWithMods();
+			//if (last_seq.find('C') != std::string::npos)
+				//std::cout << last_seq << std::endl;
+			for (int i = 0; i < last_seq.size(); i++)
+			{
+				if (last_seq.at(i) == '[')
+					if (last_seq.substr(i, 8) == "[+229.2]")
+					{
+						//carp(CARP_INFO, "Found a dang TMT");
+						//carp(CARP_INFO, "Sequence started as %s", last_seq.c_str());
+						//last_seq.replace(i, 8, "(TMT6plex)");
+						if (i == 1)
+						{
+							last_seq.erase(i, 8);
+							last_seq = "(TMT6plex)" + last_seq;
+							i = 10;
+						}
+						else
+						{
+							last_seq.replace(i, 8, "(TMT6plex)");
+							i += 9;
+						}
+						//carp(CARP_INFO, "Changed sequence to %s", last_seq.c_str());
+					}
 			}
 
-			int candidatePeptideStatusSize = candidatePeptideStatus->size();
-			TideMatchSet::Arr2 match_arr2(candidatePeptideStatusSize);
+			if (static_mods)
+			{
+				//last_seq.insert(0, ".(TMT6plex)");
+				last_seq.insert(0, (".[+" + static_delta + "]"));
+				if (last_seq.at(last_seq.size() - 1) == 'K')
+					//last_seq.append("(TMT6plex)");
+					last_seq.append(("[+" + static_delta + "]"));
+			}
 
-			OutputDebugString(L"Hitting collect scores compiled");
-			this->collectScoresCompiled(peptide_queue, spectrum, observed, &match_arr2, candidatePeptideStatusSize, charge);
-			OutputDebugString(L"Passed collect scores compiled");
+			open_ms_seq = OpenMS::AASequence::fromString(last_seq);
 
-			if (peptide_centric) {
-				carp(CARP_INFO, "Peptide Centric Search, iterating matches");
-				deque<Peptide*>::const_iterator iter_ = peptide_queue->iter_;
-				TideMatchSet::Arr2::iterator it = match_arr2.begin();
-				for (; it != match_arr2.end(); ++iter_, ++it) {
-					int peptide_idx = candidatePeptideStatusSize - (it->second);
-					if ((*candidatePeptideStatus)[peptide_idx]) {
-						(*iter_)->AddHit(spectrum, it->first, 0.0, it->second, charge);
-					}
-				}
-			} //end peptide centric
+			computeFragments(precursor_charge);
+			//for (int j = 0; j < last_fragments.size(); j++)
+			//carp(CARP_INFO, "Theoretical Fragment of %f", last_fragments.at(j));
+			//	std::cout << "Theoretical Fragment of " << last_fragments.at(j) << std::endl;
 
-			else {
-				TideMatchSet::Arr match_arr(nCandPeptide);
-				for (TideMatchSet::Arr2::iterator it = match_arr2.begin(); it != match_arr2.end(); ++it){
-					int peptide_idx = candidatePeptideStatusSize - (it->second);
-					if ((*candidatePeptideStatus)[peptide_idx]) {
-						TideMatchSet::Scores curScore;
-						curScore.xcorr_score = (double)(it->first / XCORR_SCALING);
-						curScore.rank = it->second;
-						match_arr.push_back(curScore);
-					}
-				}
+			//for (int k = 0; k < curr_spectrum->Size(); k++)
+			//	std::cout << "Observed Peak MZ: " << curr_spectrum->M_Z(k) << " Intensity: " << curr_spectrum->Intensity(k) << std::endl;
 
-				double max_corr = match_arr.begin()->xcorr_score;
-				double second_corr = match_arr.begin()->xcorr_score;
-				int max_corr_rank = match_arr.size();
-				int precision = Params::GetInt("precision");
+			//for (int m = 0; m < sps_targets.size(); m++)
+			//	std::cout << "Sps Target: " << sps_targets.at(m) << std::endl;
 
-				for (TideMatchSet::Arr::iterator it = match_arr.begin(); it != match_arr.end(); ++it) {
-					if (it->xcorr_score > max_corr) {
-						second_corr = max_corr;
-						max_corr = it->xcorr_score;
-						max_corr_rank = it->rank;
-					}
-				}
-
-				last_score = max_corr;
-
-				double delta_corr = (max_corr - second_corr) / second_corr;
-				double threshold;
-				switch (charge) {
-				case 1:
-					threshold = xcorr1;
-					break;
-				case 2:
-					threshold = xcorr2;
-					break;
-				default:
-					threshold = xcorr3;
-					break;
-				}
-
-				double delta_threshold = deltacn;
-				/*
-				const Peptide& peptid = *(peptide_queue->GetPeptide(max_corr_rank));
-
-				//if (peptid.IsDecoy())
-				//	decoy = true;
-				//else
-				//	decoy = false;
-
-				vector<Crux::Modification> modVector;
-				string seq(peptid.Seq());
-				const ModCoder::Mod* mods;
-				int pep_mods = peptid.Mods(&mods);
-				for (int i = 0; i < pep_mods; i++){
-				int mod_index;
-				double mod_delta;
-				MassConstants::DecodeMod(mods[i], &mod_index, &mod_delta);
-				const ModificationDefinition* modDef = ModificationDefinition::Find(mod_delta, false);
-				if (modDef == NULL)
-				continue;
-				modVector.push_back(Crux::Modification(modDef, mod_index));
-				}
-
-				Crux::Peptide cruxPep = Crux::Peptide(peptid.Seq(), modVector);
-				*/
-				//peptide_hit = cruxPep.getModifiedSequenceWithMasses();
-
-				//carp(CARP_DETAILED_DEBUG, "Max XCorr for Scan is: %f and dCn is: %f", max_corr, delta_corr);
-				const Peptide& peptid01 = *(peptide_queue->GetPeptide(max_corr_rank));
-				const pb::Protein* protein = proteins[peptid01.FirstLocProteinId()];
-				int pos = peptid01.FirstLocPos();
-				string proteinName = protein->name();//getProteinName(*protein,
-				//(!protein->has_target_pos()) ? pos : protein->target_pos());
-				int start_pos = 0;
-				while (proteinName[start_pos] != '|')
-					start_pos++;
-				start_pos++;
-				int end_pos = start_pos;
-				while (proteinName[end_pos] != '-' && proteinName[end_pos] != '|')
-					end_pos++;
-				proteinName = proteinName.substr(start_pos, end_pos - start_pos);
+			//carp(CARP_INFO, "Search was at charge state %d", precursor_charge);
+			delete min_mass;
+			delete max_mass;
+			delete candidatePeptideStatus;
+			delete curr_spectrum;
+			curr_spectrum = NULL;
+			return true;
+		}
 
 
-				if (max_corr >= threshold && delta_corr >= delta_threshold && protInclude(proteinName)) {
-					const Peptide& peptid = *(peptide_queue->GetPeptide(max_corr_rank));
-					last_seq = peptid.SeqWithMods();
-					//if (last_seq.find('C') != std::string::npos)
-						//std::cout << last_seq << std::endl;
-					for (int i = 0; i < last_seq.size(); i++)
-					{
-						if (last_seq.at(i) == '[')
-							if (last_seq.substr(i, 8) == "[+229.2]")
-							{
-								//carp(CARP_INFO, "Found a dang TMT");
-								//carp(CARP_INFO, "Sequence started as %s", last_seq.c_str());
-								//last_seq.replace(i, 8, "(TMT6plex)");
-								if (i == 1)
-								{
-									last_seq.erase(i, 8);
-									last_seq = "(TMT6plex)" + last_seq;
-									i = 10;
-								}
-								else
-								{
-									last_seq.replace(i, 8, "(TMT6plex)");
-									i += 9;
-								}
-								//carp(CARP_INFO, "Changed sequence to %s", last_seq.c_str());
-							}
-					}
-
-					if (static_mods)
-					{
-						//last_seq.insert(0, ".(TMT6plex)");
-						last_seq.insert(0, (".[+" + static_delta + "]"));
-						if (last_seq.at(last_seq.size() - 1) == 'K')
-							//last_seq.append("(TMT6plex)");
-							last_seq.append(("[+" + static_delta + "]"));
-					}
-
-					open_ms_seq = OpenMS::AASequence::fromString(last_seq);
-
-					computeFragments(precursor_charge);
-					//for (int j = 0; j < last_fragments.size(); j++)
-					//carp(CARP_INFO, "Theoretical Fragment of %f", last_fragments.at(j));
-					//	std::cout << "Theoretical Fragment of " << last_fragments.at(j) << std::endl;
-
-					//for (int k = 0; k < curr_spectrum->Size(); k++)
-					//	std::cout << "Observed Peak MZ: " << curr_spectrum->M_Z(k) << " Intensity: " << curr_spectrum->Intensity(k) << std::endl;
-
-					//for (int m = 0; m < sps_targets.size(); m++)
-					//	std::cout << "Sps Target: " << sps_targets.at(m) << std::endl;
-
-					//carp(CARP_INFO, "Search was at charge state %d", precursor_charge);
-					delete min_mass;
-					delete max_mass;
-					delete candidatePeptideStatus;
-					delete curr_spectrum;
-					curr_spectrum = NULL;
-					return true;
-				}
-
-			} //end spectrum centric search
-
-		}//end NOT exact p value version of search
+		
 
 		delete min_mass;
 		delete max_mass;
@@ -584,14 +554,15 @@ void RT_Sequencer::computeFragments(int charge)
 		if (it->isModified())
 		{
 			std::string mod = it->getModificationName();
+			carp(CARP_INFO, "%s", mod);
 			if (mod == "TMT6plex")
 			{
 				second_mod = true;
 				break;
 			}
 
-			second_mod = true;
-			break;
+			//second_mod = true;
+			//break;
 
 		}
 		--second_tmt;
